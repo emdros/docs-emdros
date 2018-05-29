@@ -9,6 +9,32 @@ are permitted in any medium without royalty provided the copyright
 notice and this notice are preserved.  This file is offered as-is,
 without warranty of any kind.
 
+Requirements
+============
+
+General
+-------
+
+In order to build the docs-emdros package, you need the following
+software installed:
+
+- lyx 2.x
+- pdflatex
+- epstopdf
+- Python 2.x
+
+Fedora 28
+---------
+
+sudo dnf -y install transfig lyx texlive-a4wide texlive-times texlive-courier texlive-ulem texlive-epstopdf-bin texlive-latex
+
+Ubuntu 18.04 LTS
+----------------
+
+sudo apt-get install -y transfig lyx latex2html texlive-font-utils
+
+
+
 Basic Installation
 ==================
 
