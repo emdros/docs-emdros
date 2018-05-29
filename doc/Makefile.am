@@ -18,9 +18,9 @@ EXTRA_DIST = $(TXTFILES) $(WIN32FILES) \
              $(LYXFILES) $(PDFFILES) \
              lyx/TheDoor.fig lyx/TheDoor.eps
 
-CLEANFILES = *~ core 
+CLEANFILES = *~ core $(PDFFILES)
 
-DISTCLEANFILES = $(PDFFILES)
+DISTCLEANFILES = 
 
 BUILT_SOURCES = $(PDFFILES)
 
