@@ -1,4 +1,4 @@
-SUBDIRS = progref
+SUBDIRS = progref importtool querytool
 
 
 LYXFILES = lyx/Monad-Sets.lyx \

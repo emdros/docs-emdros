@@ -1,0 +1,9 @@
+============ 1.0.0 ============
+
+2018-06-01 Ulrik Sandborg-Petersen
+
+	* ChangeLog: Start of this ChangeLog.
+
+	* doc/querytool/: Initial addition.
+
+	* doc/importtool/: Initial addition.
