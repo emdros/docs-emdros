@@ -36,7 +36,7 @@ covered:</P>
 
 <h2>Appliccable version</h2>
 
-<P>This guide documents Emdros version <strong>3.5.22</strong>
+<P>This guide documents Emdros version <strong>4.0.0</strong>
 and later.</P>
 
 
@@ -1730,7 +1730,7 @@ public:
   // enum enum{PREUNDERSCORE}name with the value value.
   // Just calls the corresponding EMdFDB method.
   // bDBOK is true on no DB error.
-  virtual std::string getEnumConstNameFromValue(long value,
+  virtual std::string getEnumConstNameFromValue(emdros_int64 value,
                                                 const std::string{PREAMP} enum{PREUNDERSCORE}name,
                                                 /* out */ bool &bDBOK);
 
@@ -2910,7 +2910,7 @@ public:
   // Enums are returned by their integer value, not their string name.
   //
   // Throws an EmdrosException if index out of range.
-  long getFeatureAsLong(int index) const;
+  emdros_int64 getFeatureAsLong(int index) const;
 
   // Get enum label from an index into the EMdFValue vector
   std::string getEnumLabel(int index) const;
@@ -3260,7 +3260,7 @@ public:
   EMdFValue(const EMdFValue{PREAMP} other);
 
   // kind must be kEVInt, kEVEnum or kEVID{PREUNDERSCORE}D
-  EMdFValue(eEVkind kind, long i);
+  EMdFValue(eEVkind kind, emdros_int64 i);
 
   // kind becomes kEVString
   EMdFValue(const std::string{PREAMP} str);
@@ -3280,10 +3280,10 @@ public:
   id{PREUNDERSCORE}d{PREUNDERSCORE}t getID{PREUNDERSCORE}D(void) const;
 
   // Get if it is an integer
-  long getInt(void) const;
+  emdros_int64 getInt(void) const;
 
   // Get if it is an enum
-  long getEnum(void) const;
+  emdros_int64 getEnum(void) const;
 
   // Get if it is kEVListOfInteger or kEVListOfID_D
   IntegerList *getIntegerList(void) const;
@@ -3379,10 +3379,11 @@ public:
 
 <h2>Overview</h2>
 
-<P>An IntegerList is for communicating a list of integers (C++
-"long"s, actually) between Emdros and the program using Emdros.
+<P>An IntegerList is for communicating a list of integers (C++ 64-bit
+integers, actually) between Emdros and the program using Emdros.
 Internally, monad_ms, id_d_ts, and enumeration constant values are all
-longs.  Thus an IntegerList can hold any of those kinds of values.</P>
+64-bit longs.  Thus an IntegerList can hold any of those kinds of
+values.</P>
 
 <P>The list is ordered, and can be iterated with the normal
 Emdros-iterators.</P>
@@ -3407,9 +3408,9 @@ public:
   IntegerListConstIterator(const IntegerListConstIterator{PREAMP} other);
   ~IntegerListConstIterator();
   bool hasNext() const; // Is the iterator == end iterator?  Doesn't alter iterator
-  long next(); // Gets current and advances iterator afterwards
-  long previous();  // Regresses iterator and then gets current
-  long current(); // Gets current without altering iterator
+  emdros_int64 next(); // Gets current and advances iterator afterwards
+  emdros_int64 previous();  // Regresses iterator and then gets current
+  emdros_int64 current(); // Gets current without altering iterator
 };
 
 class IntegerList {
@@ -3428,13 +3429,13 @@ public:
 
   IntegerListConstIterator const{PREUNDERSCORE}iterator() const;
 
-  std::vector{PRELT}long{PREGT} getAsVector(void) const;
+  std::vector{PRELT}emdros_int64{PREGT} getAsVector(void) const;
 
   // Add at beginning of list, pushing everything down one member
-  void addIntegerFront(long l);
+  void addIntegerFront(emdros_int64 l);
 
   // Add at end of list
-  void addIntegerBack(long l);
+  void addIntegerBack(emdros_int64 l);
 
   bool isEmpty(void) const;
 };
