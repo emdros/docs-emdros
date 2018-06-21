@@ -1,12 +1,11 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
 \origin unavailable
 \textclass report
 \begin_preamble
-\usepackage{a4wide}
 \usepackage{times}
 \end_preamble
 \use_default_options false
@@ -25,6 +24,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -33,8 +34,8 @@
 \paperfontsize default
 \spacing single
 \use_hyperref false
-\papersize default
-\use_geometry false
+\papersize a4paper
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -54,18 +55,29 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1.25in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\headheight 1cm
+\headsep 1cm
+\footskip 1.27cm
 \secnumdepth 5
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
-\papersides 1
-\paperpagestyle default
+\papersides 2
+\paperpagestyle fancy
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -263,14 +275,14 @@ Ulrik Sandborg-Petersen
 \end_layout
 
 \begin_layout Date
-July 19, 2016
+June 21, 2018
 \end_layout
 
 \begin_layout Standard
 \noindent
 
 \size larger
-Copyright (C) 2001-2016 Ulrik Sandborg-Petersen
+Copyright (C) 2001-2018 Ulrik Sandborg-Petersen
 \end_layout
 
 \begin_layout Standard
@@ -285,7 +297,7 @@ Copyright (C) 2001-2016 Ulrik Sandborg-Petersen
 
 \size larger
 This document is made available under the Creative Commons Attribution-Sharealik
-e license version 2.5.
+e International license 4.0 (CC-BY-SA 4.0).
 \end_layout
 
 \begin_layout Standard
@@ -312,11 +324,8 @@ See
 \begin_layout Standard
 \align center
 
-\family typewriter
 \size larger
-http://creativecommons.org/licenses/by-sa/2.5/
-\family default
- 
+https://creativecommons.org/licenses/by-sa/4.0/
 \end_layout
 
 \begin_layout Standard
@@ -354,7 +363,7 @@ Please visit the Emdros website for the latest news and downloads:
 
 \family typewriter
 \size larger
-http://emdros.org
+https://emdros.org
 \end_layout
 
 \begin_layout Abstract
@@ -647,6 +656,7 @@ Doedens, Crist-Jan
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Doedens94"
+literal "true"
 
 \end_inset
 
@@ -2566,7 +2576,7 @@ Bracing (repetition)
 \begin_layout Standard
 The { braces } are used to indicate that the enclosed part can be repeated
  zero or more times.
- For example, in the rule for 
+ For example, in the rule whose left hand side is 
 \family typewriter
 ec_declaration_list
 \family default
@@ -2629,7 +2639,7 @@ That it can be repeated
 zero
 \emph default
  or more times simply means that it is optional.
- In the rule for 
+ In the rule whose left hand side is 
 \family typewriter
 ec_declaration_list
 \family default
@@ -2667,42 +2677,17 @@ Acknowledgements
 \end_layout
 
 \begin_layout Subsection
-Westminster Hebrew Institute
+Persons
 \end_layout
 
 \begin_layout Standard
-Emdros development is made possible in part by the generosity of the Westminster
- Hebrew Institute
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-See <
-\family typewriter
-http://whi.wts.edu/WHI
-\family default
->.
-\end_layout
-
-\end_inset
-
-, part of Westminster Theological Seminary
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-See <
-\family typewriter
-http://www.wts.edu
-\family default
->.
-\end_layout
-
-\end_inset
-
-, Philadelphia, Pennsylvania.
- The WHI grants me access to some seriously powerful hardware, which helps
- drive Emdros development, in particular the scalability of Emdros.
+Thanks to Crist-Jan Doedens for inventing the MdF model and the QL query
+ language, on which Emdros rests.
+ Thanks also to Henk Harmsen for inventing the forerunner to MQL.
+ Thanks to Constantijn Sikkel, Hendrik Jan Bosman, and Kirk E.
+ Lowery for much support and encouragement through the years.
+ Thanks to Claus Tøndering, Kirk E.
+ Lowery, Christ Wilson, and Martin Korshøj Petersen for code contributions.
 \end_layout
 
 \begin_layout Subsection
@@ -4669,6 +4654,7 @@ m
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Doedens94"
+literal "true"
 
 \end_inset
 
@@ -4676,6 +4662,7 @@ key "Doedens94"
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Standard-MDF"
+literal "true"
 
 \end_inset
 
@@ -7903,6 +7890,7 @@ The CREATE DATABASE statement creates and initializes a database.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Rel-EMdF"
+literal "true"
 
 \end_inset
 
@@ -11970,7 +11958,7 @@ IDENTIFIER
 \end_layout
 
 \begin_layout LyX-Code
-feature_update_list : feature_update   { feature_update }
+feature_update_list : feature_update  { feature_update }
 \end_layout
 
 \begin_layout LyX-Code
@@ -11998,7 +11986,7 @@ REMOVE
 \begin_inset Quotes erd
 \end_inset
 
-   feature_name   
+  feature_name  
 \begin_inset Quotes eld
 \end_inset
 
@@ -12434,7 +12422,11 @@ IDENTIFIER
 \end_layout
 
 \begin_layout LyX-Code
-ec_declaration_list : ec_declaration    { 
+ec_declaration_list : ec_declaration  
+\end_layout
+
+\begin_layout LyX-Code
+                      { 
 \begin_inset Quotes eld
 \end_inset
 
@@ -12442,7 +12434,7 @@ ec_declaration_list : ec_declaration    {
 \begin_inset Quotes erd
 \end_inset
 
-   ec_declaration }
+  ec_declaration }
 \end_layout
 
 \begin_layout LyX-Code
@@ -12979,7 +12971,7 @@ IDENTIFIER
 \end_layout
 
 \begin_layout LyX-Code
-ec_update_list : ec_update   { 
+ec_update_list : ec_update  { 
 \begin_inset Quotes eld
 \end_inset
 
@@ -12987,7 +12979,7 @@ ec_update_list : ec_update   {
 \begin_inset Quotes erd
 \end_inset
 
-   ec_update }
+  ec_update }
 \end_layout
 
 \begin_layout LyX-Code
@@ -13035,7 +13027,7 @@ DEFAULT
 \begin_inset Quotes erd
 \end_inset
 
- ]   ec_name   ec_initialization 
+ ]  ec_name  ec_initialization 
 \end_layout
 
 \begin_layout LyX-Code
@@ -14391,6 +14383,10 @@ MONADS
 \end_inset
 
  
+\end_layout
+
+\begin_layout LyX-Code
+     
 \begin_inset Quotes eld
 \end_inset
 
@@ -14451,6 +14447,10 @@ FEATURE
 \end_inset
 
  feature_name 
+\end_layout
+
+\begin_layout LyX-Code
+     
 \begin_inset Quotes eld
 \end_inset
 
@@ -15092,6 +15092,7 @@ m
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Standard-MDF"
+literal "true"
 
 \end_inset
 
@@ -15099,6 +15100,7 @@ key "Standard-MDF"
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Doedens94"
+literal "true"
 
 \end_inset
 
@@ -16053,8 +16055,11 @@ monads
 \end_layout
 
 \begin_layout LyX-Code
-                           regardless of which monad set is actually used!
- 
+                           regardless of which monad set 
+\end_layout
+
+\begin_layout LyX-Code
+                           is actually used! 
 \end_layout
 
 \begin_layout LyX-Code
@@ -16434,6 +16439,10 @@ Syntax
 
 \begin_layout LyX-Code
 get_aggregate_features_statement : 
+\end_layout
+
+\begin_layout LyX-Code
+    
 \begin_inset Quotes eld
 \end_inset
 
@@ -16553,7 +16562,11 @@ aggregate_feature_list : aggregate_feature
 \begin_inset Quotes erd
 \end_inset
 
- aggregate_feature
+ 
+\end_layout
+
+\begin_layout LyX-Code
+                         aggregate_feature
 \end_layout
 
 \begin_layout LyX-Code
@@ -17047,28 +17060,32 @@ GO
 
 \begin_layout LyX-Code
  * - Find a count of all Line objects.
- (Note that this, together with the
+ (Note that this, together 
 \end_layout
 
 \begin_layout LyX-Code
- *   sum of all words spoken, can be used to calculate the average
+ *   with the sum of all words spoken, can be used to calculate 
 \end_layout
 
 \begin_layout LyX-Code
- *   number of words spoken by any actant.
- This has to be done outside of 
+ *   the average number of words spoken by any actant.
+ This has to be 
 \end_layout
 
 \begin_layout LyX-Code
- *   Emdros, as Emdros does not yet support floating point return values.)
+ *   done outside of Emdros, as Emdros does not yet support floating 
 \end_layout
 
 \begin_layout LyX-Code
- * - Find a count of all Line objects whose gender feature is Man, i.e., the
+ *   point return values.)
 \end_layout
 
 \begin_layout LyX-Code
- *   number of Line spoken by a Man.
+ * - Find a count of all Line objects whose gender feature is Man, 
+\end_layout
+
+\begin_layout LyX-Code
+ *   i.e., the number of Line spoken by a Man.
 \end_layout
 
 \begin_layout LyX-Code
@@ -17256,7 +17273,15 @@ GET AGGREGATE FEATURES
 \end_layout
 
 \begin_layout LyX-Code
-SUM(words_spoken), COUNT(actant_name="Hamlet"), COUNT(actant_name="Ophelia")
+SUM(words_spoken), 
+\end_layout
+
+\begin_layout LyX-Code
+COUNT(actant_name="Hamlet"), 
+\end_layout
+
+\begin_layout LyX-Code
+COUNT(actant_name="Ophelia")
 \end_layout
 
 \begin_layout LyX-Code
@@ -17898,6 +17923,7 @@ See
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Monad-Sets"
+literal "true"
 
 \end_inset
 
@@ -18377,10 +18403,8 @@ first_person
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="7">
+<lyxtabular version="3" rows="1" columns="5">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
@@ -18428,24 +18452,6 @@ number_in_corpus : integer
 
 \begin_layout Plain Layout
 parent: id_d
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-parents: list_of_id_d
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-functions : list_of_enum(function_t)
 \end_layout
 
 \end_inset
@@ -22147,25 +22153,39 @@ References
 \end_layout
 
 \begin_layout Standard
-For the non-terminals 
-\family typewriter
-monad_specification
-\family default
-, 
-\family typewriter
-with_id_d_specification
-\family default
-, and 
-\family typewriter
-list_of_feature_assignments
-\family default
- please see section 
+Please see section 
 \begin_inset CommandInset ref
 LatexCommand vref
 reference "CREATE_OBJECT_FROM_MONADS"
 
 \end_inset
 
+ for the following non-terminals
+\family typewriter
+:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+monad_specification
+\family default
+, 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+with_id_d_specification
+\family default
+,
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+list_of_feature_assignments
+\family default
 .
 \end_layout
 
@@ -22902,7 +22922,11 @@ reference "CREATE_OBEJCT_FROM_ID_DS"
 \end_inset
 
 .
- For a description of 
+ 
+\end_layout
+
+\begin_layout Standard
+For a description of 
 \family typewriter
 object_update_specification
 \family default
@@ -23504,7 +23528,11 @@ reference "CREATE_OBEJCT_FROM_ID_DS"
 \end_inset
 
 .
- For a description of 
+ 
+\end_layout
+
+\begin_layout Standard
+For a description of 
 \family typewriter
 object_deletion_specification
 \family default
@@ -23546,20 +23574,7 @@ Explanation
 \end_layout
 
 \begin_layout Standard
-This statement deletes objects by their id_ds.
- Note that you cannot write 
-\begin_inset Quotes eld
-\end_inset
-
-ALL
-\begin_inset Quotes erd
-\end_inset
-
- for 
-\family typewriter
-object_deletion_specification
-\family default
-.
+This statement deletes objects by their specific id_ds.
  The id_ds given should point to objects of the type given.
 \end_layout
 
@@ -24678,6 +24693,7 @@ An easier-to-read MQL Query Guide is available from the Emdros website,
 \begin_inset CommandInset citation
 LatexCommand cite
 key "MQL-Query-Guide"
+literal "true"
 
 \end_inset
 
@@ -27670,11 +27686,19 @@ GET
 \end_layout
 
 \begin_layout LyX-Code
-monad_set_relation_clause : /* empty; which means: part_of(substrate) */
+monad_set_relation_clause : 
+\end_layout
+
+\begin_layout LyX-Code
+             /* empty; which means: part_of(substrate) */
 \end_layout
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
+\end_layout
+
+\begin_layout LyX-Code
+             
 \begin_inset Quotes eld
 \end_inset
 
@@ -27695,6 +27719,10 @@ monad_set_relation_clause : /* empty; which means: part_of(substrate) */
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
+\end_layout
+
+\begin_layout LyX-Code
+             
 \begin_inset Quotes eld
 \end_inset
 
@@ -27710,7 +27738,11 @@ monad_set_relation_clause : /* empty; which means: part_of(substrate) */
 \begin_inset Quotes erd
 \end_inset
 
- universe_or_substrate 
+ 
+\end_layout
+
+\begin_layout LyX-Code
+             universe_or_substrate 
 \begin_inset Quotes eld
 \end_inset
 
@@ -28024,6 +28056,7 @@ There is a correspondence between the way an MQL query is structured and
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Doedens94"
+literal "true"
 
 \end_inset
 
@@ -29443,11 +29476,19 @@ GET
 \end_layout
 
 \begin_layout LyX-Code
-monad_set_relation_clause : /* empty; which means: part_of(substrate) */
+monad_set_relation_clause : 
+\end_layout
+
+\begin_layout LyX-Code
+             /* empty; which means: part_of(substrate) */
 \end_layout
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
+\end_layout
+
+\begin_layout LyX-Code
+             
 \begin_inset Quotes eld
 \end_inset
 
@@ -29468,6 +29509,10 @@ monad_set_relation_clause : /* empty; which means: part_of(substrate) */
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
+\end_layout
+
+\begin_layout LyX-Code
+             
 \begin_inset Quotes eld
 \end_inset
 
@@ -29483,7 +29528,11 @@ monad_set_relation_clause : /* empty; which means: part_of(substrate) */
 \begin_inset Quotes erd
 \end_inset
 
- universe_or_substrate 
+ 
+\end_layout
+
+\begin_layout LyX-Code
+             universe_or_substrate 
 \begin_inset Quotes eld
 \end_inset
 
@@ -34757,11 +34806,12 @@ The following are the constraints on object references:
 
 \begin_layout Itemize
 Object references must be declared before they can be used.
- That is, they must appear in an 
+ That is, they must appear earlier in the query (i.e., further towards the
+ top) in an
 \family typewriter
-object_reference_declaration
+ object_reference_declaration
 \family default
- earlier in the query (i.e., further towards the top).
+.
 \end_layout
 
 \begin_layout Itemize
@@ -35276,6 +35326,7 @@ Doedens, Crist-Jan
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Doedens94"
+literal "true"
 
 \end_inset
 
@@ -36304,12 +36355,13 @@ Introduction
 \begin_layout Standard
 Emdros is covered by two different licenses, both of which allow you freely
  to copy, use, and modify the sourcecode.
- The parts which were written by Ulrik Petersen are covered by the GNU GPL.
+ The parts which were written by Ulrik Petersen are covered by the GNU GPL
+ version 2.
  The pcre library, which provides regular expressions-capabilities, is covered
  by a different license.
- Some parts were contributed by Kirk E.
- Lowery or Chris Wilson; they are Copyright Ulrik Petersen and are also
- under the GNU GPL.
+ Some parts were contributed by Claus Tøndering, Kirk E.
+ Lowery, Martin Petersen, or Chris Wilson; they are Copyright Sandborg-Petersen
+ Holding ApS, and are also under the GNU GPL version 2.
 \end_layout
 
 \begin_layout Standard
@@ -36323,524 +36375,22 @@ www.sqlite.org
 
 \begin_layout Standard
 All Emdros documentation (including this document) is covered under the
- Creative Commons Attribution-Sharealike license version 2.5.
- This license is included below.
-\end_layout
+ Creative Commons Attribution-Sharealike International license version 4.0.
+ Please see this web page for more information on this license:
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Section
-Creative Commons Deed (for all documentation)
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\noindent
 \align center
-Attribution-ShareAlike 2.5 
-\end_layout
-
-\begin_layout Standard
-\align center
-CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE LEGAL
- SERVICES.
- DISTRIBUTION OF THIS LICENSE DOES NOT CREATE AN ATTORNEY-CLIENT RELATIONSHIP.
- CREATIVE COMMONS PROVIDES THIS INFORMATION ON AN "AS-IS" BASIS.
- CREATIVE COMMONS MAKES NO WARRANTIES REGARDING THE INFORMATION PROVIDED,
- AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM ITS USE.
-\end_layout
-
-\begin_layout Standard
-
-\shape italic
-\size larger
-License
-\end_layout
-
-\begin_layout Standard
-THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE
- COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE").
- THE WORK IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW.
- ANY USE OF THE WORK OTHER THAN AS AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT
- LAW IS PROHIBITED.
-\end_layout
-
-\begin_layout Standard
-BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE
- TO BE BOUND BY THE TERMS OF THIS LICENSE.
- THE LICENSOR GRANTS YOU THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR
- ACCEPTANCE OF SUCH TERMS AND CONDITIONS.
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Definitions
-\series default
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-"Collective Work"
-\series default
- means a work, such as a periodical issue, anthology or encyclopedia, in
- which the Work in its entirety in unmodified form, along with a number
- of other contributions, constituting separate and independent works in
- themselves, are assembled into a collective whole.
- A work that constitutes a Collective Work will not be considered a Derivative
- Work (as defined below) for the purposes of this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-"Derivative Work"
-\series default
- means a work based upon the Work or upon the Work and other pre-existing
- works, such as a translation, musical arrangement, dramatization, fictionalizat
-ion, motion picture version, sound recording, art reproduction, abridgment,
- condensation, or any other form in which the Work may be recast, transformed,
- or adapted, except that a work that constitutes a Collective Work will
- not be considered a Derivative Work for the purpose of this License.
- For the avoidance of doubt, where the Work is a musical composition or
- sound recording, the synchronization of the Work in timed-relation with
- a moving image ("synching") will be considered a Derivative Work for the
- purpose of this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-"Licensor"
-\series default
- means the individual or entity that offers the Work under the terms of
- this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-"Original Author"
-\series default
- means the individual or entity who created the Work.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-"Work"
-\series default
- means the copyrightable work of authorship offered under the terms of this
- License.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-"You"
-\series default
- means an individual or entity exercising rights under this License who
- has not previously violated the terms of this License with respect to the
- Work, or who has received express permission from the Licensor to exercise
- rights under this License despite a previous violation.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-"License Elements"
-\series default
- means the following high-level license attributes as selected by Licensor
- and indicated in the title of this License: Attribution, ShareAlike.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Fair Use Rights.
-
-\series default
- Nothing in this license is intended to reduce, limit, or restrict any rights
- arising from fair use, first sale or other limitations on the exclusive
- rights of the copyright owner under copyright law or other applicable laws.
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-License Grant.
-
-\series default
- Subject to the terms and conditions of this License, Licensor hereby grants
- You a worldwide, royalty-free, non-exclusive, perpetual (for the duration
- of the applicable copyright) license to exercise the rights in the Work
- as stated below:
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-to reproduce the Work, to incorporate the Work into one or more Collective
- Works, and to reproduce the Work as incorporated in the Collective Works;
- 
-\end_layout
-
-\begin_layout Enumerate
-to create and reproduce Derivative Works; 
-\end_layout
-
-\begin_layout Enumerate
-to distribute copies or phonorecords of, display publicly, perform publicly,
- and perform publicly by means of a digital audio transmission the Work
- including as incorporated in Collective Works; 
-\end_layout
-
-\begin_layout Enumerate
-to distribute copies or phonorecords of, display publicly, perform publicly,
- and perform publicly by means of a digital audio transmission Derivative
- Works.
- 
-\end_layout
-
-\begin_layout Enumerate
-For the avoidance of doubt, where the work is a musical composition: 
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-Performance Royalties Under Blanket Licenses.
-
-\series default
- Licensor waives the exclusive right to collect, whether individually or
- via a performance rights society (e.g.
- ASCAP, BMI, SESAC), royalties for the public performance or public digital
- performance (e.g.
- webcast) of the Work.
- 
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Mechanical Rights and Statutory Royalties.
-
-\series default
- Licensor waives the exclusive right to collect, whether individually or
- via a music rights society or designated agent (e.g.
- Harry Fox Agency), royalties for any phonorecord You create from the Work
- ("cover version") and distribute, subject to the compulsory license created
- by 17 USC Section 115 of the US Copyright Act (or the equivalent in other
- jurisdictions).
- 
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Webcasting Rights and Statutory Royalties.
-
-\series default
- For the avoidance of doubt, where the Work is a sound recording, Licensor
- waives the exclusive right to collect, whether individually or via a performanc
-e-rights society (e.g.
- SoundExchange), royalties for the public digital performance (e.g.
- webcast) of the Work, subject to the compulsory license created by 17 USC
- Section 114 of the US Copyright Act (or the equivalent in other jurisdictions).
-\end_layout
-
-\begin_layout Standard
-The above rights may be exercised in all media and formats whether now known
- or hereafter devised.
- The above rights include the right to make such modifications as are technicall
-y necessary to exercise the rights in other media and formats.
- All rights not expressly granted by Licensor are hereby reserved.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Restrictions.
-
-\series default
- The license granted in Section 3 above is expressly made subject to and
- limited by the following restrictions:
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-You may distribute, publicly display, publicly perform, or publicly digitally
- perform the Work only under the terms of this License, and You must include
- a copy of, or the Uniform Resource Identifier for, this License with every
- copy or phonorecord of the Work You distribute, publicly display, publicly
- perform, or publicly digitally perform.
- You may not offer or impose any terms on the Work that alter or restrict
- the terms of this License or the recipients' exercise of the rights granted
- hereunder.
- You may not sublicense the Work.
- You must keep intact all notices that refer to this License and to the
- disclaimer of warranties.
- You may not distribute, publicly display, publicly perform, or publicly
- digitally perform the Work with any technological measures that control
- access or use of the Work in a manner inconsistent with the terms of this
- License Agreement.
- The above applies to the Work as incorporated in a Collective Work, but
- this does not require the Collective Work apart from the Work itself to
- be made subject to the terms of this License.
- If You create a Collective Work, upon notice from any Licensor You must,
- to the extent practicable, remove from the Collective Work any credit as
- required by clause 4(c), as requested.
- If You create a Derivative Work, upon notice from any Licensor You must,
- to the extent practicable, remove from the Derivative Work any credit as
- required by clause 4(c), as requested.
- 
-\end_layout
-
-\begin_layout Enumerate
-You may distribute, publicly display, publicly perform, or publicly digitally
- perform a Derivative Work only under the terms of this License, a later
- version of this License with the same License Elements as this License,
- or a Creative Commons iCommons license that contains the same License Elements
- as this License (e.g.
- Attribution-ShareAlike 2.5 Japan).
- You must include a copy of, or the Uniform Resource Identifier for, this
- License or other license specified in the previous sentence with every
- copy or phonorecord of each Derivative Work You distribute, publicly display,
- publicly perform, or publicly digitally perform.
- You may not offer or impose any terms on the Derivative Works that alter
- or restrict the terms of this License or the recipients' exercise of the
- rights granted hereunder, and You must keep intact all notices that refer
- to this License and to the disclaimer of warranties.
- You may not distribute, publicly display, publicly perform, or publicly
- digitally perform the Derivative Work with any technological measures that
- control access or use of the Work in a manner inconsistent with the terms
- of this License Agreement.
- The above applies to the Derivative Work as incorporated in a Collective
- Work, but this does not require the Collective Work apart from the Derivative
- Work itself to be made subject to the terms of this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-If you distribute, publicly display, publicly perform, or publicly digitally
- perform the Work or any Derivative Works or Collective Works, You must
- keep intact all copyright notices for the Work and provide, reasonable
- to the medium or means You are utilizing: (i) the name of the Original
- Author (or pseudonym, if applicable) if supplied, and/or (ii) if the Original
- Author and/or Licensor designate another party or parties (e.g.
- a sponsor institute, publishing entity, journal) for attribution in Licensor's
- copyright notice, terms of service or by other reasonable means, the name
- of such party or parties; the title of the Work if supplied; to the extent
- reasonably practicable, the Uniform Resource Identifier, if any, that Licensor
- specifies to be associated with the Work, unless such URI does not refer
- to the copyright notice or licensing information for the Work; and in the
- case of a Derivative Work, a credit identifying the use of the Work in
- the Derivative Work (e.g., "French translation of the Work by Original Author,"
- or "Screenplay based on original Work by Original Author").
- Such credit may be implemented in any reasonable manner; provided, however,
- that in the case of a Derivative Work or Collective Work, at a minimum
- such credit will appear where any other comparable authorship credit appears
- and in a manner at least as prominent as such other comparable authorship
- credit.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Representations, Warranties and Disclaimer
-\series default
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-UNLESS OTHERWISE AGREED TO BY THE PARTIES IN WRITING, LICENSOR OFFERS THE
- WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING
- THE MATERIALS, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING, WITHOUT
- LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY, FITNESS FOR A PARTICULAR
- PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY,
- OR THE PRESENCE OF ABSENCE OF ERRORS, WHETHER OR NOT DISCOVERABLE.
- SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO
- SUCH EXCLUSION MAY NOT APPLY TO YOU.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Limitation on Liability.
-\series default
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE LAW, IN NO EVENT WILL LICENSOR
- BE LIABLE TO YOU ON ANY LEGAL THEORY FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL
-, PUNITIVE OR EXEMPLARY DAMAGES ARISING OUT OF THIS LICENSE OR THE USE OF
- THE WORK, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
- DAMAGES.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Termination
-\series default
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-This License and the rights granted hereunder will terminate automatically
- upon any breach by You of the terms of this License.
- Individuals or entities who have received Derivative Works or Collective
- Works from You under this License, however, will not have their licenses
- terminated provided such individuals or entities remain in full compliance
- with those licenses.
- Sections 1, 2, 5, 6, 7, and 8 will survive any termination of this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-Subject to the above terms and conditions, the license granted here is perpetual
- (for the duration of the applicable copyright in the Work).
- Notwithstanding the above, Licensor reserves the right to release the Work
- under different license terms or to stop distributing the Work at any time;
- provided, however that any such election will not serve to withdraw this
- License (or any other license that has been, or is required to be, granted
- under the terms of this License), and this License will continue in full
- force and effect unless terminated as stated above.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-Miscellaneous
-\series default
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Each time You distribute or publicly digitally perform the Work or a Collective
- Work, the Licensor offers to the recipient a license to the Work on the
- same terms and conditions as the license granted to You under this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-Each time You distribute or publicly digitally perform a Derivative Work,
- Licensor offers to the recipient a license to the original Work on the
- same terms and conditions as the license granted to You under this License.
- 
-\end_layout
-
-\begin_layout Enumerate
-If any provision of this License is invalid or unenforceable under applicable
- law, it shall not affect the validity or enforceability of the remainder
- of the terms of this License, and without further action by the parties
- to this agreement, such provision shall be reformed to the minimum extent
- necessary to make such provision valid and enforceable.
- 
-\end_layout
-
-\begin_layout Enumerate
-No term or provision of this License shall be deemed waived and no breach
- consented to unless such waiver or consent shall be in writing and signed
- by the party to be charged with such waiver or consent.
- 
-\end_layout
-
-\begin_layout Enumerate
-This License constitutes the entire agreement between the parties with respect
- to the Work licensed here.
- There are no understandings, agreements or representations with respect
- to the Work not specified here.
- Licensor shall not be bound by any additional provisions that may appear
- in any communication from You.
- This License may not be modified without the mutual written agreement of
- the Licensor and You.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-
-\size larger
-Creative Commons is not a party to this License, and makes no warranty whatsoeve
-r in connection with the Work.
- Creative Commons will not be liable to You or any party on any legal theory
- for any damages whatsoever, including without limitation any general, special,
- incidental or consequential damages arising in connection to this license.
- Notwithstanding the foregoing two (2) sentences, if Creative Commons has
- expressly identified itself as the Licensor hereunder, it shall have all
- rights and obligations of Licensor.
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-Except for the limited purpose of indicating to the public that the Work
- is licensed under the CCPL, neither party will use the trademark "Creative
- Commons" or any related trademark or logo of Creative Commons without the
- prior written consent of Creative Commons.
- Any permitted use will be in compliance with Creative Commons' then-current
- trademark usage guidelines, as may be published on its website or otherwise
- made available upon request from time to time.
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-Creative Commons may be contacted at 
-\bar under
-http://creativecommons.org/
-\bar default
-.
- 
+https://creativecommons.org/licenses/by-sa/4.0/
 \end_layout
 
 \begin_layout Section
@@ -38303,20 +37853,36 @@ name "sec:PCRE-license"
 \end_layout
 
 \begin_layout Standard
-PCRE is a library of functions to support regular expressions whose syntax
+CRE is a library of functions to support regular expressions whose syntax
  and semantics are as close as possible to those of the Perl 5 language.
 \end_layout
 
 \begin_layout Standard
-Release 6 of PCRE is distributed under the terms of the "BSD" licence, as
+Release 8 of PCRE is distributed under the terms of the "BSD" licence, as
  specified below.
  The documentation for PCRE, supplied in the "doc" directory, is distributed
  under the same terms as the software itself.
+ The data in the testdata directory is not copyrighted and is in the public
+ domain.
 \end_layout
 
 \begin_layout Standard
 The basic library functions are written in C and are freestanding.
- Also included in the distribution is a set of C++ wrapper functions.
+ Also included in the distribution is a set of C++ wrapper functions, and
+ a just-in-time compiler that can be used to optimize pattern matching.
+ These are both optional features that can be omitted when the library is
+ built.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+None of these optional features are enabled when compiling PCRE as it appears
+ in the Emdros source code.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -38325,67 +37891,22 @@ THE BASIC LIBRARY FUNCTIONS
 
 \begin_layout Standard
 Written by: Philip Hazel 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align left
 Email local part: ph10 
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align left
 Email domain: cam.ac.uk
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align left
-University of Cambridge Computing Service, 
+University of Cambridge Computing Service, Cambridge, England.
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align left
-Cambridge, England.
- Phone: +44 1223 334714.
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-Copyright (c) 1997-2006 University of Cambridge 
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-All rights reserved.
-\end_layout
-
-\begin_layout Subsection
-THE C++ WRAPPER FUNCTIONS
-\end_layout
-
-\begin_layout Standard
-Contributed by: Google Inc.
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align left
-Copyright (c) 2006, Google Inc.
- All rights reserved.
- 
+Copyright (c) 1997-2017 University of Cambridge All rights reserved.
 \end_layout
 
 \begin_layout Subsection
@@ -38434,14 +37955,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-\end_layout
-
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout LyX-Code
-
+ 
 \end_layout
 
 \begin_layout Chapter
@@ -38968,6 +38482,7 @@ inner_sheaf : sheaf
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Standard-MDF"
+literal "true"
 
 \end_inset
 
@@ -39055,6 +38570,7 @@ reference "SELECT_OBJECTS"
 LatexCommand bibitem
 label "Doedens94"
 key "Doedens94"
+literal "true"
 
 \end_inset
 
@@ -39085,6 +38601,7 @@ Text Databases, One Database Model and Several Retrieval Languages.
 LatexCommand bibitem
 label "Standard-MdF"
 key "Standard-MDF"
+literal "true"
 
 \end_inset
 
@@ -39097,7 +38614,7 @@ The Standard MdF Model
  Unpublished article.
  Obtainable from URL: 
 \family typewriter
-http://emdros.org/
+https://emdros.org/
 \end_layout
 
 \begin_layout Bibliography
@@ -39106,6 +38623,7 @@ http://emdros.org/
 LatexCommand bibitem
 label "Relational-EMdF"
 key "Rel-EMdF"
+literal "true"
 
 \end_inset
 
@@ -39118,7 +38636,7 @@ Relational Implementation of EMdF and MQL.
  Unpublished working-paper.
  Obtainable from URL: 
 \family typewriter
-http://emdros.org/
+https://emdros.org/
 \end_layout
 
 \begin_layout Bibliography
@@ -39127,18 +38645,19 @@ http://emdros.org/
 LatexCommand bibitem
 label "MQLQueryGuide"
 key "MQL-Query-Guide"
+literal "true"
 
 \end_inset
 
-Petersen, Ulrik.
- 2007: 
+Sandborg-Petersen, Ulrik.
+ 2014: 
 \emph on
 MQL Query Guide
 \emph default
 .
  Obtainable from URL: 
 \family typewriter
-http://emdros.org/
+https://emdros.org/
 \end_layout
 
 \begin_layout Bibliography
@@ -39147,6 +38666,7 @@ http://emdros.org/
 LatexCommand bibitem
 label "Monad Sets"
 key "Monad-Sets"
+literal "true"
 
 \end_inset
 
@@ -39159,13 +38679,195 @@ Monad Sets – Implementation and Mathematical Foundations
  Unpublished article.
  Obtainable from URL: 
 \family typewriter
-http://emdros.org/
+https://emdros.org/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "Petersen2004"
+key "COLING2004"
+literal "false"
+
+\end_inset
+
+ Petersen, Ulrik.
+ 2004a: 
+\emph on
+Emdros – a text database engine for analyzed or annotated text
+\emph default
+.
+ In Proceedings of COLING 2004.
+ Obtainable from URL: 
+\family typewriter
+https://emdros.org/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "MA2004"
+key "MA2004"
+literal "false"
+
+\end_inset
+
+ Petersen, Ulrik.
+ 2004b: 
+\emph on
+Creation in Graphs: Extracting Conceptual Structures from Old Testament
+ Texts
+\emph default
+.
+ MA thesis, University of Aalborg, Department of Communication.
+ Published in: Impact -- an Electronic Journal on Formalisation in Media,
+ Text and Language.
+ Also available from URL: 
+\family typewriter
+http://ulrikp.org/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "RANLP2005"
+key "RANLP2005"
+literal "false"
+
+\end_inset
+
+ Petersen, Ulrik.
+ 2005: 
+\emph on
+Evaluating corpus query systems on functionality and speed: TIGERSearch
+ and Emdros.
+
+\emph default
+ In: Angelova, G., Bontcheva, K., Mitkov, R., Nicolov, N.
+ and Nikolov, N.
+ (eds): 
+\emph on
+International Conference Recent Advances in Natural Language Processing
+ 2005, Proceedings, Borovets, Bulgaria, 21-23 September 2005
+\emph default
+, pp.
+ 387--391.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "LREC2006"
+key "LREC2006"
+literal "false"
+
+\end_inset
+
+ Petersen, Ulrik.
+ 2006a: 
+\emph on
+Querying both Parallel and Treebank Corpora: Evaluation of a Corpus Query
+ System
+\emph default
+.
+ In: Proceedings of LREC 2006.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "FSMNLP"
+key "FSMNLP"
+literal "false"
+
+\end_inset
+
+ Petersen, Ulrik.
+ 2006b: 
+\emph on
+Principles, Implementation Strategies, and Evaluation of a Corpus Query
+ System
+\emph default
+.
+ In: Yli-Jyrä, Anssi; Karttunen, Lauri; Karhumäki, Juhani (eds), 
+\emph on
+Finite-State Methods and Natural Language Processing 5th International Workshop,
+ FSMNLP 2005, Helsinki, Finland, September 1-2, 2005, Revised Papers
+\emph default
+, Lecture Notes in Computer Science, Volume 4002/2006, Springer Verlag,
+ Heidelberg, New York, pp.
+ 215-226.
+ DOI: 10.1007/11780885_21.
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "PhD2008"
+key "PhD2008"
+literal "false"
+
+\end_inset
+
+ Sandborg-Petersen, Ulrik.
+ 2008: 
+\emph on
+Annotated text databases in the context of the Kaj Munk archive: One database
+ model, one query language, and several applications.
+
+\emph default
+ PhD dissertation, Department of Communication and Psychology, Aalborg Universit
+y, Denmark.
+ Obtainable from URL: 
+\family typewriter
+http://ulrikp.org/PhD/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "BRILL2011"
+key "BRILL2011"
+literal "false"
+
+\end_inset
+
+ Sandborg-Petersen, Ulrik.
+ 2011.
+ 
+\emph on
+On Biblical Hebrew and Computer Science: Inspiration, Models, Tools, And
+ Cross-fertilization
+\emph default
+.
+ In W.
+ Th.
+ van Peursen, J.
+ Dyk (eds.) 
+\emph on
+Tradition and Innovation in Biblical Interpretation: Studies Presented to
+ Professor Eep Talstra on the Occasion of his Sixty-Fifth Birthday
+\emph default
+.
+ Brill Academic Publishers, Incorporated, 2011.
+ s.
+ 261-276 (Studia Semitica Neerlandica - SSN; Nr.
+ 57).
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset index_print
 LatexCommand printindex
 type "idx"
+name "Index"
+literal "true"
 
 \end_inset
 
