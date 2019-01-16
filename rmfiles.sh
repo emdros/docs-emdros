@@ -2,6 +2,7 @@
 rm -f `find . -type f -a -name libtool`
 rm -f `find . -type f -a -name gmon.out`
 rm -f configure
+rm -f config.status
 rm -f ltmain.sh
 rm -f libtool
 rm -f install-sh
