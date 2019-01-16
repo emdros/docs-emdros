@@ -6,6 +6,7 @@
 \origin unavailable
 \textclass report
 \begin_preamble
+\usepackage{a4wide}
 \usepackage{times}
 \end_preamble
 \use_default_options false
@@ -34,8 +35,8 @@
 \paperfontsize default
 \spacing single
 \use_hyperref false
-\papersize a4paper
-\use_geometry true
+\papersize default
+\use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -60,13 +61,6 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 1.25in
-\topmargin 1in
-\rightmargin 1in
-\bottommargin 1in
-\headheight 1cm
-\headsep 1cm
-\footskip 1.27cm
 \secnumdepth 5
 \tocdepth 3
 \paragraph_separation indent
@@ -76,8 +70,8 @@
 \quotes_style english
 \dynamic_quotes 0
 \papercolumns 1
-\papersides 2
-\paperpagestyle fancy
+\papersides 1
+\paperpagestyle default
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -275,7 +269,7 @@ Ulrik Sandborg-Petersen
 \end_layout
 
 \begin_layout Date
-June 21, 2018
+November 1, 2018
 \end_layout
 
 \begin_layout Standard
@@ -283,6 +277,10 @@ June 21, 2018
 
 \size larger
 Copyright (C) 2001-2018 Ulrik Sandborg-Petersen
+\begin_inset Newline newline
+\end_inset
+
+Copyright (C) 2018-present Sandborg-Petersen Holding ApS
 \end_layout
 
 \begin_layout Standard
@@ -297,7 +295,7 @@ Copyright (C) 2001-2018 Ulrik Sandborg-Petersen
 
 \size larger
 This document is made available under the Creative Commons Attribution-Sharealik
-e International license 4.0 (CC-BY-SA 4.0).
+e license version 4.0.
 \end_layout
 
 \begin_layout Standard
@@ -324,8 +322,11 @@ See
 \begin_layout Standard
 \align center
 
+\family typewriter
 \size larger
 https://creativecommons.org/licenses/by-sa/4.0/
+\family default
+ 
 \end_layout
 
 \begin_layout Standard
@@ -368,7 +369,7 @@ https://emdros.org
 
 \begin_layout Abstract
 This is the MQL Programmer's Guide.
- It documents Emdros version 3.4.1.pre29 and upwards.
+ It documents Emdros version 3.7.0 and upwards.
  If you just wish to use Emdros to query your data, then this might not
  be for you.
  Instead, you can consult the MQL Query Guide, which is available from the
@@ -2576,7 +2577,7 @@ Bracing (repetition)
 \begin_layout Standard
 The { braces } are used to indicate that the enclosed part can be repeated
  zero or more times.
- For example, in the rule whose left hand side is 
+ For example, in the rule for 
 \family typewriter
 ec_declaration_list
 \family default
@@ -2639,7 +2640,7 @@ That it can be repeated
 zero
 \emph default
  or more times simply means that it is optional.
- In the rule whose left hand side is 
+ In the rule for 
 \family typewriter
 ec_declaration_list
 \family default
@@ -2677,17 +2678,30 @@ Acknowledgements
 \end_layout
 
 \begin_layout Subsection
-Persons
+Thanks
 \end_layout
 
 \begin_layout Standard
-Thanks to Crist-Jan Doedens for inventing the MdF model and the QL query
- language, on which Emdros rests.
- Thanks also to Henk Harmsen for inventing the forerunner to MQL.
- Thanks to Constantijn Sikkel, Hendrik Jan Bosman, and Kirk E.
- Lowery for much support and encouragement through the years.
- Thanks to Claus Tøndering, Kirk E.
- Lowery, Christ Wilson, and Martin Korshøj Petersen for code contributions.
+Thanks to all the contributors mentioned in the AUTHORS file.
+ Special thanks go to Dr.
+ Crist-Jan Doedens, without whose PhD work, Emdros would not have existed.
+ Also thanks to Prof.
+ Dr.
+ Eep Talstra, Prof.
+ Dr.
+ Nicolai Winther-Nielsen, and Prof.
+ Dr.
+ Peter Øhrstrøm for encouragement along the way.
+ Thanks to Dr.
+ Kirk E.
+ Lowery for encouragement and other kinds of contributions.
+ Thanks to Claus Tøndering for code contributions and other encouragements.
+ Thanks to Constantijn Sikkel for encouragement and guidance, and for being
+ an avid user of and bug-reporter for Emdros.
+ Thanks to Prof.
+ Dr.
+ Oliver Glanz for being an avid user and requester of features.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -5556,6 +5570,197 @@ reference "DROP-MONAD-SET"
 \end_inset
 
 ).
+\end_layout
+
+\begin_layout Subsection
+Computed features (monad_set_length, monad_count, first_monad, last_monad)
+\end_layout
+
+\begin_layout Standard
+The following computed features can always be used on any object type, even
+ though they are never declared:
+\end_layout
+
+\begin_layout Itemize
+first_monad(<monad_set_name>)
+\end_layout
+
+\begin_layout Itemize
+last_monad(<monad_set_name>)
+\end_layout
+
+\begin_layout Itemize
+monad_count(<monad_set_name>)
+\end_layout
+
+\begin_layout Itemize
+monad_set_length(<monad_set_name>)
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Quotes eld
+\end_inset
+
+<monad_set_name>
+\begin_inset Quotes erd
+\end_inset
+
+ inside the parentheses must be a valid monad set name, such as the name
+ of a feature of type 
+\begin_inset Quotes eld
+\end_inset
+
+SET OF MONADS
+\begin_inset Quotes erd
+\end_inset
+
+, or the privileged monad set feature, 
+\begin_inset Quotes eld
+\end_inset
+
+monads
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+If the <monad_set_name> to be used is the privileged 
+\begin_inset Quotes eld
+\end_inset
+
+monads
+\begin_inset Quotes erd
+\end_inset
+
+ monad set feature, the parenteses and the name 
+\begin_inset Quotes eld
+\end_inset
+
+monads
+\begin_inset Quotes erd
+\end_inset
+
+ can be omitted, as a short-cut.
+\end_layout
+
+\begin_layout Standard
+The features mean the folllowing:
+\end_layout
+
+\begin_layout Description
+first_monad(<monad_set_name>): Retrieve the <monad_set_name> monad set,
+ and yield its smallest (first) monad.
+ For example, the monad set 
+\begin_inset Quotes eld
+\end_inset
+
+{1-3}
+\begin_inset Quotes erd
+\end_inset
+
+ has first_monad = 1.
+\end_layout
+
+\begin_layout Description
+last_monad(<monad_set_name>): Retrieve the <monad_set_name> monad set, and
+ yield its largest (last) monad.
+ For example, the monad set 
+\begin_inset Quotes eld
+\end_inset
+
+{1-3}
+\begin_inset Quotes erd
+\end_inset
+
+ has first_monad = 3.
+\end_layout
+
+\begin_layout Description
+monad_count(<monad_set_name>): Retrieve the <monad_set_name> monad set,
+ and yields the number of monads in it, i.e., its cardinality.
+ For example, the monad set 
+\begin_inset Quotes eld
+\end_inset
+
+{1-3, 5}
+\begin_inset Quotes erd
+\end_inset
+
+ has a monad_count of 4, since it has 4 monads in it (
+\begin_inset Quotes eld
+\end_inset
+
+1, 2, 3, 5
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Also, the monad set 
+\begin_inset Quotes eld
+\end_inset
+
+{3}
+\begin_inset Quotes erd
+\end_inset
+
+ has a monad_count of 1, while the monad set 
+\begin_inset Quotes eld
+\end_inset
+
+{2-4}
+\begin_inset Quotes erd
+\end_inset
+
+ has a monad_count of 3 (
+\begin_inset Quotes eld
+\end_inset
+
+2, 3, 4
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Description
+monad_set_length(<monad_set_name>): Retrieve the <monad_set_name> feature,
+ and yield the number 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+last_monad(<monad_set_name>) - first_monad(<monad_set_name>) + 1
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For example, the set 
+\begin_inset Quotes eld
+\end_inset
+
+{1-3, 5}
+\begin_inset Quotes erd
+\end_inset
+
+ has a monad_set_length of 5 - 1 + 1 = 5.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Note that if the monad set has no gaps, then this will be the same as monad_coun
+t(<monad_set_name>).
+ If, on the other hand, the monad set has gaps, the monad_set_length(<monad_set_
+name>) will be strictly greater than monad_count(<monad_set_name>).
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -11958,7 +12163,7 @@ IDENTIFIER
 \end_layout
 
 \begin_layout LyX-Code
-feature_update_list : feature_update  { feature_update }
+feature_update_list : feature_update   { feature_update }
 \end_layout
 
 \begin_layout LyX-Code
@@ -11986,7 +12191,7 @@ REMOVE
 \begin_inset Quotes erd
 \end_inset
 
-  feature_name  
+   feature_name   
 \begin_inset Quotes eld
 \end_inset
 
@@ -12422,11 +12627,7 @@ IDENTIFIER
 \end_layout
 
 \begin_layout LyX-Code
-ec_declaration_list : ec_declaration  
-\end_layout
-
-\begin_layout LyX-Code
-                      { 
+ec_declaration_list : ec_declaration    { 
 \begin_inset Quotes eld
 \end_inset
 
@@ -12434,7 +12635,7 @@ ec_declaration_list : ec_declaration
 \begin_inset Quotes erd
 \end_inset
 
-  ec_declaration }
+   ec_declaration }
 \end_layout
 
 \begin_layout LyX-Code
@@ -12971,7 +13172,7 @@ IDENTIFIER
 \end_layout
 
 \begin_layout LyX-Code
-ec_update_list : ec_update  { 
+ec_update_list : ec_update   { 
 \begin_inset Quotes eld
 \end_inset
 
@@ -12979,7 +13180,7 @@ ec_update_list : ec_update  {
 \begin_inset Quotes erd
 \end_inset
 
-  ec_update }
+   ec_update }
 \end_layout
 
 \begin_layout LyX-Code
@@ -13027,7 +13228,7 @@ DEFAULT
 \begin_inset Quotes erd
 \end_inset
 
- ]  ec_name  ec_initialization 
+ ]   ec_name   ec_initialization 
 \end_layout
 
 \begin_layout LyX-Code
@@ -14383,10 +14584,6 @@ MONADS
 \end_inset
 
  
-\end_layout
-
-\begin_layout LyX-Code
-     
 \begin_inset Quotes eld
 \end_inset
 
@@ -14447,10 +14644,6 @@ FEATURE
 \end_inset
 
  feature_name 
-\end_layout
-
-\begin_layout LyX-Code
-     
 \begin_inset Quotes eld
 \end_inset
 
@@ -16055,11 +16248,8 @@ monads
 \end_layout
 
 \begin_layout LyX-Code
-                           regardless of which monad set 
-\end_layout
-
-\begin_layout LyX-Code
-                           is actually used! 
+                           regardless of which monad set is actually used!
+ 
 \end_layout
 
 \begin_layout LyX-Code
@@ -16439,10 +16629,6 @@ Syntax
 
 \begin_layout LyX-Code
 get_aggregate_features_statement : 
-\end_layout
-
-\begin_layout LyX-Code
-    
 \begin_inset Quotes eld
 \end_inset
 
@@ -16562,11 +16748,7 @@ aggregate_feature_list : aggregate_feature
 \begin_inset Quotes erd
 \end_inset
 
- 
-\end_layout
-
-\begin_layout LyX-Code
-                         aggregate_feature
+ aggregate_feature
 \end_layout
 
 \begin_layout LyX-Code
@@ -17060,32 +17242,28 @@ GO
 
 \begin_layout LyX-Code
  * - Find a count of all Line objects.
- (Note that this, together 
+ (Note that this, together with the
 \end_layout
 
 \begin_layout LyX-Code
- *   with the sum of all words spoken, can be used to calculate 
+ *   sum of all words spoken, can be used to calculate the average
 \end_layout
 
 \begin_layout LyX-Code
- *   the average number of words spoken by any actant.
- This has to be 
+ *   number of words spoken by any actant.
+ This has to be done outside of 
 \end_layout
 
 \begin_layout LyX-Code
- *   done outside of Emdros, as Emdros does not yet support floating 
+ *   Emdros, as Emdros does not yet support floating point return values.)
 \end_layout
 
 \begin_layout LyX-Code
- *   point return values.)
+ * - Find a count of all Line objects whose gender feature is Man, i.e., the
 \end_layout
 
 \begin_layout LyX-Code
- * - Find a count of all Line objects whose gender feature is Man, 
-\end_layout
-
-\begin_layout LyX-Code
- *   i.e., the number of Line spoken by a Man.
+ *   number of Line spoken by a Man.
 \end_layout
 
 \begin_layout LyX-Code
@@ -17273,15 +17451,7 @@ GET AGGREGATE FEATURES
 \end_layout
 
 \begin_layout LyX-Code
-SUM(words_spoken), 
-\end_layout
-
-\begin_layout LyX-Code
-COUNT(actant_name="Hamlet"), 
-\end_layout
-
-\begin_layout LyX-Code
-COUNT(actant_name="Ophelia")
+SUM(words_spoken), COUNT(actant_name="Hamlet"), COUNT(actant_name="Ophelia")
 \end_layout
 
 \begin_layout LyX-Code
@@ -18403,8 +18573,10 @@ first_person
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="1" columns="5">
+<lyxtabular version="3" rows="1" columns="7">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="top" width="0pt">
@@ -18452,6 +18624,24 @@ number_in_corpus : integer
 
 \begin_layout Plain Layout
 parent: id_d
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+parents: list_of_id_d
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+functions : list_of_enum(function_t)
 \end_layout
 
 \end_inset
@@ -19650,7 +19840,7 @@ The default_value string in the result is a string representation of the
 \begin_layout Standard
 The computed boolean in the result shows whether the feature is computed
  or not.
- Currently, the only computed feature
+ Currently, the only computed features
 \begin_inset Index idx
 status collapsed
 
@@ -19660,7 +19850,7 @@ computed feature
 
 \end_inset
 
- is 
+ are: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -19675,6 +19865,38 @@ self
 \end_inset
 
 
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+first_monad
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+last_monad
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+monad_count
+\begin_inset Quotes erd
+\end_inset
+
+, and 
+\begin_inset Quotes eld
+\end_inset
+
+monad_set_length
 \begin_inset Quotes erd
 \end_inset
 
@@ -22153,39 +22375,25 @@ References
 \end_layout
 
 \begin_layout Standard
-Please see section 
+For the non-terminals 
+\family typewriter
+monad_specification
+\family default
+, 
+\family typewriter
+with_id_d_specification
+\family default
+, and 
+\family typewriter
+list_of_feature_assignments
+\family default
+ please see section 
 \begin_inset CommandInset ref
 LatexCommand vref
 reference "CREATE_OBJECT_FROM_MONADS"
 
 \end_inset
 
- for the following non-terminals
-\family typewriter
-:
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-monad_specification
-\family default
-, 
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-with_id_d_specification
-\family default
-,
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-list_of_feature_assignments
-\family default
 .
 \end_layout
 
@@ -22922,11 +23130,7 @@ reference "CREATE_OBEJCT_FROM_ID_DS"
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-For a description of 
+ For a description of 
 \family typewriter
 object_update_specification
 \family default
@@ -23528,11 +23732,7 @@ reference "CREATE_OBEJCT_FROM_ID_DS"
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-For a description of 
+ For a description of 
 \family typewriter
 object_deletion_specification
 \family default
@@ -23574,7 +23774,20 @@ Explanation
 \end_layout
 
 \begin_layout Standard
-This statement deletes objects by their specific id_ds.
+This statement deletes objects by their id_ds.
+ Note that you cannot write 
+\begin_inset Quotes eld
+\end_inset
+
+ALL
+\begin_inset Quotes erd
+\end_inset
+
+ for 
+\family typewriter
+object_deletion_specification
+\family default
+.
  The id_ds given should point to objects of the type given.
 \end_layout
 
@@ -27096,11 +27309,63 @@ feature_comparison :
 \end_layout
 
 \begin_layout LyX-Code
-    feature_name  comparison_operator   value
+    comparison_feature_name  comparison_operator   value
 \end_layout
 
 \begin_layout LyX-Code
-  | feature_name  
+  | comparison_feature_name  
+\begin_inset Quotes eld
+\end_inset
+
+=
+\begin_inset Quotes erd
+\end_inset
+
+   ()
+\end_layout
+
+\begin_layout LyX-Code
+  | comparison_feature_name  
+\begin_inset Quotes eld
+\end_inset
+
+=
+\begin_inset Quotes erd
+\end_inset
+
+   enum_const_set
+\end_layout
+
+\begin_layout LyX-Code
+  | comparison_feature_name  
+\begin_inset Quotes eld
+\end_inset
+
+=
+\begin_inset Quotes erd
+\end_inset
+
+   
+\begin_inset Quotes eld
+\end_inset
+
+(
+\begin_inset Quotes eld
+\end_inset
+
+ list_of_integer 
+\begin_inset Quotes eld
+\end_inset
+
+)
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+  | comparison_feature_name  
 \begin_inset Quotes eld
 \end_inset
 
@@ -27112,7 +27377,7 @@ IN
 \end_layout
 
 \begin_layout LyX-Code
-  | feature_name  
+  | comparison_feature_name  
 \begin_inset Quotes eld
 \end_inset
 
@@ -27140,7 +27405,7 @@ IN
 \end_layout
 
 \begin_layout LyX-Code
-  | feature_name  
+  | comparison_feature_name  
 \begin_inset Quotes eld
 \end_inset
 
@@ -27686,19 +27951,11 @@ GET
 \end_layout
 
 \begin_layout LyX-Code
-monad_set_relation_clause : 
-\end_layout
-
-\begin_layout LyX-Code
-             /* empty; which means: part_of(substrate) */
+monad_set_relation_clause : /* empty; which means: part_of(substrate) */
 \end_layout
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
-\end_layout
-
-\begin_layout LyX-Code
-             
 \begin_inset Quotes eld
 \end_inset
 
@@ -27719,10 +27976,6 @@ monad_set_relation_clause :
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
-\end_layout
-
-\begin_layout LyX-Code
-             
 \begin_inset Quotes eld
 \end_inset
 
@@ -27738,11 +27991,7 @@ monad_set_relation_clause :
 \begin_inset Quotes erd
 \end_inset
 
- 
-\end_layout
-
-\begin_layout LyX-Code
-             universe_or_substrate 
+ universe_or_substrate 
 \begin_inset Quotes eld
 \end_inset
 
@@ -27847,6 +28096,159 @@ _
 IDENTIFIER
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+comparison_feature_name : feature_name
+\end_layout
+
+\begin_layout LyX-Code
+           | computed_feature_name
+\end_layout
+
+\begin_layout LyX-Code
+;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+computed_feature_name : 
+\end_layout
+
+\begin_layout LyX-Code
+             
+\begin_inset Quotes eld
+\end_inset
+
+first_monad
+\begin_inset Quotes erd
+\end_inset
+
+ computed_feature_monad_set_name
+\end_layout
+
+\begin_layout LyX-Code
+           | 
+\begin_inset Quotes eld
+\end_inset
+
+last_monad
+\begin_inset Quotes erd
+\end_inset
+
+ computed_feature_monad_set_name
+\end_layout
+
+\begin_layout LyX-Code
+           | 
+\begin_inset Quotes eld
+\end_inset
+
+monad_count
+\begin_inset Quotes erd
+\end_inset
+
+ computed_feature_monad_set_name
+\end_layout
+
+\begin_layout LyX-Code
+           | 
+\begin_inset Quotes eld
+\end_inset
+
+monad_set_length
+\begin_inset Quotes erd
+\end_inset
+
+ computed_feature_monad_set_name
+\end_layout
+
+\begin_layout LyX-Code
+;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+computed_feature_monad_set_name : /* empty: Means 
+\begin_inset Quotes eld
+\end_inset
+
+(monads)
+\begin_inset Quotes erd
+\end_inset
+
+.
+ */
+\end_layout
+
+\begin_layout LyX-Code
+           | 
+\begin_inset Quotes eld
+\end_inset
+
+(
+\begin_inset Quotes eld
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+monads
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+)
+\begin_inset Quotes erd
+\end_inset
+
+ /* Means: 
+\begin_inset Quotes eld
+\end_inset
+
+(monads)
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+           | 
+\begin_inset Quotes eld
+\end_inset
+
+(
+\begin_inset Quotes eld
+\end_inset
+
+ monad_set_name 
+\begin_inset Quotes eld
+\end_inset
+
+)
+\begin_inset Quotes erd
 \end_inset
 
 
@@ -29476,19 +29878,11 @@ GET
 \end_layout
 
 \begin_layout LyX-Code
-monad_set_relation_clause : 
-\end_layout
-
-\begin_layout LyX-Code
-             /* empty; which means: part_of(substrate) */
+monad_set_relation_clause : /* empty; which means: part_of(substrate) */
 \end_layout
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
-\end_layout
-
-\begin_layout LyX-Code
-             
 \begin_inset Quotes eld
 \end_inset
 
@@ -29509,10 +29903,6 @@ monad_set_relation_clause :
 
 \begin_layout LyX-Code
            | monad_set_relation_operation 
-\end_layout
-
-\begin_layout LyX-Code
-             
 \begin_inset Quotes eld
 \end_inset
 
@@ -29528,11 +29918,7 @@ monad_set_relation_clause :
 \begin_inset Quotes erd
 \end_inset
 
- 
-\end_layout
-
-\begin_layout LyX-Code
-             universe_or_substrate 
+ universe_or_substrate 
 \begin_inset Quotes eld
 \end_inset
 
@@ -34806,12 +35192,11 @@ The following are the constraints on object references:
 
 \begin_layout Itemize
 Object references must be declared before they can be used.
- That is, they must appear earlier in the query (i.e., further towards the
- top) in an
+ That is, they must appear in an 
 \family typewriter
- object_reference_declaration
+object_reference_declaration
 \family default
-.
+ earlier in the query (i.e., further towards the top).
 \end_layout
 
 \begin_layout Itemize
@@ -36355,13 +36740,13 @@ Introduction
 \begin_layout Standard
 Emdros is covered by two different licenses, both of which allow you freely
  to copy, use, and modify the sourcecode.
- The parts which were written by Ulrik Petersen are covered by the GNU GPL
- version 2.
+ The parts which were written by Ulrik Sandborg-Petersen are covered by
+ the MIT License.
  The pcre library, which provides regular expressions-capabilities, is covered
  by a different license.
- Some parts were contributed by Claus Tøndering, Kirk E.
- Lowery, Martin Petersen, or Chris Wilson; they are Copyright Sandborg-Petersen
- Holding ApS, and are also under the GNU GPL version 2.
+ Some parts were contributed by Kirk E.
+ Lowery, Martin Korshøj Petersen, or Claus Tøndering; they are Copyright
+ Sandborg-Petersen Holding ApS and are also under the MIT.
 \end_layout
 
 \begin_layout Standard
@@ -36375,26 +36760,12 @@ www.sqlite.org
 
 \begin_layout Standard
 All Emdros documentation (including this document) is covered under the
- Creative Commons Attribution-Sharealike International license version 4.0.
- Please see this web page for more information on this license:
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align center
-https://creativecommons.org/licenses/by-sa/4.0/
+ Creative Commons Attribution-Sharealike license version 4.0.
+ Please see the Creative Commons website for the details.
 \end_layout
 
 \begin_layout Section
-GNU General Public License
+MIT License
 \begin_inset Index idx
 status collapsed
 
@@ -36408,1417 +36779,100 @@ Emdros!license
 \end_layout
 
 \begin_layout Standard
-General Public License (GPL)
+MIT License
 \end_layout
 
 \begin_layout LyX-Code
-                    GNU GENERAL PUBLIC LICENSE
+Copyright (C) 1999-2018 Ulrik Sandborg-Petersen
 \end_layout
 
 \begin_layout LyX-Code
-                       Version 2, June 1991
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
- Copyright (C) 1989, 1991 Free Software Foundation, Inc.
-\end_layout
-
-\begin_layout LyX-Code
-     59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-\end_layout
-
-\begin_layout LyX-Code
- Everyone is permitted to copy and distribute verbatim copies
-\end_layout
-
-\begin_layout LyX-Code
- of this license document, but changing it is not allowed.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-                            Preamble
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  The licenses for most software are designed to take away your
-\end_layout
-
-\begin_layout LyX-Code
-freedom to share and change it.
-  By contrast, the GNU General Public
-\end_layout
-
-\begin_layout LyX-Code
-License is intended to guarantee your freedom to share and change free
-\end_layout
-
-\begin_layout LyX-Code
-software--to make sure the software is free for all its users.
-  This
-\end_layout
-
-\begin_layout LyX-Code
-General Public License applies to most of the Free Software
-\end_layout
-
-\begin_layout LyX-Code
-Foundation's software and to any other program whose authors commit to
-\end_layout
-
-\begin_layout LyX-Code
-using it.
-  (Some other Free Software Foundation software is covered by
-\end_layout
-
-\begin_layout LyX-Code
-the GNU Library General Public License instead.)  You can apply it to
-\end_layout
-
-\begin_layout LyX-Code
-your programs, too.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  When we speak of free software, we are referring to freedom, not
-\end_layout
-
-\begin_layout LyX-Code
-price.
-  Our General Public Licenses are designed to make sure that you
-\end_layout
-
-\begin_layout LyX-Code
-have the freedom to distribute copies of free software (and charge for
-\end_layout
-
-\begin_layout LyX-Code
-this service if you wish), that you receive source code or can get it
-\end_layout
-
-\begin_layout LyX-Code
-if you want it, that you can change the software or use pieces of it
-\end_layout
-
-\begin_layout LyX-Code
-in new free programs; and that you know you can do these things.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  To protect your rights, we need to make restrictions that forbid
-\end_layout
-
-\begin_layout LyX-Code
-anyone to deny you these rights or to ask you to surrender the rights.
-\end_layout
-
-\begin_layout LyX-Code
-These restrictions translate to certain responsibilities for you if you
-\end_layout
-
-\begin_layout LyX-Code
-distribute copies of the software, or if you modify it.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  For example, if you distribute copies of such a program, whether
-\end_layout
-
-\begin_layout LyX-Code
-gratis or for a fee, you must give the recipients all the rights that
-\end_layout
-
-\begin_layout LyX-Code
-you have.
-  You must make sure that they, too, receive or can get the
-\end_layout
-
-\begin_layout LyX-Code
-source code.
-  And you must show them these terms so they know their
-\end_layout
-
-\begin_layout LyX-Code
-rights.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  We protect your rights with two steps: (1) copyright the software, and
-\end_layout
-
-\begin_layout LyX-Code
-(2) offer you this license which gives you legal permission to copy,
-\end_layout
-
-\begin_layout LyX-Code
-distribute and/or modify the software.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  Also, for each author's protection and ours, we want to make certain
-\end_layout
-
-\begin_layout LyX-Code
-that everyone understands that there is no warranty for this free
-\end_layout
-
-\begin_layout LyX-Code
-software.
-  If the software is modified by someone else and passed on, we
-\end_layout
-
-\begin_layout LyX-Code
-want its recipients to know that what they have is not the original, so
-\end_layout
-
-\begin_layout LyX-Code
-that any problems introduced by others will not reflect on the original
-\end_layout
-
-\begin_layout LyX-Code
-authors' reputations.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  Finally, any free program is threatened constantly by software
-\end_layout
-
-\begin_layout LyX-Code
-patents.
-  We wish to avoid the danger that redistributors of a free
-\end_layout
-
-\begin_layout LyX-Code
-program will individually obtain patent licenses, in effect making the
-\end_layout
-
-\begin_layout LyX-Code
-program proprietary.
-  To prevent this, we have made it clear that any
-\end_layout
-
-\begin_layout LyX-Code
-patent must be licensed for everyone's free use or not licensed at all.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  The precise terms and conditions for copying, distribution and
-\end_layout
-
-\begin_layout LyX-Code
-modification follow.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-                    GNU GENERAL PUBLIC LICENSE
-\end_layout
-
-\begin_layout LyX-Code
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  0.
- This License applies to any program or other work which contains
-\end_layout
-
-\begin_layout LyX-Code
-a notice placed by the copyright holder saying it may be distributed
-\end_layout
-
-\begin_layout LyX-Code
-under the terms of this General Public License.
-  The "Program", below,
-\end_layout
-
-\begin_layout LyX-Code
-refers to any such program or work, and a "work based on the Program"
-\end_layout
-
-\begin_layout LyX-Code
-means either the Program or any derivative work under copyright law:
-\end_layout
-
-\begin_layout LyX-Code
-that is to say, a work containing the Program or a portion of it,
-\end_layout
-
-\begin_layout LyX-Code
-either verbatim or with modifications and/or translated into another
-\end_layout
-
-\begin_layout LyX-Code
-language.
-  (Hereinafter, translation is included without limitation in
-\end_layout
-
-\begin_layout LyX-Code
-the term "modification".)  Each licensee is addressed as "you".
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-Activities other than copying, distribution and modification are not
-\end_layout
-
-\begin_layout LyX-Code
-covered by this License; they are outside its scope.
-  The act of
-\end_layout
-
-\begin_layout LyX-Code
-running the Program is not restricted, and the output from the Program
-\end_layout
-
-\begin_layout LyX-Code
-is covered only if its contents constitute a work based on the
-\end_layout
-
-\begin_layout LyX-Code
-Program (independent of having been made by running the Program).
-\end_layout
-
-\begin_layout LyX-Code
-Whether that is true depends on what the Program does.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  1.
- You may copy and distribute verbatim copies of the Program's
-\end_layout
-
-\begin_layout LyX-Code
-source code as you receive it, in any medium, provided that you
-\end_layout
-
-\begin_layout LyX-Code
-conspicuously and appropriately publish on each copy an appropriate
-\end_layout
-
-\begin_layout LyX-Code
-copyright notice and disclaimer of warranty; keep intact all the
-\end_layout
-
-\begin_layout LyX-Code
-notices that refer to this License and to the absence of any warranty;
-\end_layout
-
-\begin_layout LyX-Code
-and give any other recipients of the Program a copy of this License
-\end_layout
-
-\begin_layout LyX-Code
-along with the Program.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-You may charge a fee for the physical act of transferring a copy, and
-\end_layout
-
-\begin_layout LyX-Code
-you may at your option offer warranty protection in exchange for a fee.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  2.
- You may modify your copy or copies of the Program or any portion
-\end_layout
-
-\begin_layout LyX-Code
-of it, thus forming a work based on the Program, and copy and
-\end_layout
-
-\begin_layout LyX-Code
-distribute such modifications or work under the terms of Section 1
-\end_layout
-
-\begin_layout LyX-Code
-above, provided that you also meet all of these conditions:
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    a) You must cause the modified files to carry prominent notices
-\end_layout
-
-\begin_layout LyX-Code
-    stating that you changed the files and the date of any change.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    b) You must cause any work that you distribute or publish, that in
-\end_layout
-
-\begin_layout LyX-Code
-    whole or in part contains or is derived from the Program or any
-\end_layout
-
-\begin_layout LyX-Code
-    part thereof, to be licensed as a whole at no charge to all third
-\end_layout
-
-\begin_layout LyX-Code
-    parties under the terms of this License.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    c) If the modified program normally reads commands interactively
-\end_layout
-
-\begin_layout LyX-Code
-    when run, you must cause it, when started running for such
-\end_layout
-
-\begin_layout LyX-Code
-    interactive use in the most ordinary way, to print or display an
-\end_layout
-
-\begin_layout LyX-Code
-    announcement including an appropriate copyright notice and a
-\end_layout
-
-\begin_layout LyX-Code
-    notice that there is no warranty (or else, saying that you provide
-\end_layout
-
-\begin_layout LyX-Code
-    a warranty) and that users may redistribute the program under
-\end_layout
-
-\begin_layout LyX-Code
-    these conditions, and telling the user how to view a copy of this
-\end_layout
-
-\begin_layout LyX-Code
-    License.
-  (Exception: if the Program itself is interactive but
-\end_layout
-
-\begin_layout LyX-Code
-    does not normally print such an announcement, your work based on
-\end_layout
-
-\begin_layout LyX-Code
-    the Program is not required to print an announcement.)
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-These requirements apply to the modified work as a whole.
-  If
-\end_layout
-
-\begin_layout LyX-Code
-identifiable sections of that work are not derived from the Program,
-\end_layout
-
-\begin_layout LyX-Code
-and can be reasonably considered independent and separate works in
-\end_layout
-
-\begin_layout LyX-Code
-themselves, then this License, and its terms, do not apply to those
-\end_layout
-
-\begin_layout LyX-Code
-sections when you distribute them as separate works.
-  But when you
-\end_layout
-
-\begin_layout LyX-Code
-distribute the same sections as part of a whole which is a work based
-\end_layout
-
-\begin_layout LyX-Code
-on the Program, the distribution of the whole must be on the terms of
-\end_layout
-
-\begin_layout LyX-Code
-this License, whose permissions for other licensees extend to the
-\end_layout
-
-\begin_layout LyX-Code
-entire whole, and thus to each and every part regardless of who wrote it.
-\end_layout
-
-\begin_layout LyX-Code
-Thus, it is not the intent of this section to claim rights or contest
-\end_layout
-
-\begin_layout LyX-Code
-your rights to work written entirely by you; rather, the intent is to
-\end_layout
-
-\begin_layout LyX-Code
-exercise the right to control the distribution of derivative or
-\end_layout
-
-\begin_layout LyX-Code
-collective works based on the Program.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-In addition, mere aggregation of another work not based on the Program
-\end_layout
-
-\begin_layout LyX-Code
-with the Program (or with a work based on the Program) on a volume of
-\end_layout
-
-\begin_layout LyX-Code
-a storage or distribution medium does not bring the other work under
-\end_layout
-
-\begin_layout LyX-Code
-the scope of this License.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  3.
- You may copy and distribute the Program (or a work based on it,
-\end_layout
-
-\begin_layout LyX-Code
-under Section 2) in object code or executable form under the terms of
-\end_layout
-
-\begin_layout LyX-Code
-Sections 1 and 2 above provided that you also do one of the following:
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    a) Accompany it with the complete corresponding machine-readable
-\end_layout
-
-\begin_layout LyX-Code
-    source code, which must be distributed under the terms of Sections
-\end_layout
-
-\begin_layout LyX-Code
-    1 and 2 above on a medium customarily used for software interchange;
- or,
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    b) Accompany it with a written offer, valid for at least three
-\end_layout
-
-\begin_layout LyX-Code
-    years, to give any third party, for a charge no more than your
-\end_layout
-
-\begin_layout LyX-Code
-    cost of physically performing source distribution, a complete
-\end_layout
-
-\begin_layout LyX-Code
-    machine-readable copy of the corresponding source code, to be
-\end_layout
-
-\begin_layout LyX-Code
-    distributed under the terms of Sections 1 and 2 above on a medium
-\end_layout
-
-\begin_layout LyX-Code
-    customarily used for software interchange; or,
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    c) Accompany it with the information you received as to the offer
-\end_layout
-
-\begin_layout LyX-Code
-    to distribute corresponding source code.
-  (This alternative is
-\end_layout
-
-\begin_layout LyX-Code
-    allowed only for noncommercial distribution and only if you
-\end_layout
-
-\begin_layout LyX-Code
-    received the program in object code or executable form with such
-\end_layout
-
-\begin_layout LyX-Code
-    an offer, in accord with Subsection b above.)
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-The source code for a work means the preferred form of the work for
-\end_layout
-
-\begin_layout LyX-Code
-making modifications to it.
-  For an executable work, complete source
-\end_layout
-
-\begin_layout LyX-Code
-code means all the source code for all modules it contains, plus any
-\end_layout
-
-\begin_layout LyX-Code
-associated interface definition files, plus the scripts used to
-\end_layout
-
-\begin_layout LyX-Code
-control compilation and installation of the executable.
-  However, as a
-\end_layout
-
-\begin_layout LyX-Code
-special exception, the source code distributed need not include
-\end_layout
-
-\begin_layout LyX-Code
-anything that is normally distributed (in either source or binary
-\end_layout
-
-\begin_layout LyX-Code
-form) with the major components (compiler, kernel, and so on) of the
-\end_layout
-
-\begin_layout LyX-Code
-operating system on which the executable runs, unless that component
-\end_layout
-
-\begin_layout LyX-Code
-itself accompanies the executable.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-If distribution of executable or object code is made by offering
-\end_layout
-
-\begin_layout LyX-Code
-access to copy from a designated place, then offering equivalent
-\end_layout
-
-\begin_layout LyX-Code
-access to copy the source code from the same place counts as
-\end_layout
-
-\begin_layout LyX-Code
-distribution of the source code, even though third parties are not
-\end_layout
-
-\begin_layout LyX-Code
-compelled to copy the source along with the object code.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  4.
- You may not copy, modify, sublicense, or distribute the Program
-\end_layout
-
-\begin_layout LyX-Code
-except as expressly provided under this License.
-  Any attempt
-\end_layout
-
-\begin_layout LyX-Code
-otherwise to copy, modify, sublicense or distribute the Program is
-\end_layout
-
-\begin_layout LyX-Code
-void, and will automatically terminate your rights under this License.
-\end_layout
-
-\begin_layout LyX-Code
-However, parties who have received copies, or rights, from you under
-\end_layout
-
-\begin_layout LyX-Code
-this License will not have their licenses terminated so long as such
-\end_layout
-
-\begin_layout LyX-Code
-parties remain in full compliance.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  5.
- You are not required to accept this License, since you have not
-\end_layout
-
-\begin_layout LyX-Code
-signed it.
-  However, nothing else grants you permission to modify or
-\end_layout
-
-\begin_layout LyX-Code
-distribute the Program or its derivative works.
-  These actions are
-\end_layout
-
-\begin_layout LyX-Code
-prohibited by law if you do not accept this License.
-  Therefore, by
-\end_layout
-
-\begin_layout LyX-Code
-modifying or distributing the Program (or any work based on the
-\end_layout
-
-\begin_layout LyX-Code
-Program), you indicate your acceptance of this License to do so, and
-\end_layout
-
-\begin_layout LyX-Code
-all its terms and conditions for copying, distributing or modifying
-\end_layout
-
-\begin_layout LyX-Code
-the Program or works based on it.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  6.
- Each time you redistribute the Program (or any work based on the
-\end_layout
-
-\begin_layout LyX-Code
-Program), the recipient automatically receives a license from the
-\end_layout
-
-\begin_layout LyX-Code
-original licensor to copy, distribute or modify the Program subject to
-\end_layout
-
-\begin_layout LyX-Code
-these terms and conditions.
-  You may not impose any further
-\end_layout
-
-\begin_layout LyX-Code
-restrictions on the recipients' exercise of the rights granted herein.
-\end_layout
-
-\begin_layout LyX-Code
-You are not responsible for enforcing compliance by third parties to
-\end_layout
-
-\begin_layout LyX-Code
-this License.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  7.
- If, as a consequence of a court judgment or allegation of patent
-\end_layout
-
-\begin_layout LyX-Code
-infringement or for any other reason (not limited to patent issues),
-\end_layout
-
-\begin_layout LyX-Code
-conditions are imposed on you (whether by court order, agreement or
-\end_layout
-
-\begin_layout LyX-Code
-otherwise) that contradict the conditions of this License, they do not
-\end_layout
-
-\begin_layout LyX-Code
-excuse you from the conditions of this License.
-  If you cannot
-\end_layout
-
-\begin_layout LyX-Code
-distribute so as to satisfy simultaneously your obligations under this
-\end_layout
-
-\begin_layout LyX-Code
-License and any other pertinent obligations, then as a consequence you
-\end_layout
-
-\begin_layout LyX-Code
-may not distribute the Program at all.
-  For example, if a patent
-\end_layout
-
-\begin_layout LyX-Code
-license would not permit royalty-free redistribution of the Program by
-\end_layout
-
-\begin_layout LyX-Code
-all those who receive copies directly or indirectly through you, then
-\end_layout
-
-\begin_layout LyX-Code
-the only way you could satisfy both it and this License would be to
-\end_layout
-
-\begin_layout LyX-Code
-refrain entirely from distribution of the Program.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-If any portion of this section is held invalid or unenforceable under
-\end_layout
-
-\begin_layout LyX-Code
-any particular circumstance, the balance of the section is intended to
-\end_layout
-
-\begin_layout LyX-Code
-apply and the section as a whole is intended to apply in other
-\end_layout
-
-\begin_layout LyX-Code
-circumstances.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-It is not the purpose of this section to induce you to infringe any
-\end_layout
-
-\begin_layout LyX-Code
-patents or other property right claims or to contest validity of any
-\end_layout
-
-\begin_layout LyX-Code
-such claims; this section has the sole purpose of protecting the
-\end_layout
-
-\begin_layout LyX-Code
-integrity of the free software distribution system, which is
-\end_layout
-
-\begin_layout LyX-Code
-implemented by public license practices.
-  Many people have made
-\end_layout
-
-\begin_layout LyX-Code
-generous contributions to the wide range of software distributed
-\end_layout
-
-\begin_layout LyX-Code
-through that system in reliance on consistent application of that
-\end_layout
-
-\begin_layout LyX-Code
-system; it is up to the author/donor to decide if he or she is willing
-\end_layout
-
-\begin_layout LyX-Code
-to distribute software through any other system and a licensee cannot
-\end_layout
-
-\begin_layout LyX-Code
-impose that choice.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-This section is intended to make thoroughly clear what is believed to
-\end_layout
-
-\begin_layout LyX-Code
-be a consequence of the rest of this License.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  8.
- If the distribution and/or use of the Program is restricted in
-\end_layout
-
-\begin_layout LyX-Code
-certain countries either by patents or by copyrighted interfaces, the
-\end_layout
-
-\begin_layout LyX-Code
-original copyright holder who places the Program under this License
-\end_layout
-
-\begin_layout LyX-Code
-may add an explicit geographical distribution limitation excluding
-\end_layout
-
-\begin_layout LyX-Code
-those countries, so that distribution is permitted only in or among
-\end_layout
-
-\begin_layout LyX-Code
-countries not thus excluded.
-  In such case, this License incorporates
-\end_layout
-
-\begin_layout LyX-Code
-the limitation as if written in the body of this License.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  9.
- The Free Software Foundation may publish revised and/or new versions
-\end_layout
-
-\begin_layout LyX-Code
-of the General Public License from time to time.
-  Such new versions will
-\end_layout
-
-\begin_layout LyX-Code
-be similar in spirit to the present version, but may differ in detail to
-\end_layout
-
-\begin_layout LyX-Code
-address new problems or concerns.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-Each version is given a distinguishing version number.
-  If the Program
-\end_layout
-
-\begin_layout LyX-Code
-specifies a version number of this License which applies to it and "any
-\end_layout
-
-\begin_layout LyX-Code
-later version", you have the option of following the terms and conditions
-\end_layout
-
-\begin_layout LyX-Code
-either of that version or of any later version published by the Free
-\end_layout
-
-\begin_layout LyX-Code
-Software Foundation.
-  If the Program does not specify a version number of
-\end_layout
-
-\begin_layout LyX-Code
-this License, you may choose any version ever published by the Free Software
-\end_layout
-
-\begin_layout LyX-Code
-Foundation.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  10.
- If you wish to incorporate parts of the Program into other free
-\end_layout
-
-\begin_layout LyX-Code
-programs whose distribution conditions are different, write to the author
-\end_layout
-
-\begin_layout LyX-Code
-to ask for permission.
-  For software which is copyrighted by the Free
-\end_layout
-
-\begin_layout LyX-Code
-Software Foundation, write to the Free Software Foundation; we sometimes
-\end_layout
-
-\begin_layout LyX-Code
-make exceptions for this.
-  Our decision will be guided by the two goals
-\end_layout
-
-\begin_layout LyX-Code
-of preserving the free status of all derivatives of our free software and
-\end_layout
-
-\begin_layout LyX-Code
-of promoting the sharing and reuse of software generally.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-                            NO WARRANTY
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  11.
- BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-\end_layout
-
-\begin_layout LyX-Code
-FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
-  EXCEPT WHEN
-\end_layout
-
-\begin_layout LyX-Code
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-\end_layout
-
-\begin_layout LyX-Code
-PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
-\end_layout
-
-\begin_layout LyX-Code
-OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-\end_layout
-
-\begin_layout LyX-Code
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-  THE ENTIRE RISK AS
-\end_layout
-
-\begin_layout LyX-Code
-TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.
-  SHOULD THE
-\end_layout
-
-\begin_layout LyX-Code
-PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
-\end_layout
-
-\begin_layout LyX-Code
-REPAIR OR CORRECTION.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  12.
- IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-\end_layout
-
-\begin_layout LyX-Code
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-\end_layout
-
-\begin_layout LyX-Code
-REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
-\end_layout
-
-\begin_layout LyX-Code
-INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
-\end_layout
-
-\begin_layout LyX-Code
-OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
-\end_layout
-
-\begin_layout LyX-Code
-TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
-\end_layout
-
-\begin_layout LyX-Code
-YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
-\end_layout
-
-\begin_layout LyX-Code
-PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-\end_layout
-
-\begin_layout LyX-Code
-POSSIBILITY OF SUCH DAMAGES.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-                     END OF TERMS AND CONDITIONS
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-            How to Apply These Terms to Your New Programs
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  If you develop a new program, and you want it to be of the greatest
-\end_layout
-
-\begin_layout LyX-Code
-possible use to the public, the best way to achieve this is to make it
-\end_layout
-
-\begin_layout LyX-Code
-free software which everyone can redistribute and change under these terms.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-  To do so, attach the following notices to the program.
-  It is safest
-\end_layout
-
-\begin_layout LyX-Code
-to attach them to the start of each source file to most effectively
-\end_layout
-
-\begin_layout LyX-Code
-convey the exclusion of warranty; and each file should have at least
-\end_layout
-
-\begin_layout LyX-Code
-the "copyright" line and a pointer to where the full notice is found.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    <one line to give the program's name and a brief idea of what it does.>
-\end_layout
-
-\begin_layout LyX-Code
-    Copyright (C) <year>  <name of author>
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    This program is free software; you can redistribute it and/or modify
-\end_layout
-
-\begin_layout LyX-Code
-    it under the terms of the GNU General Public License as published by
-\end_layout
-
-\begin_layout LyX-Code
-    the Free Software Foundation; either version 2 of the License, or
-\end_layout
-
-\begin_layout LyX-Code
-    (at your option) any later version.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout LyX-Code
-    This program is distributed in the hope that it will be useful,
+Copyright (C) 2018-present Sandborg-Petersen Holding ApS
 \end_layout
 
 \begin_layout LyX-Code
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-\end_layout
-
-\begin_layout LyX-Code
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the
-\end_layout
-
-\begin_layout LyX-Code
-    GNU General Public License for more details.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
 
-\begin_layout LyX-Code
-    You should have received a copy of the GNU General Public License
 \end_layout
 
 \begin_layout LyX-Code
-    along with this program; if not, write to the Free Software
+Permission is hereby granted, free of charge, to any person obtaining
 \end_layout
 
 \begin_layout LyX-Code
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
-  USA
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Also add information on how to contact you by electronic and paper mail.
+a copy of this software and associated documentation files (the
 \end_layout
 
 \begin_layout LyX-Code
-If the program is interactive, make it output a short notice like this
+"Software"), to deal in the Software without restriction, including
 \end_layout
 
 \begin_layout LyX-Code
-when it starts in an interactive mode:
-\begin_inset Newline newline
-\end_inset
-
-
+without limitation the rights to use, copy, modify, merge, publish,
 \end_layout
 
 \begin_layout LyX-Code
-    Gnomovision version 69, Copyright (C) year  name of author
+distribute, sublicense, and/or sell copies of the Software, and to
 \end_layout
 
 \begin_layout LyX-Code
-    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show
- w'.
+permit persons to whom the Software is furnished to do so, subject to
 \end_layout
 
 \begin_layout LyX-Code
-    This is free software, and you are welcome to redistribute it
+the following conditions:
 \end_layout
 
 \begin_layout LyX-Code
-    under certain conditions; type `show c' for details.
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
 
-\begin_layout LyX-Code
-The hypothetical commands `show w' and `show c' should show the appropriate
 \end_layout
 
 \begin_layout LyX-Code
-parts of the General Public License.
-  Of course, the commands you use may
+The above copyright notice and this permission notice shall be
 \end_layout
 
 \begin_layout LyX-Code
-be called something other than `show w' and `show c'; they could even be
+included in all copies or substantial portions of the Software.
 \end_layout
 
 \begin_layout LyX-Code
-mouse-clicks or menu items--whatever suits your program.
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout LyX-Code
-You should also get your employer (if you work as a programmer) or your
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 \end_layout
 
 \begin_layout LyX-Code
-school, if any, to sign a "copyright disclaimer" for the program, if
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 \end_layout
 
 \begin_layout LyX-Code
-necessary.
-  Here is a sample; alter the names:
-\begin_inset Newline newline
-\end_inset
-
-
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 \end_layout
 
 \begin_layout LyX-Code
-  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 \end_layout
 
 \begin_layout LyX-Code
-  `Gnomovision' (which makes passes at compilers) written by James Hacker.
-\begin_inset Newline newline
-\end_inset
-
-
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 \end_layout
 
 \begin_layout LyX-Code
-  <signature of Ty Coon>, 1 April 1989
-\begin_inset Newline newline
-\end_inset
-
-  Ty Coon, President of Vice
-\begin_inset Newline newline
-\end_inset
-
-
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 \end_layout
 
 \begin_layout LyX-Code
-This General Public License does not permit incorporating your program into
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 \end_layout
 
 \begin_layout LyX-Code
-proprietary programs.
-  If your program is a subroutine library, you may
-\end_layout
 
-\begin_layout LyX-Code
-consider it more useful to permit linking proprietary applications with
- the
 \end_layout
 
 \begin_layout LyX-Code
-library.
-  If this is what you want to do, use the GNU Library General
-\end_layout
 
-\begin_layout LyX-Code
-Public License instead of this License.
 \end_layout
 
 \begin_layout Section
@@ -37853,36 +36907,20 @@ name "sec:PCRE-license"
 \end_layout
 
 \begin_layout Standard
-CRE is a library of functions to support regular expressions whose syntax
+PCRE is a library of functions to support regular expressions whose syntax
  and semantics are as close as possible to those of the Perl 5 language.
 \end_layout
 
 \begin_layout Standard
-Release 8 of PCRE is distributed under the terms of the "BSD" licence, as
+Release 6 of PCRE is distributed under the terms of the "BSD" licence, as
  specified below.
  The documentation for PCRE, supplied in the "doc" directory, is distributed
  under the same terms as the software itself.
- The data in the testdata directory is not copyrighted and is in the public
- domain.
 \end_layout
 
 \begin_layout Standard
 The basic library functions are written in C and are freestanding.
- Also included in the distribution is a set of C++ wrapper functions, and
- a just-in-time compiler that can be used to optimize pattern matching.
- These are both optional features that can be omitted when the library is
- built.
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-None of these optional features are enabled when compiling PCRE as it appears
- in the Emdros source code.
-\end_layout
-
-\end_inset
-
-
+ Also included in the distribution is a set of C++ wrapper functions.
 \end_layout
 
 \begin_layout Subsection
@@ -37891,22 +36929,67 @@ THE BASIC LIBRARY FUNCTIONS
 
 \begin_layout Standard
 Written by: Philip Hazel 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\noindent
+\align left
 Email local part: ph10 
 \end_layout
 
 \begin_layout Standard
+\noindent
+\align left
 Email domain: cam.ac.uk
 \end_layout
 
 \begin_layout Standard
-University of Cambridge Computing Service, Cambridge, England.
+\noindent
+\align left
+University of Cambridge Computing Service, 
 \end_layout
 
 \begin_layout Standard
-Copyright (c) 1997-2017 University of Cambridge All rights reserved.
+\noindent
+\align left
+Cambridge, England.
+ Phone: +44 1223 334714.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Copyright (c) 1997-2006 University of Cambridge 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+All rights reserved.
+\end_layout
+
+\begin_layout Subsection
+THE C++ WRAPPER FUNCTIONS
+\end_layout
+
+\begin_layout Standard
+Contributed by: Google Inc.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+Copyright (c) 2006, Google Inc.
+ All rights reserved.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -37955,7 +37038,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- 
+\end_layout
+
+\begin_layout LyX-Code
+
 \end_layout
 
 \begin_layout Chapter
@@ -38560,10 +37646,6 @@ reference "SELECT_OBJECTS"
 .
 \end_layout
 
-\begin_layout LyX-Code
-
-\end_layout
-
 \begin_layout Bibliography
 \labelwidthstring Bibliography
 \begin_inset CommandInset bibitem
@@ -38599,6 +37681,31 @@ Text Databases, One Database Model and Several Retrieval Languages.
 \labelwidthstring Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+label "Ulrik PhD"
+key "UlrikPhD"
+literal "false"
+
+\end_inset
+
+ Sandborg-Petersen, Ulrik.
+ 2008.
+ 
+\emph on
+Annotated text databases in the context of the Kaj Munk archive: One database
+ model, one query language, and several applications
+\emph default
+.
+ PhD dissertation, Department of Communication and Psychology, Aalborg Universit
+y, Denmark.
+ Obtainable from URL: 
+\family typewriter
+http://ulrikp.org/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 label "Standard-MdF"
 key "Standard-MDF"
 literal "true"
@@ -38614,50 +37721,7 @@ The Standard MdF Model
  Unpublished article.
  Obtainable from URL: 
 \family typewriter
-https://emdros.org/
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "Relational-EMdF"
-key "Rel-EMdF"
-literal "true"
-
-\end_inset
-
-Petersen, Ulrik.
- 2007: 
-\emph on
-Relational Implementation of EMdF and MQL.
-
-\emph default
- Unpublished working-paper.
- Obtainable from URL: 
-\family typewriter
-https://emdros.org/
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "MQLQueryGuide"
-key "MQL-Query-Guide"
-literal "true"
-
-\end_inset
-
-Sandborg-Petersen, Ulrik.
- 2014: 
-\emph on
-MQL Query Guide
-\emph default
-.
- Obtainable from URL: 
-\family typewriter
-https://emdros.org/
+http://emdros.org/
 \end_layout
 
 \begin_layout Bibliography
@@ -38679,187 +37743,75 @@ Monad Sets – Implementation and Mathematical Foundations
  Unpublished article.
  Obtainable from URL: 
 \family typewriter
-https://emdros.org/
+http://emdros.org/
 \end_layout
 
 \begin_layout Bibliography
 \labelwidthstring Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "Petersen2004"
+label "COLING 2004"
 key "COLING2004"
 literal "false"
 
 \end_inset
 
  Petersen, Ulrik.
- 2004a: 
-\emph on
-Emdros – a text database engine for analyzed or annotated text
-\emph default
-.
- In Proceedings of COLING 2004.
- Obtainable from URL: 
-\family typewriter
-https://emdros.org/
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "MA2004"
-key "MA2004"
-literal "false"
-
-\end_inset
-
- Petersen, Ulrik.
- 2004b: 
-\emph on
-Creation in Graphs: Extracting Conceptual Structures from Old Testament
- Texts
-\emph default
-.
- MA thesis, University of Aalborg, Department of Communication.
- Published in: Impact -- an Electronic Journal on Formalisation in Media,
- Text and Language.
- Also available from URL: 
-\family typewriter
-http://ulrikp.org/
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "RANLP2005"
-key "RANLP2005"
-literal "false"
-
-\end_inset
-
- Petersen, Ulrik.
- 2005: 
-\emph on
-Evaluating corpus query systems on functionality and speed: TIGERSearch
- and Emdros.
-
-\emph default
- In: Angelova, G., Bontcheva, K., Mitkov, R., Nicolov, N.
- and Nikolov, N.
- (eds): 
-\emph on
-International Conference Recent Advances in Natural Language Processing
- 2005, Proceedings, Borovets, Bulgaria, 21-23 September 2005
-\emph default
-, pp.
- 387--391.
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "LREC2006"
-key "LREC2006"
-literal "false"
-
-\end_inset
-
- Petersen, Ulrik.
- 2006a: 
-\emph on
-Querying both Parallel and Treebank Corpora: Evaluation of a Corpus Query
- System
-\emph default
-.
- In: Proceedings of LREC 2006.
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "FSMNLP"
-key "FSMNLP"
-literal "false"
-
-\end_inset
-
- Petersen, Ulrik.
- 2006b: 
-\emph on
-Principles, Implementation Strategies, and Evaluation of a Corpus Query
- System
-\emph default
-.
- In: Yli-Jyrä, Anssi; Karttunen, Lauri; Karhumäki, Juhani (eds), 
-\emph on
-Finite-State Methods and Natural Language Processing 5th International Workshop,
- FSMNLP 2005, Helsinki, Finland, September 1-2, 2005, Revised Papers
-\emph default
-, Lecture Notes in Computer Science, Volume 4002/2006, Springer Verlag,
- Heidelberg, New York, pp.
- 215-226.
- DOI: 10.1007/11780885_21.
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "PhD2008"
-key "PhD2008"
-literal "false"
-
-\end_inset
-
- Sandborg-Petersen, Ulrik.
- 2008: 
-\emph on
-Annotated text databases in the context of the Kaj Munk archive: One database
- model, one query language, and several applications.
-
-\emph default
- PhD dissertation, Department of Communication and Psychology, Aalborg Universit
-y, Denmark.
- Obtainable from URL: 
-\family typewriter
-http://ulrikp.org/PhD/
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-label "BRILL2011"
-key "BRILL2011"
-literal "false"
-
-\end_inset
-
- Sandborg-Petersen, Ulrik.
- 2011.
+ 2004.
  
 \emph on
-On Biblical Hebrew and Computer Science: Inspiration, Models, Tools, And
- Cross-fertilization
+Emdros -- a text database engine for analyzed or annotated text
 \emph default
 .
- In W.
- Th.
- van Peursen, J.
- Dyk (eds.) 
+ In ICCL, Proceedings of COLING 2004, held August 23-27 in Geneva.
+ International Commitee on Computational Linguistics, pp.
+ 1190--1193.
+ 
+\family typewriter
+http://emdros.org/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "Relational-EMdF"
+key "Rel-EMdF"
+literal "true"
+
+\end_inset
+
+Petersen, Ulrik.
+ 2007: 
 \emph on
-Tradition and Innovation in Biblical Interpretation: Studies Presented to
- Professor Eep Talstra on the Occasion of his Sixty-Fifth Birthday
+Relational Implementation of EMdF and MQL.
+
+\emph default
+ Unpublished working-paper.
+ Obtainable from URL: 
+\family typewriter
+http://emdros.org/
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "MQLQueryGuide"
+key "MQL-Query-Guide"
+literal "true"
+
+\end_inset
+
+Petersen, Ulrik.
+ 2007: 
+\emph on
+MQL Query Guide
 \emph default
 .
- Brill Academic Publishers, Incorporated, 2011.
- s.
- 261-276 (Studia Semitica Neerlandica - SSN; Nr.
- 57).
+ Obtainable from URL: 
+\family typewriter
+http://emdros.org/
 \end_layout
 
 \begin_layout Standard

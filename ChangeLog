@@ -1,5 +1,16 @@
 ============ 1.0.0 ============
 
+2019-01-16 Ulrik Sandborg-Petersen
+
+	* Lyx Docs: Update with latest from version 3.7.0.pre04, prior to
+	removing it from there.
+
+	Files affected:
+
+	modified:   doc/lyx/MQL-Programmers-Guide.lyx
+	modified:   doc/lyx/MQL-Query-Guide.lyx
+	modified:   doc/lyx/Rel-EMdF.lyx
+
 2018-06-01 Ulrik Sandborg-Petersen
 
 	* ChangeLog: Start of this ChangeLog.
