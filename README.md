@@ -4,8 +4,9 @@ Emdros documentation
 ## What is this repo?
 
 This repo contains all of the documentation for the Emdros text
-database engine, apart from the Unix manual pages, which are part of
-the main repo.
+database engine, apart from the Unix manual pages, and the
+documentation for the Emdros Query Tool and the Emdros Importer Tool,
+both of which are part of the main repo.
 
 ## What is Emdros's repo?
 
