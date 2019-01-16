@@ -11,6 +11,56 @@
 	modified:   doc/lyx/MQL-Query-Guide.lyx
 	modified:   doc/lyx/Rel-EMdF.lyx
 
+	* doc/Makefile.am: Remove the querytool/ and importtool/
+	subdirectories.
+
+	Also remove the files.
+
+	The reason is that we have these docs in the main emdros repo.  We
+	should not have them duplicated here.
+
+	Files affected:
+
+	modified:   ChangeLog
+	modified:   doc/Makefile.am
+	deleted:    doc/importtool/Content.txt
+	deleted:    doc/importtool/ImportToolUsersGuide.hhp
+	deleted:    doc/importtool/Makefile.am
+	deleted:    doc/importtool/Makefile.inc
+	deleted:    doc/importtool/config.py.in
+	deleted:    doc/importtool/files.txt
+	deleted:    doc/querytool/Content.txt
+	deleted:    doc/querytool/EQTUsersGuide.hhp
+	deleted:    doc/querytool/InputArea.png
+	deleted:    doc/querytool/InputAreaExampleQuery.png
+	deleted:    doc/querytool/MainScreen.png
+	deleted:    doc/querytool/Makefile.am
+	deleted:    doc/querytool/Makefile.inc
+	deleted:    doc/querytool/MenuBar.png
+	deleted:    doc/querytool/MyPgConnSettingsFilled.png
+	deleted:    doc/querytool/MyPgSQLConnSettings.png
+	deleted:    doc/querytool/OutputArea.png
+	deleted:    doc/querytool/OutputAreaSampleOutput.png
+	deleted:    doc/querytool/SQLiteConnSettings.png
+	deleted:    doc/querytool/SQLiteConnSettingsFilled.png
+	deleted:    doc/querytool/SchemaEnumerations.png
+	deleted:    doc/querytool/SchemaMonadSets.png
+	deleted:    doc/querytool/SchemaObjectTypes.png
+	deleted:    doc/querytool/ToolBar.png
+	deleted:    doc/querytool/clear.png
+	deleted:    doc/querytool/config.py.in
+	deleted:    doc/querytool/connect.png
+	deleted:    doc/querytool/copy.png
+	deleted:    doc/querytool/cut.png
+	deleted:    doc/querytool/files.txt
+	deleted:    doc/querytool/flash.png
+	deleted:    doc/querytool/new.png
+	deleted:    doc/querytool/open.png
+	deleted:    doc/querytool/paste.png
+	deleted:    doc/querytool/save.png
+	deleted:    doc/querytool/stop.png
+
+
 2018-06-01 Ulrik Sandborg-Petersen
 
 	* ChangeLog: Start of this ChangeLog.
