@@ -29,6 +29,7 @@ pages:
          - Databases: emdf/databases.md
          - Other Concepts: emdf/otherconcepts.md
     - MQL schema:
+         - Introduction: mql/schema/index.md
          - Databases:
                - CREATE DATABASE: mql/schema/databases/createdatabase.md
                - INITIALIZE DATABASE: mql/schema/databases/initializedatabase.md
@@ -52,6 +53,7 @@ pages:
                - SELECT OBJECT TYPES: mql/schema/objecttypes/selectobjecttypes.md
                - SELECT FEATURES: mql/schema/objecttypes/selectfeatures.md
     - MQL Data:
+         - Introduction: mql/data/index.md
          - Objects:
                - CREATE OBJECTS WITH OBJECT TYPE: mql/data/objects/createobjectswithobjecttype.md
                - CREATE OBJECT FROM MONADS: mql/data/objects/createobjectfrommonads.md
@@ -79,6 +81,7 @@ pages:
                - SELECT MIN_M: mql/data/globaldata/selectminm.md
                - SELECT MAX_M: mql/data/globaldata/selectmaxm.md
     - MQL Meta Statements:
+         - Introduction: mql/meta/index.md
          - Transactions:
                - BEGIN TRANSACTION: mql/meta/begintransaction.md
                - COMMIT TRANSACTION: mql/meta/committransaction.md
@@ -112,6 +115,7 @@ pages:
          - About MQL Reference Guide: about/index.md
          - Contributing: about/contributing.md
          - License: about/license.md
+         - Other Licenses: about/otherlicenses.md
 
 copyright: Copyright &copy; 2019 <a href="https://emdros.org/">Sandborg-Petersen Holding ApS</a>.
 #google_analytics: ['UA-XXX', 'progref.emdros.com']
