@@ -50,3 +50,7 @@ pages:
 
 copyright: Copyright &copy; 2019 <a href="https://emdros.org/">Sandborg-Petersen Holding ApS</a>.
 #google_analytics: ['UA-XXX', 'progref.emdros.com']
+
+markdown_extensions:
+    - toc:
+        permalink: "#"
