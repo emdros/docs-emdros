@@ -9,6 +9,7 @@ theme: readthedocs
 pages:
     - Getting started:
          - Home: index.md
+         - What is Emdros?: whatisemdros.md
          - Use cases: usecases.md
          - Architecture: architecture.md
          - Where to go from here?: wheretogo.md
@@ -34,7 +35,11 @@ pages:
          - Android: calling_emdros/android.md
     - Harvest Library:
          - What is it?: harvestlib/index.md
-         - Render Library: harvestlib/renderlib.md
+         - Render Library:
+              - harvestlib/renderlib.md
+              - harvestlib/renderobjects.md
+              - harvestlib/renderxml.md
+              - harvestlib/templatelang.md
          - FTS Library: harvestlib/ftslib.md
     - About:
          - Release Notes: about/release-notes.md
