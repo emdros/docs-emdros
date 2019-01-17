@@ -1,17 +1,8 @@
-# Welcome to MkDocs
+# Welcome to Emdros
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+Emdros is a text database engine for annotated text.
 
-## Commands
+Annotated text means: Text plus information about that text.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Emdros can handle almost any kind of annotation of almost any kind of
+text.

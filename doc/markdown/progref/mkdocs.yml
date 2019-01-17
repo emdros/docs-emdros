@@ -1,9 +1,34 @@
 site_name: Emdros Programmer's Reference Guide
+site_url: https://progref.emdros.com/
+site_description: Programmer's Reference Guide for the Emdros text database engine
+site_author: Ulrik Sandborg-Petersen
 
-nav:
-   - Home: index.md
-   - Getting started: getting_started/index.md
-   - Using Emdros: using_emdros/index.md
-   - Harvest library: harvestlib/index.md
-   - About: about.md
    
+theme: readthedocs
+
+pages:
+    - Home: index.md
+    - Installing Emdros:
+         - Home: installing/index.md
+         - Linux: installing/linux.md
+         - Mac: installing/mac.md
+         - Windows: installing/windows.md
+    - Using Emdros:
+         - Ways to use Emdros: using_emdros/index.md
+         - CLI: using_emdros/cli.md
+         - C++ SDK: using_emdros/sdk.md
+         - SWIG: using_emdros/swig.md
+         - Web API: using_emdros/webapi.md
+         - iOS: using_emdros/ios.md
+         - Android: using_emdros/android.md
+    - Harvest Library:
+         - What is it?: harvestlib/index.md
+         - Render Library: harvestlib/renderlib.md
+         - FTS Library: harvestlib/ftslib.md
+    - About:
+         - Release Notes: about/release-notes.md
+         - Contributing: about/contributing.md
+         - License: about/license.md
+
+copyright: Copyright &copy; 2019 <a href="https://emdros.org/">Sandborg-Petersen Holding ApS</a>.
+#google_analytics: ['UA-XXX', 'progref.emdros.com']
