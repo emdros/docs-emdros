@@ -68,32 +68,32 @@ pages:
                - GET MONADS: mql/data/objects/getmonads.md
                - GET FEATURES: mql/data/objects/getfeatures.md
                - GET SET FROM FEATURE: mql/data/objects/getsetfromfeature.md
-          - Monad Sets:
+         - Monad Sets:
                - CREATE MONAD SET: mql/data/monadsets/createmonadset.md
                - UPDATE MONAD SET: mql/data/monadsets/updatemonadset.md
                - DROP MONAD SET: mql/data/monadsets/dropmonadset.md
                - MONAD SET CALCULATION: mql/data/monadsets/monadsetcalculation.md
                - SELECT MONAD SETS: mql/data/monadsets/selectmonadsets.md
                - GET MONAD SETS: mql/data/monadsets/getmonadsets.md
-          - Global Data:
+         - Global Data:
                - SELECT MIN_M: mql/data/globaldata/selectminm.md
                - SELECT MAX_M: mql/data/globaldata/selectmaxm.md
-     - MQL Meta Statements:
-          - Transactions:
+    - MQL Meta Statements:
+         - Transactions:
                - BEGIN TRANSACTION: mql/meta/begintransaction.md
                - COMMIT TRANSACTION: mql/meta/committransaction.md
                - ABOUT TRANSACTION: mql/meta/abouttransaction.md
-          - Connection:
+         - Connection:
                - QUIT: mql/meta/quit.md
-     - MQL Topographic Part:
-          - Preliminaries:
+    - MQL Topographic Part:
+         - Preliminaries:
                - Introduction: mql/topographic/preliminaries/index.md
                - Examples: mql/topographic/preliminaries/examples.md
                - Syntax: mql/topographic/preliminaries/syntax.md
                - The Sheaf: mql/topographic/preliminaries/sheaf.md
                - Universe and Substrate: mql/topographic/preliminaries/universeandsubstrate.md
                - Consecutiveness and Embedding: mql/topographic/preliminaries/consecutivenessandembedding.md
-          - Blocks:
+         - Blocks:
                - Introduction: mql/topographic/blocks/index.md
                - Object blocks: mql/topographic/blocks/objectblocks.md
                - Gap blocks: mql/topographic/blocks/gapblocks.md
@@ -103,7 +103,7 @@ pages:
                - Feature constraints: mql/topographic/blocks/featureconstraints.md
                - Object references: mql/topographic/blocks/objectreferences.md
                - Block: mql/topographic/blocks/block.md
-          - Strings of blocks:
+         - Strings of blocks:
                - Introduction: mql/topographic/stringsofblocks/index.md
                - Topograph: mql/topographic/stringsofblocks/topograph.md
                - Blocks: mql/topographic/stringsofblocks/blocks.md
