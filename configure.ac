@@ -40,7 +40,5 @@ AC_SUBST(PDFLATEX)
 AC_CONFIG_FILES([Makefile
 		 doc/Makefile
 		 doc/progref/Makefile
-		 doc/importtool/Makefile
-		 doc/querytool/Makefile
                ])
 AC_OUTPUT
