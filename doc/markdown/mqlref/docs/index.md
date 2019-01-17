@@ -1,17 +1,13 @@
-# Welcome to MkDocs
+# MQL Reference Guide
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+This guide is for programmers and database designers who want to:
 
-## Commands
+- Know [how to read this guide](preliminaries/index.md)
+- Know about the [EMdF database model](emdf/index.md).
+- Use MQL to manipulate a [schema](mql/schema/index.md).
+- Use MQL to maniulate [data](mql/data/index.md).
+- Use [MQL meta-statements](mql/meta/index.md).
+- Understand the [Topographic part of MQL](mql/topographic/preliminaries/index.md).
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+There is also an [About](about/index.md) section.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
