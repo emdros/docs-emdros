@@ -36,7 +36,7 @@ covered:</P>
 
 <h2>Appliccable version</h2>
 
-<P>This guide documents Emdros version <strong>4.0.0</strong>
+<P>This guide documents Emdros version <strong>3.7.0</strong>
 and later.</P>
 
 
@@ -643,10 +643,8 @@ API.</P>
 <page ID="1051">
 
 <P>The following are some snippets from the mql(1) program.  They are
-placed under the GPL license as given at the beginning of the file
-src/mql.cpp in the Emdros <A
-HREF="http://sourceforge.net/project/showfiles.php?group_id=37219">sourcecode</A>
-package.</P>
+placed under the MIT license as given at the beginning of the file
+src/mql.cpp in the Emdros sourcecode package.</P>
 
 <PRE class="code">
 
@@ -767,8 +765,7 @@ ID="1035">previously</page_anchor>.</P>
 
 <h2>Examples and HOW-TOs</h2>
 
-<P>For <STRONG>code examples and HOW-TOs</STRONG>, please see the <A
-HREF="http://sourceforge.net/project/showfiles.php?group_id=37219">sources</A>,
+<P>For <STRONG>code examples and HOW-TOs</STRONG>, please see the sources,
 especially:</P>
 
 <UL>
@@ -1730,9 +1727,9 @@ public:
   // enum enum{PREUNDERSCORE}name with the value value.
   // Just calls the corresponding EMdFDB method.
   // bDBOK is true on no DB error.
-  virtual std::string getEnumConstNameFromValue(emdros_int64 value,
+  virtual std::string getEnumConstNameFromValue(long value,
                                                 const std::string{PREAMP} enum{PREUNDERSCORE}name,
-                                                /* out */ bool &bDBOK);
+                                                /* out */ bool {PREAMP}bDBOK);
 
 
   // Transactions
@@ -2910,7 +2907,7 @@ public:
   // Enums are returned by their integer value, not their string name.
   //
   // Throws an EmdrosException if index out of range.
-  emdros_int64 getFeatureAsLong(int index) const;
+  long getFeatureAsLong(int index) const;
 
   // Get enum label from an index into the EMdFValue vector
   std::string getEnumLabel(int index) const;
@@ -2951,7 +2948,7 @@ public:
   long countObjects(bool bUseOnlyFocusObjects) const;
 
   // See Sheaf::countObjectsFromObjectType() for an explanation.
-  long countObjectsFromObjectType(const std::string& object_type_name, bool bUseOnlyFocusObjects) const;
+  long countObjectsFromObjectType(const std::string{PREAMP} object_type_name, bool bUseOnlyFocusObjects) const;
 
   // See Sheaf::countStraws() for an explanation.
   long countStraws() const;
@@ -2989,7 +2986,7 @@ public:
   long countObjects(bool bUseOnlyFocusObjects) const;
 
   // See Sheaf::countObjectsFromObjectType() for an explanation.
-  long countObjectsFromObjectType(const std::string& object_type_name, bool bUseOnlyFocusObjects) const;
+  long countObjectsFromObjectType(const std::string{PREAMP} object_type_name, bool bUseOnlyFocusObjects) const;
 
   // See Sheaf::countStraws() for an explanation.
   long countStraws() const;
@@ -3070,7 +3067,7 @@ public:
   // given object type are counted.
   //
   // The object_type_name parameter should be passed through the
-  // std::string normalizeOTName(const std::string& object_type_name)
+  // std::string normalizeOTName(const std::string{PREAMP} object_type_name)
   // function before passing it as a parameter.
   //
   // If bUseOnlyFocusObjects is true, only those MatchedObjects whose
@@ -3078,7 +3075,7 @@ public:
   //
   // The algorithm counts recursively throughout the sheaf, into the innermost
   // sheaves.
-  long countObjectsFromObjectType(const std::string& object_type_name, bool bUseOnlyFocusObjects) const;
+  long countObjectsFromObjectType(const std::string{PREAMP} object_type_name, bool bUseOnlyFocusObjects) const;
 
   // See Sheaf::countStraws() for an explanation.
   long countStraws() const;
@@ -3236,7 +3233,7 @@ holds an EMdF value, i.e., one of the following:</P>
 <P>The enum constants returned are integers, both for kEVEnum and
 kEVListOfInteger (which is also used for lists of enum constants).
 You must use <page_anchor
-ID="">EmdrosEnv</page_anchor>::getEnumConstNameFromValue()</P> in
+ID="1160">EmdrosEnv</page_anchor>::getEnumConstNameFromValue()</P> in
 order to retrieve the string-form of the enum.</P>
 
 <h2>C++ interface</h2>
@@ -3260,7 +3257,7 @@ public:
   EMdFValue(const EMdFValue{PREAMP} other);
 
   // kind must be kEVInt, kEVEnum or kEVID{PREUNDERSCORE}D
-  EMdFValue(eEVkind kind, emdros_int64 i);
+  EMdFValue(eEVkind kind, long i);
 
   // kind becomes kEVString
   EMdFValue(const std::string{PREAMP} str);
@@ -3280,10 +3277,10 @@ public:
   id{PREUNDERSCORE}d{PREUNDERSCORE}t getID{PREUNDERSCORE}D(void) const;
 
   // Get if it is an integer
-  emdros_int64 getInt(void) const;
+  long getInt(void) const;
 
   // Get if it is an enum
-  emdros_int64 getEnum(void) const;
+  long getEnum(void) const;
 
   // Get if it is kEVListOfInteger or kEVListOfID_D
   IntegerList *getIntegerList(void) const;
@@ -3379,11 +3376,10 @@ public:
 
 <h2>Overview</h2>
 
-<P>An IntegerList is for communicating a list of integers (C++ 64-bit
-integers, actually) between Emdros and the program using Emdros.
+<P>An IntegerList is for communicating a list of integers (C++
+"long"s, actually) between Emdros and the program using Emdros.
 Internally, monad_ms, id_d_ts, and enumeration constant values are all
-64-bit longs.  Thus an IntegerList can hold any of those kinds of
-values.</P>
+longs.  Thus an IntegerList can hold any of those kinds of values.</P>
 
 <P>The list is ordered, and can be iterated with the normal
 Emdros-iterators.</P>
@@ -3408,9 +3404,9 @@ public:
   IntegerListConstIterator(const IntegerListConstIterator{PREAMP} other);
   ~IntegerListConstIterator();
   bool hasNext() const; // Is the iterator == end iterator?  Doesn't alter iterator
-  emdros_int64 next(); // Gets current and advances iterator afterwards
-  emdros_int64 previous();  // Regresses iterator and then gets current
-  emdros_int64 current(); // Gets current without altering iterator
+  long next(); // Gets current and advances iterator afterwards
+  long previous();  // Regresses iterator and then gets current
+  long current(); // Gets current without altering iterator
 };
 
 class IntegerList {
@@ -3429,13 +3425,13 @@ public:
 
   IntegerListConstIterator const{PREUNDERSCORE}iterator() const;
 
-  std::vector{PRELT}emdros_int64{PREGT} getAsVector(void) const;
+  std::vector{PRELT}long{PREGT} getAsVector(void) const;
 
   // Add at beginning of list, pushing everything down one member
-  void addIntegerFront(emdros_int64 l);
+  void addIntegerFront(long l);
 
   // Add at end of list
-  void addIntegerBack(emdros_int64 l);
+  void addIntegerBack(long l);
 
   bool isEmpty(void) const;
 };
@@ -4076,7 +4072,7 @@ terminology as an example) would be the following:</P>
 
 <P>If you do implement a generic in-memory EMdF database, please
 consider contributing it to the Emdros project.  Contact Ulrik
-Petersen &lt;ulrikp[at]users.sourceforge.net&gt; with any
+Sandborg-Petersen &lt;ulrikp[at]emdros{dot}org&gt; with any
 contributions.</P>
 
 
@@ -4414,15 +4410,15 @@ stylesheet" and the "dictinoaries" key may look like this:</p>
       "base : {PREOPENBRACE}
          "object_types" : {PREOPENBRACE}
              "document" : {PREOPENBRACE}
-                  "start" : "<document id=\"{PREOPENBRACE}{PREOPENBRACE} feature 0 {PRECLOSEBRACE}{PRECLOSEBRACE}\"><docname>{PREOPENBRACE}{PREOPENBRACE} dictlookup 'documentname' feature 0 'Unknown document' {PRECLOSEBRACE}{PRECLOSEBRACE}</docname>",
+                  "start" : "&lt;document id=\"{PREOPENBRACE}{PREOPENBRACE} feature 0 {PRECLOSEBRACE}{PRECLOSEBRACE}\"&gt;&lt;docname&gt;{PREOPENBRACE}{PREOPENBRACE} dictlookup 'documentname' feature 0 'Unknown document' {PRECLOSEBRACE}{PRECLOSEBRACE}&lt;/docname&gt;",
 	          "get" : [
 	             "documentid"
 	          ] 
-                  "end" : "</document>"
+                  "end" : "&lt;/document&gt;"
               {PRECLOSEBRACE},
               "token" : {PREOPENBRACE}
                    "get" : [ "surface" ],
-                   "start" : "<token>{PREOPENBRACE}{PREOPENBRACE} feature 0 {PRECLOSEBRACE}{PRECLOSEBRACE}</token>"
+                   "start" : "&lt;token&gt;{PREOPENBRACE}{PREOPENBRACE} feature 0 {PRECLOSEBRACE}{PRECLOSEBRACE}&lt;/token&gt;"
               {PRECLOSEBRACE},
          {PRECLOSEBRACE},
          "priority_list" : [
@@ -4613,6 +4609,13 @@ follows.  It is a list of the following kinds of string:</p>
   {CLOSEBRACE}{CLOSEBRACE}</strong>: Emits the first monad of the
   object under consideration.  This is done in base-10, so that if an
   object has a set of objects with first monad "3", then "3" is
+  emitted (without the quotes).<br/><b>Only available in
+  RenderObjects, not RenderXML.</b></p>
+
+  <LI><p><strong>{OPENBRACE}{OPENBRACE} lastmonad
+  {CLOSEBRACE}{CLOSEBRACE}</strong>: Emits the last monad of the
+  object under consideration.  This is done in base-10, so that if an
+  object has a set of objects with last monad "3", then "3" is
   emitted (without the quotes).<br/><b>Only available in
   RenderObjects, not RenderXML.</b></p>
 
