@@ -7,14 +7,25 @@ site_author: Ulrik Sandborg-Petersen
 theme: readthedocs
 
 pages:
-    - Home: index.md
+    - Getting started:
+         - Home: index.md
+         - Use cases: usecases.md
+         - Architecture: architecture.md
+         - Where to go from here?: wheretogo.md
     - Installing Emdros:
          - Home: installing/index.md
          - Linux: installing/linux.md
          - Mac: installing/mac.md
          - Windows: installing/windows.md
+    - Usage patterns:
+         - Overview: patterns/index.md
+         - Ingestion: patterns/ingestion.md
+         - Querying: patterns/querying.md
+         - Harvesting: patterns/harvesting.md
+         - Rendering: patterns/rendering.md
+         - Full Text Search: patterns/fts.md
     - Calling Emdros:
-         - Ways to call Emdros: calling_emdros/index.md
+         - Ways of calling Emdros: calling_emdros/index.md
          - CLI: calling_emdros/cli.md
          - C++ SDK: calling_emdros/sdk.md
          - SWIG: calling_emdros/swig.md
