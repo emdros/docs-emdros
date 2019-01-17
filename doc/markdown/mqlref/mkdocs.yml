@@ -61,9 +61,9 @@ pages:
                - DELETE OBJECTS BY MONADS: mql/data/objects/deleteobjectsbymonads.md
                - DELETE OBJECTS BY ID_DS: mql/data/objects/deleteobjectsbyidds.md
                - SELECT ALL OBJECTS: mql/data/objects/selectallobjects.md
-               - GET OBJECTS HAVING MONADS IN: mql/data/objects/getobjectshavingmonadsin.mql
+               - GET OBJECTS HAVING MONADS IN: mql/data/objects/getobjectshavingmonadsin.md
                - SELECT OBJECTS AT: mql/data/objects/selectobjectsat.md
-               - SELECT OBJECTS HAVING MONADS IN: mql/data/objects/selectobjectshavingmonadsin.mql
+               - SELECT OBJECTS HAVING MONADS IN: mql/data/objects/selectobjectshavingmonadsin.md
                - GET AGGREGATE FEATURES: mql/data/objects/getaggregatefeatures.md
                - GET MONADS: mql/data/objects/getmonads.md
                - GET FEATURES: mql/data/objects/getfeatures.md
