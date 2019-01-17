@@ -13,14 +13,14 @@ pages:
          - Linux: installing/linux.md
          - Mac: installing/mac.md
          - Windows: installing/windows.md
-    - Using Emdros:
-         - Ways to use Emdros: using_emdros/index.md
-         - CLI: using_emdros/cli.md
-         - C++ SDK: using_emdros/sdk.md
-         - SWIG: using_emdros/swig.md
-         - Web API: using_emdros/webapi.md
-         - iOS: using_emdros/ios.md
-         - Android: using_emdros/android.md
+    - Calling Emdros:
+         - Ways to call Emdros: calling_emdros/index.md
+         - CLI: calling_emdros/cli.md
+         - C++ SDK: calling_emdros/sdk.md
+         - SWIG: calling_emdros/swig.md
+         - Web API: calling_emdros/webapi.md
+         - iOS: calling_emdros/ios.md
+         - Android: calling_emdros/android.md
     - Harvest Library:
          - What is it?: harvestlib/index.md
          - Render Library: harvestlib/renderlib.md

@@ -1,8 +1,11 @@
-# Welcome to Emdros
+# What is this guide?
 
-Emdros is a text database engine for annotated text.
+This guide will help you:
 
-Annotated text means: Text plus information about that text.
+- Install Emdros
+- Call Emdros
+- Use the Harvest library
 
-Emdros can handle almost any kind of annotation of almost any kind of
-text.
+There is also an About section.
+
+
