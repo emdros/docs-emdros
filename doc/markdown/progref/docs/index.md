@@ -16,6 +16,7 @@ You can learn about:
 
 - [What is Emdros?](whatisemdros.md)
 - [Typical Use cases](usecases.md)
+- [Emdros's database model and query language](modelandquerylanguage.md)
 - [Emdros Architecture](architecture.md)
 - [Where to go from here](wheretogo.md)
 

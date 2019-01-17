@@ -11,6 +11,7 @@ pages:
          - Home: index.md
          - What is Emdros?: whatisemdros.md
          - Use cases: usecases.md
+         - Database Model and Query Language: modelandquerylanguage.md
          - Architecture: architecture.md
          - Where to go from here?: wheretogo.md
     - Installing Emdros:
