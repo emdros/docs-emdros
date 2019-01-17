@@ -1,0 +1,9 @@
+site_name: Emdros Programmer's Reference Guide
+
+nav:
+   - Home: index.md
+   - Getting started: getting_started/index.md
+   - Using Emdros: using_emdros/index.md
+   - Harvest library: harvestlib/index.md
+   - About: about.md
+   
