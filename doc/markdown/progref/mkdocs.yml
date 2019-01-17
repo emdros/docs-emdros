@@ -42,6 +42,7 @@ pages:
               - harvestlib/templatelang.md
          - FTS Library: harvestlib/ftslib.md
     - About:
+         - About Emdros: about/index.md
          - Release Notes: about/release-notes.md
          - Contributing: about/contributing.md
          - License: about/license.md
