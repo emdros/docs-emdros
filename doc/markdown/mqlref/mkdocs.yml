@@ -1,1 +1,121 @@
-site_name: My Docs
+site_name: Emdros MQL Reference Guide
+site_url: https://mqlref.emdros.com/
+site_description: MQL Query Language Reference Guide for the Emdros text database engine
+site_author: Ulrik Sandborg-Petersen
+
+   
+theme: readthedocs
+
+pages:
+    - Home: index.md
+    - Preliminaries:
+         - Introduction: preliminaries/index.md
+         - Origins of MdF, EMdF, and MQL: preliminaries/origins.md
+         - Backus-Naur Form (BNF): preliminaries/bnf.md
+         - How to read this guide: preliminaries/howtoread.md
+         - Lexical Conventions: preliminaries/lexicalconventions.md
+         - Return Types: preliminaries/returnstypes.md
+         - Overview: preliminaries/overview.md
+    - The EMdF model:
+         - Introduction: emdf/index.md
+         - Monads: emdf/monads.md
+         - Objects: emdf/objects.md
+         - Object Types: emdf/objectttypes.md
+         - Features: emdf/features.md
+         - Example: emdf/example.md
+         - Enumerations: emdf/enumerations.md
+         - Named Monad Sets: emdf/monadsets.md
+         - Computed Features: emdf/computedfeatures.md
+         - Databases: emdf/databases.md
+         - Other Concepts: emdf/otherconcepts.md
+    - MQL schema:
+         - Databases:
+               - CREATE DATABASE: mql/schema/databases/createdatabase.md
+               - INITIALIZE DATABASE: mql/schema/databases/initializedatabase.md
+               - USE DATABASE: mql/schema/databases/usedatabase.md
+               - DROP DATABASE: mql/schema/databases/dropdatabase.md
+               - VACUUM DATABASE: mql/schema/databases/vacuumdatabase.md
+         - Indexes:
+               - CREATE INDEXES: mql/schema/indexes/createindexes.md
+               - DROP INDEXES: mql/schema/indexes/dropindexes.md
+         - Enumerations:
+               - CREATE ENUMERATION: mql/schema/enumerations/createenumeration.md
+               - UPDATE ENUMERATION: mql/schema/enumerations/updateenumeration.md
+               - DROP ENUMERATION: mql/schema/enumerations/dropenumeration.md
+               - SELECT ENUMERATIONS: mql/schema/introspection/selectenumerations.md
+               - SELECT ENUMERATION CONSTANTS: mql/schema/introspection/selectenumerationconstants.md
+               - SELECT OBJECT TYPES USING ENUMERATIONS: mql/schema/introspection/selobjtypusingenum.md
+         - Object Types:
+               - CREATE OBJECT TYPE: mql/schema/objecttypes/createobjecttype.md
+               - UPDATE OBJECT TYPE: mql/schema/objecttypes/updateobjecttype.md
+               - DROP OBJECT TYPE: mql/schema/objecttypes/dropobjecttype.md
+               - SELECT OBJECT TYPES: mql/schema/objecttypes/selectobjecttypes.md
+               - SELECT FEATURES: mql/schema/objecttypes/selectfeatures.md
+    - MQL Data:
+         - Objects:
+               - CREATE OBJECTS WITH OBJECT TYPE: mql/data/objects/createobjectswithobjecttype.md
+               - CREATE OBJECT FROM MONADS: mql/data/objects/createobjectfrommonads.md
+               - CREATE OBJECT FROM ID_DS: mql/data/objects/createobjectfromidds.md
+               - UPDATE OBJECTS BY MONADS: mql/data/objects/updateobjectsbymonads.md
+               - UPDATE OBJECTS BY ID_DS: mql/data/objects/updateobjectsbyidds.md
+               - DELETE OBJECTS BY MONADS: mql/data/objects/deleteobjectsbymonads.md
+               - DELETE OBJECTS BY ID_DS: mql/data/objects/deleteobjectsbyidds.md
+               - SELECT ALL OBJECTS: mql/data/objects/selectallobjects.md
+               - GET OBJECTS HAVING MONADS IN: mql/data/objects/getobjectshavingmonadsin.mql
+               - SELECT OBJECTS AT: mql/data/objects/selectobjectsat.md
+               - SELECT OBJECTS HAVING MONADS IN: mql/data/objects/selectobjectshavingmonadsin.mql
+               - GET AGGREGATE FEATURES: mql/data/objects/getaggregatefeatures.md
+               - GET MONADS: mql/data/objects/getmonads.md
+               - GET FEATURES: mql/data/objects/getfeatures.md
+               - GET SET FROM FEATURE: mql/data/objects/getsetfromfeature.md
+          - Monad Sets:
+               - CREATE MONAD SET: mql/data/monadsets/createmonadset.md
+               - UPDATE MONAD SET: mql/data/monadsets/updatemonadset.md
+               - DROP MONAD SET: mql/data/monadsets/dropmonadset.md
+               - MONAD SET CALCULATION: mql/data/monadsets/monadsetcalculation.md
+               - SELECT MONAD SETS: mql/data/monadsets/selectmonadsets.md
+               - GET MONAD SETS: mql/data/monadsets/getmonadsets.md
+          - Global Data:
+               - SELECT MIN_M: mql/data/globaldata/selectminm.md
+               - SELECT MAX_M: mql/data/globaldata/selectmaxm.md
+     - MQL Meta Statements:
+          - Transactions:
+               - BEGIN TRANSACTION: mql/meta/begintransaction.md
+               - COMMIT TRANSACTION: mql/meta/committransaction.md
+               - ABOUT TRANSACTION: mql/meta/abouttransaction.md
+          - Connection:
+               - QUIT: mql/meta/quit.md
+     - MQL Topographic Part:
+          - Preliminaries:
+               - Introduction: mql/topographic/preliminaries/index.md
+               - Examples: mql/topographic/preliminaries/examples.md
+               - Syntax: mql/topographic/preliminaries/syntax.md
+               - The Sheaf: mql/topographic/preliminaries/sheaf.md
+               - Universe and Substrate: mql/topographic/preliminaries/universeandsubstrate.md
+               - Consecutiveness and Embedding: mql/topographic/preliminaries/consecutivenessandembedding.md
+          - Blocks:
+               - Introduction: mql/topographic/blocks/index.md
+               - Object blocks: mql/topographic/blocks/objectblocks.md
+               - Gap blocks: mql/topographic/blocks/gapblocks.md
+               - Power blocks: mql/topographic/blocks/powerblocks.md
+               - Retrieval: mql/topographic/blocks/retrieval.md
+               - First and last: mql/topographic/blocks/firstandlast.md
+               - Feature constraints: mql/topographic/blocks/featureconstraints.md
+               - Object references: mql/topographic/blocks/objectreferences.md
+               - Block: mql/topographic/blocks/block.md
+          - Strings of blocks:
+               - Introduction: mql/topographic/stringsofblocks/index.md
+               - Topograph: mql/topographic/stringsofblocks/topograph.md
+               - Blocks: mql/topographic/stringsofblocks/blocks.md
+               - Block_string: mql/topographic/stringsofblocks/blockstring.md
+    - About:
+         - About MQL Reference Guide: about/index.md
+         - Contributing: about/contributing.md
+         - License: about/license.md
+
+copyright: Copyright &copy; 2019 <a href="https://emdros.org/">Sandborg-Petersen Holding ApS</a>.
+#google_analytics: ['UA-XXX', 'progref.emdros.com']
+
+markdown_extensions:
+    - toc:
+        permalink: "#"
