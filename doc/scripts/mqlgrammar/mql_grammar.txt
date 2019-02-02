@@ -152,7 +152,7 @@ list_feature_type = "INTEGER"
 
 
 with_index = "WITH"    "INDEX"
-	   | "WITHOUT" "INDEX"; 
+           | "WITHOUT" "INDEX"; 
 
 if_not_exists = "IF"  "NOT"  "EXISTS" ;
 
@@ -187,7 +187,7 @@ insert_monads_statement = "INSERT" monad_specification;
 delete_monads_statement = "DELETE" monad_specification;
 
 get_monads_statement =
-    "GET" "MONADS" "FROM" ("OBJECT" | "OBJECTS")	
+    "GET" "MONADS" "FROM" ("OBJECT" | "OBJECTS")        
     "WITH" id_ds_specification
     "["  object_type_name  "]" ;
     
@@ -215,7 +215,7 @@ get_monad_sets_statement = "GET"  "MONAD"  ("SET" | "SETS")
 
 create_monad_set_statement = "CREATE"  "MONAD"  "SET"
                              monad_set_name
-			     "WITH"  monad_specification;
+                             "WITH"  monad_specification;
     
 
 
@@ -255,7 +255,7 @@ ec_update_list = ec_update { "," ec_update } ;
 
 ec_update = ["ADD"] ["DEFAULT"] ec_name ec_initialization
           | "UPDATE" ["DEFAULT"] ec_name ec_initialization
-	  | "REMOVE" ec_name;
+          | "REMOVE" ec_name;
 
 ec_initialization = "=" signed_integer; 
 
@@ -278,7 +278,7 @@ select_statement = select_clause
 
 select_clause = "SELECT"
                 ("FOCUS" | "ALL")
-		["OBJECTS"];
+                ["OBJECTS"];
 
 in_clause = "IN" in_specification ;
      
@@ -293,7 +293,7 @@ monad_set_element_list = monad_set_element { "," monad_set_element } ;
 
 monad_set_element = unsigned_integer
                   | unsigned_integer "-" unsigned_integer
-		  | unsigned_integer "-" ;
+                  | unsigned_integer "-" ;
     
 
 
@@ -301,13 +301,13 @@ with_max_range_clause =  /* empty : WITH MAX RANGE MAX_M MONADS */
                       | "WITH" "MAX" "RANGE" "MAX_M" "MONADS"
                       | "WITH" "MAX" "RANGE" unsigned_integer "MONADS" 
                       | "WITH" "MAX" "RANGE" "FEATURE" feature_name
-		        "FROM" "[" object_type_name "]" ;
+                        "FROM" "[" object_type_name "]" ;
     
 
 
 returning_clause = /* empty : return full sheaf */
                  | "RETURNING"  "FULL"  "SHEAF"
-		 | "RETURNING"  "FLAT"  "SHEAF"
+                 | "RETURNING"  "FLAT"  "SHEAF"
                  | "RETURNING"  "FLAT"  "SHEAF"
                    "ON" object_type_name_list;
     
@@ -336,12 +336,12 @@ select_objects_having_monads_in_statement =
 get_aggregate_features_statement =
         "GET" "AGGREGATE" "FEATURES"
         aggregate_feature_list
-	"FROM" "OBJECTS"
+        "FROM" "OBJECTS"
         [in_clause] /* empty = 'all_m-1' */
-	using_monad_feature
+        using_monad_feature
         "["
           object_type_name
-  	  feature_constraints
+          feature_constraints
         "]" ;
     
 
@@ -357,21 +357,21 @@ aggregate_feature = "MIN"  "(" feature_name ")"
 
 aggregate_feature_comparison = feature_name
                                comparison_operator
-			       value
+                               value
                              | feature_name
-			       comparison_operator
-			       "(" list_of_identifier ")" 
+                               comparison_operator
+                               "(" list_of_identifier ")" 
                              | feature_name
-			       comparison_operator
-			       "(" list_of_integer ")" ;
+                               comparison_operator
+                               "(" list_of_integer ")" ;
     
 get_objects_having_monads_in_statement =
         "GET" "OBJECTS" "HAVING" "MONADS" "IN"
         in_specification
-	using_monad_feature
+        using_monad_feature
         "[" object_type_name
-	    ["GET" ("ALL" | feature_list)]
-	"]" ;
+            ["GET" ("ALL" | feature_list)]
+        "]" ;
     
 
 using_monad_feature = /* empty: Equivalent to
@@ -572,8 +572,8 @@ firstlast =  /* empty */
 
 monad_set_relation_clause =  /* empty */ 
           | monad_set_relation_operation
-	    "(" monad_set_name "," universe_or_substrate ")"
-	  | monad_set_relation_operation  "(" universe_or_substrate ")" ;  
+            "(" monad_set_name "," universe_or_substrate ")"
+          | monad_set_relation_operation  "(" universe_or_substrate ")" ;  
 
 
 monad_set_relation_operation = "PART_OF" 
@@ -593,18 +593,18 @@ fterm = ffactor | fterm "AND" ffactor;
 
 ffactor = "NOT"  ffactor
         | "("  ffeatures  ")"
-	| feature_comparison;
+        | feature_comparison;
     
 feature_comparison = feature_name  comparison_operator  value
                    | computed_feature_name  comparison_operator  value
                    | feature_name "=" "(" ")"  /* equal to empty list */
                    | feature_name "=" "(" list_of_identifier ")"
-		   | feature_name "=" "(" list_of_integer ")"
-		   | feature_name "IN" "(" list_of_identifier ")"
-		   | feature_name "IN" "(" list_of_integer ")"
-		   | computed_feature_name "IN" "(" list_of_integer ")"
-		   | feature_name "IN" object_reference_usage
-		   | computed_feature_name "IN" object_reference_usage;
+                   | feature_name "=" "(" list_of_integer ")"
+                   | feature_name "IN" "(" list_of_identifier ")"
+                   | feature_name "IN" "(" list_of_integer ")"
+                   | computed_feature_name "IN" "(" list_of_integer ")"
+                   | feature_name "IN" object_reference_usage
+                   | computed_feature_name "IN" object_reference_usage;
 
 computed_feature_name = feature_name  "("  feature_name  ")" ;
 
@@ -654,9 +654,9 @@ star_monad_set = /* empty */
 
 opt_gap_block = "["  "GAP?"
                 marks_declaration
-		gap_retrieval
-		opt_blocks
-		"]" ;
+                gap_retrieval
+                opt_blocks
+                "]" ;
     
 
 gap_retrieval =  /* empty */   
@@ -667,9 +667,9 @@ gap_retrieval =  /* empty */
 
 gap_block = "[" "GAP"
             marks_declaration
-	    gap_retrieval
-	    opt_blocks
-	    "]" ;
+            gap_retrieval
+            opt_blocks
+            "]" ;
 
 
 feature_retrieval = /* empty */
@@ -679,26 +679,26 @@ object_block = "["  object_type_name
                marks_declaration
                object_reference_declaration
                retrieval
-	       firstlast
+               firstlast
                monad_set_relation_clause
                feature_constraints
                feature_retrieval
                opt_blocks
-	       "]" ;
+               "]" ;
     
 
 notexist_object_block =
                ("NOTEXIST" | "NOTEXISTS")
-	       "["  object_type_name
+               "["  object_type_name
                marks_declaration
                object_reference_declaration
                retrieval
-	       firstlast
+               firstlast
                monad_set_relation_clause
                feature_constraints
                feature_retrieval
                opt_blocks
-	       "]" ;
+               "]" ;
     
 power = ".."
       | ".." restrictor
@@ -720,11 +720,13 @@ signed_integer = unsigned_integer | "-" unsigned_integer | "NIL" ;
      
 identifier = (alpha | "_") { (alpha | "_" | digit) } ;
 
-alpha = lowercase_alpha | uppercase_alpha ;
-
-lowercase_alpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" ;
-
-uppercase_alpha = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+alpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i"
+       | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r"
+       | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
+       | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I"
+       | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R"
+       | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+       
 
 
 
