@@ -68,6 +68,7 @@ def emit_non_terminal_recursively(grammar, non_terminal, non_terminal_set, fout)
 def emit_preamble(non_terminal, fout):
     statement_name = " ".join([s.upper() for s in non_terminal.replace("_statement", "").split("_")])
     fout.write(("# %s\n\n" % statement_name).encode('utf-8'))
+    fout.write(b'## Purpose\n\n')
     fout.write(b'## Grammar\n\n')
     fout.write(b'```\n')
 
