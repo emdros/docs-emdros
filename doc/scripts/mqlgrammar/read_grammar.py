@@ -31,7 +31,7 @@ def get_nonterminals_in_rhs(lhs, rhs):
             myset.add(non_terminal)
             mylist.append(non_terminal)
 
-    print("LHS: %s => %s" % (lhs, repr(mylist)))
+    #print("LHS: %s => %s" % (lhs, repr(mylist)))
     return mylist
 
 def process_grammar(udoc):
@@ -42,16 +42,14 @@ def process_grammar(udoc):
         arr = block.split("=")
         lhs = arr[0].strip()
         rhs = "=".join(arr[1:])
-        print("LHS/RHS: %s => %s" % (lhs,rhs))
         non_terminal_list = get_nonterminals_in_rhs(lhs, rhs)
         grammar[lhs] = (block, non_terminal_list)
 
-    pprint.pprint(grammar)
     return grammar
 
 
 def get_outfilename_from_non_terminal(non_terminal):
-    return "XXX_%s.md" % non_terminal
+    return "%s.md" % non_terminal
 
 def emit_non_terminal_recursively(grammar, non_terminal, non_terminal_set, fout):
     block, non_terminal_list  = grammar[non_terminal]
@@ -62,7 +60,6 @@ def emit_non_terminal_recursively(grammar, non_terminal, non_terminal_set, fout)
     non_terminal_set.add(non_terminal)
     
     for block_non_terminal in non_terminal_list:
-        print("RECURSIVE: %s -> %s" % (non_terminal, block_non_terminal)) 
         if block_non_terminal not in non_terminal_set:
             non_terminal_set.add(block_non_terminal)
             emit_non_terminal_recursively(grammar, block_non_terminal, non_terminal_set, fout)
@@ -101,14 +98,64 @@ def doIt(grammar_infilename, non_terminal_list):
         emit_non_terminal_recursively(grammar, non_terminal, set(), fout)
         emit_postamble(non_terminal, fout)
         fout.close()
-
-    pprint.pprint(grammar)
-    
-
+        sys.stderr.write(("Now look in: %s ...\n" % outfilename).encode('utf-8'))
 
 if __name__ == '__main__':
-    grammar_infilename = sys.argv[1]
-    non_terminal_list = sys.argv[2:]
-    doIt(grammar_infilename, non_terminal_list)
+    if sys.argv[1] == '--auto':
+        doIt("mql_grammar.txt",
+             [
+                 "create_database_statement",
+                 "initialize_database_statement",
+                 "use_statement",
+                 "drop_database_statement",
+                 "vacuum_database_statement",
+                 "create_object_type_statement",
+                 "update_object_type_statement",
+                 "drop_object_type_statement",
+                 "insert_monads_statement",
+                 "delete_monads_statement",
+                 "get_monads_statement",
+                 "monad_set_calculation_statement",
+                 "create_enumeration_statement",
+                 "update_enumeration_statement",
+                 "drop_enumeration_statement",
+                 "create_segment_statement",
+                 "select_statement",
+                 "select_objects_at_statement",
+                 "select_objects_having_monads_in_statement",
+                 "get_aggregate_features_statement",
+                 "get_objects_having_monads_in_statement",
+                 "get_set_from_feature_statement",
+                 "select_object_types_statement",
+                 "select_features_statement",
+                 "select_enumerations_statement",
+                 "select_enumeration_constants_statement",
+                 "select_object_types_which_use_enum_statement",
+                 "select_min_m_statement",
+                 "select_max_m_statement",
+                 "create_object_from_monads_statement",
+                 "create_object_from_id_ds_statement",
+                 "update_objects_by_monads_statement",
+                 "update_objects_by_id_ds_statement",
+                 "delete_objects_by_monads_statement",
+                 "delete_objects_by_id_ds_statement",
+                 "get_features_statement",
+                 "quit_statement",
+                 "create_indexes_statement",
+                 "drop_indexes_statement",
+                 "begin_transaction_statement",
+                 "commit_transaction_statement",
+                 "abort_transaction_statement",
+                 "select_monad_sets_statement",
+                 "get_monad_sets_statement",
+                 "create_monad_set_statement",
+                 "update_monad_set_statement",
+                 "drop_monad_set_statement",
+                 "create_objects_statement",
+             ])
+    else:
+        grammar_infilename = sys.argv[1]
+        non_terminal_list = sys.argv[2:]
+        doIt(grammar_infilename, non_terminal_list)
 
     
