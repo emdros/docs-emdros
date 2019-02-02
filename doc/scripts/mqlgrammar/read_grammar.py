@@ -48,8 +48,9 @@ def process_grammar(udoc):
     return grammar
 
 
-def get_outfilename_from_non_terminal(non_terminal):
-    return "%s.md" % non_terminal
+def get_outfilename_from_non_terminal(non_terminal, prefix):
+    real_name = non_terminal.replace("statement", "").replace("_", "")
+    return "%s%s.md" % (prefix, real_name)
 
 def emit_non_terminal_recursively(grammar, non_terminal, non_terminal_set, fout):
     block, non_terminal_list  = grammar[non_terminal]
@@ -86,76 +87,101 @@ def emit_postamble(non_terminal, fout):
     fout.write(b'\n')
     
 
-def doIt(grammar_infilename, non_terminal_list):
+def doIt(grammar_infilename, prefix, non_terminal_list):
     udoc = read_file(grammar_infilename)
 
     grammar = process_grammar(udoc)
 
     for non_terminal in non_terminal_list:
-        outfilename = get_outfilename_from_non_terminal(non_terminal)
+        outfilename = get_outfilename_from_non_terminal(non_terminal, prefix)
         fout = open(outfilename, "wb")
         emit_preamble(non_terminal, fout)
         emit_non_terminal_recursively(grammar, non_terminal, set(), fout)
         emit_postamble(non_terminal, fout)
         fout.close()
-        sys.stderr.write(("Now look in: %s ...\n" % outfilename).encode('utf-8'))
+        sys.stderr.write("Now look in: %s ...\n" % outfilename)
 
 if __name__ == '__main__':
     if sys.argv[1] == '--auto':
-        doIt("mql_grammar.txt",
-             [
+        grammar_infilename = "mql_grammar.txt"
+        for (prefix, non_terminal_list) in [
+                ("../../markdown/mqlref/docs/mql/schema/databases/", [
                  "create_database_statement",
                  "initialize_database_statement",
                  "use_statement",
                  "drop_database_statement",
                  "vacuum_database_statement",
-                 "create_object_type_statement",
-                 "update_object_type_statement",
-                 "drop_object_type_statement",
-                 "insert_monads_statement",
-                 "delete_monads_statement",
-                 "get_monads_statement",
-                 "monad_set_calculation_statement",
+                    ]),
+                ("../../markdown/mqlref/docs/mql/schema/indexes/", [
+                 "create_indexes_statement",
+                 "drop_indexes_statement",
+                    ]),
+                ("../../markdown/mqlref/docs/mql/schema/enumerations/", [
                  "create_enumeration_statement",
                  "update_enumeration_statement",
                  "drop_enumeration_statement",
-                 "create_segment_statement",
-                 "select_statement",
-                 "select_objects_at_statement",
-                 "select_objects_having_monads_in_statement",
-                 "get_aggregate_features_statement",
-                 "get_objects_having_monads_in_statement",
-                 "get_set_from_feature_statement",
-                 "select_object_types_statement",
-                 "select_features_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/schema/introspection/", [
                  "select_enumerations_statement",
                  "select_enumeration_constants_statement",
                  "select_object_types_which_use_enum_statement",
-                 "select_min_m_statement",
-                 "select_max_m_statement",
+                ]), 
+                ("../../markdown/mqlref/docs/mql/schema/objecttypes/", [
+                 "create_object_type_statement",
+                 "update_object_type_statement",
+                 "drop_object_type_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/schema/introspection/", [
+                 "select_object_types_statement",
+                 "select_features_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/", [
+                 "create_objects_statement",
                  "create_object_from_monads_statement",
                  "create_object_from_id_ds_statement",
                  "update_objects_by_monads_statement",
                  "update_objects_by_id_ds_statement",
                  "delete_objects_by_monads_statement",
                  "delete_objects_by_id_ds_statement",
+                 "select_statement",
+                 "get_objects_having_monads_in_statement",
+                 "select_objects_at_statement",
+                 "select_objects_having_monads_in_statement",
+                 "get_aggregate_features_statement",
+                 "get_monads_statement",
                  "get_features_statement",
-                 "quit_statement",
-                 "create_indexes_statement",
-                 "drop_indexes_statement",
-                 "begin_transaction_statement",
-                 "commit_transaction_statement",
-                 "abort_transaction_statement",
-                 "select_monad_sets_statement",
-                 "get_monad_sets_statement",
+                 "get_set_from_feature_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/data/monadsets/", [
                  "create_monad_set_statement",
                  "update_monad_set_statement",
                  "drop_monad_set_statement",
-                 "create_objects_statement",
-             ])
+                 "insert_monads_statement",
+                 "delete_monads_statement",
+                 "monad_set_calculation_statement",
+                 "select_monad_sets_statement",
+                 "get_monad_sets_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/data/globaldata/", [
+                 "select_min_m_statement",
+                 "select_max_m_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/meta/", [
+                 "begin_transaction_statement",
+                 "commit_transaction_statement",
+                 "abort_transaction_statement",
+                    ]),
+                ("../../markdown/mqlref/docs/mql/meta/", [
+                 "quit_statement",
+                ]),
+                ("../../markdown/mqlref/docs/mql/topographic/preliminaries/", [
+                 "select_statement",
+                ]),
+                ]:
+            doIt(grammar_infilename, prefix, non_terminal_list)
     else:
         grammar_infilename = sys.argv[1]
         non_terminal_list = sys.argv[2:]
-        doIt(grammar_infilename, non_terminal_list)
+        doIt(grammar_infilename, "", non_terminal_list)
 
     
