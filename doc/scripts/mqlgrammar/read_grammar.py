@@ -8,7 +8,7 @@ def read_file(infilename):
     udoc = (b"".join(open(infilename, "rb"))).decode('utf-8')
     return udoc
 
-comment_re = re.compile(r'/\*.*?\*/')
+comment_re = re.compile(r'/\*(?:.|\n)*?\*/')
 terminal_re = re.compile(r'"[^"]*"')
 operator_re = re.compile(r'[\|()\[\]=\{\};]')
 
@@ -37,9 +37,12 @@ def get_nonterminals_in_rhs(lhs, rhs):
 def process_grammar(udoc):
     grammar = {} # non-terminal -> (block, non_terminal_list)
 
-    block_re = re.compile(r'([A-Za-z_][A-Za-z0-9_]+)(\s*=[^;]+;[ \t]*\n)')
-    for (lhs, rhs) in block_re.findall(udoc):
-        block = "%s%s" % (lhs, rhs)
+    block_re = re.compile(r'[A-Za-z_][A-Za-z0-9_]+\s*=(?:.|\s)+?;[ \t]*\n')
+    for block in block_re.findall(udoc):
+        arr = block.split("=")
+        lhs = arr[0].strip()
+        rhs = "=".join(arr[1:])
+        print("LHS/RHS: %s => %s" % (lhs,rhs))
         non_terminal_list = get_nonterminals_in_rhs(lhs, rhs)
         grammar[lhs] = (block, non_terminal_list)
 
