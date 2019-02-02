@@ -57,8 +57,7 @@ create_database_statement =
     
 
 
-database_name = IDENTIFIER
-              | STRING; 
+database_name = IDENTIFIER  |  STRING; 
 
 initialize_database_statement = 
     "INITIALIZE"  "DATABASE" database_name [with_key]; 
