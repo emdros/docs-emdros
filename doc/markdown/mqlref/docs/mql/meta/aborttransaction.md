@@ -1,9 +1,9 @@
-# SELECT ENUMERATIONS
+# ABORT TRANSACTION
 
 ## Grammar
 
 ```
-select_enumerations_statement = "SELECT" "ENUMERATIONS" ;
+abort_transaction_statement = "ABORT" "TRANSACTION"; 
 
 ```
 

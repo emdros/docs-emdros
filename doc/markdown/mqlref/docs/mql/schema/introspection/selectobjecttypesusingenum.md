@@ -1,12 +1,11 @@
-# SELECT ENUMERATION CONSTANTS
+# SELECT OBJECT TYPES USING ENUM
 
 ## Grammar
 
 ```
-select_enumeration_constants_statement =
-           "SELECT" ("ENUM" | "ENUMERATION") "CONSTANTS"
-           "FROM" [("ENUM" | "ENUMERATION")]
-           enumeration_name;
+select_object_types_using_enum_statement =
+           "SELECT"  ["OBJECT"] "TYPES"
+           "USING"   ("ENUM" | "ENUMERATION")  enumeration_name;
 
 enumeration_name = identifier; 
 

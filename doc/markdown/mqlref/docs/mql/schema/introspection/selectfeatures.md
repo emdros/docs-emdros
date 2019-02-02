@@ -1,14 +1,13 @@
-# SELECT ENUMERATION CONSTANTS
+# SELECT FEATURES
 
 ## Grammar
 
 ```
-select_enumeration_constants_statement =
-           "SELECT" ("ENUM" | "ENUMERATION") "CONSTANTS"
-           "FROM" [("ENUM" | "ENUMERATION")]
-           enumeration_name;
+select_features_statement = "SELECT" "FEATURES" 
+                            "FROM" [["OBJECT"] "TYPE"]
+                            "[" object_type_name "]" ;
 
-enumeration_name = identifier; 
+object_type_name = identifier;  
 
 identifier = (alpha | "_") { (alpha | "_" | digit) } ;
 
