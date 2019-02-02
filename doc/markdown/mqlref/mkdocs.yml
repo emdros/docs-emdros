@@ -45,7 +45,7 @@ pages:
                - DROP ENUMERATION: mql/schema/enumerations/dropenumeration.md
                - SELECT ENUMERATIONS: mql/schema/introspection/selectenumerations.md
                - SELECT ENUMERATION CONSTANTS: mql/schema/introspection/selectenumerationconstants.md
-               - SELECT OBJECT TYPES USING ENUMERATIONS: mql/schema/introspection/selobjtypusingenum.md
+               - SELECT OBJECT TYPES USING ENUMERATIONS: mql/schema/introspection/selectobjecttypesusingenum.md
          - Object Types:
                - CREATE OBJECT TYPE: mql/schema/objecttypes/createobjecttype.md
                - UPDATE OBJECT TYPE: mql/schema/objecttypes/updateobjecttype.md
