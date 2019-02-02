@@ -63,17 +63,25 @@ def emit_non_terminal_recursively(grammar, non_terminal, non_terminal_set, fout)
         if block_non_terminal not in non_terminal_set:
             non_terminal_set.add(block_non_terminal)
             emit_non_terminal_recursively(grammar, block_non_terminal, non_terminal_set, fout)
+
+def emit_preamble(non_terminal, fout):
+    pass
+    
+def emit_postamble(non_terminal, fout):
+    pass
     
 
-def doIt(infilename, non_terminal_list):
-    udoc = read_file(infilename)
+def doIt(grammar_infilename, non_terminal_list):
+    udoc = read_file(grammar_infilename)
 
     grammar = process_grammar(udoc)
 
     for non_terminal in non_terminal_list:
         outfilename = get_outfilename_from_non_terminal(non_terminal)
         fout = open(outfilename, "wb")
+        emit_preamble(non_terminal, fout)
         emit_non_terminal_recursively(grammar, non_terminal, set(), fout)
+        emit_postamble(non_terminal, fout)
         fout.close()
 
     pprint.pprint(grammar)
@@ -81,8 +89,8 @@ def doIt(infilename, non_terminal_list):
 
 
 if __name__ == '__main__':
-    infilename = sys.argv[1]
+    grammar_infilename = sys.argv[1]
     non_terminal_list = sys.argv[2:]
-    doIt(infilename, non_terminal_list)
+    doIt(grammar_infilename, non_terminal_list)
 
     
