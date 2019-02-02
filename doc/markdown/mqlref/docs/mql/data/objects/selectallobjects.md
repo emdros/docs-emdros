@@ -32,16 +32,7 @@ unsigned_integer = digit { digit } ;
 
 digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 
-monad_set_name = identifier;  
-
-identifier = (alpha | "_") { (alpha | "_" | digit) } ;
-
-alpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i"
-       | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r"
-       | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
-       | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I"
-       | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R"
-       | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+monad_set_name = IDENTIFIER ;  
 
 with_max_range_clause =  /* empty : WITH MAX RANGE MAX_M MONADS */
                       | "WITH" "MAX" "RANGE" "MAX_M" "MONADS"
@@ -49,9 +40,9 @@ with_max_range_clause =  /* empty : WITH MAX RANGE MAX_M MONADS */
                       | "WITH" "MAX" "RANGE" "FEATURE" feature_name
                         "FROM" "[" object_type_name "]" ;
 
-feature_name = identifier | "MONADS" ;
+feature_name = IDENTIFIER | "MONADS" ;
 
-object_type_name = identifier;  
+object_type_name = IDENTIFIER ;  
 
 returning_clause = /* empty : return full sheaf */
                  | "RETURNING"  "FULL"  "SHEAF"
@@ -108,13 +99,13 @@ marks_declaration = [marks] ;
 
 marks = mark { mark } ;
 
-mark = "`" identifier ;
+mark = "`" IDENTIFIER ;
 
 object_reference_declaration =
               /* empty: No object reference declaration */
             | "AS" object_reference ;
 
-object_reference = identifier; 
+object_reference = IDENTIFIER ; 
 
 retrieval =  /* empty */    
           | "NORETRIEVE"
@@ -175,7 +166,7 @@ value = enum_const
       | STRING
       | object_reference_usage ;
 
-enum_const = identifier ; 
+enum_const = IDENTIFIER ; 
 
 signed_integer = unsigned_integer | "-" unsigned_integer | "NIL" ; 
 
@@ -184,7 +175,7 @@ object_reference_usage = object_reference "." feature_name
 
 computed_feature_name = feature_name  "("  feature_name  ")" ;
 
-list_of_identifier = identifier { "," identifier } ;
+list_of_identifier = IDENTIFIER { "," IDENTIFIER } ;
 
 list_of_integer = signed_integer { "," signed_integer } ;
 
@@ -194,7 +185,7 @@ feature_retrieval = /* empty */
 feature_list = feature_list_member { "," feature_list_member } ;
 
 feature_list_member = feature_name
-                    | feature_name "(" identifier ")" 
+                    | feature_name "(" IDENTIFIER ")" 
                     | feature_name "(" "MONADS" ")" ;
 
 opt_blocks =  /* empty */ 

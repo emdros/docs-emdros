@@ -24,18 +24,7 @@ aggregate_feature = "MIN"  "(" feature_name ")"
                   | "COUNT"  "(" "*" ")" 
                   | "COUNT"  "(" aggregate_feature_comparison  ")" ;
 
-feature_name = identifier | "MONADS" ;
-
-identifier = (alpha | "_") { (alpha | "_" | digit) } ;
-
-alpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i"
-       | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r"
-       | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
-       | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I"
-       | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R"
-       | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
-
-digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+feature_name = IDENTIFIER | "MONADS" ;
 
 aggregate_feature_comparison = feature_name
                                comparison_operator
@@ -62,20 +51,22 @@ value = enum_const
       | STRING
       | object_reference_usage ;
 
-enum_const = identifier ; 
+enum_const = IDENTIFIER ; 
 
 signed_integer = unsigned_integer | "-" unsigned_integer | "NIL" ; 
 
 unsigned_integer = digit { digit } ;
 
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
 object_reference_usage = object_reference "." feature_name
                        | object_reference "." computed_feature_name;
 
-object_reference = identifier; 
+object_reference = IDENTIFIER ; 
 
 computed_feature_name = feature_name  "("  feature_name  ")" ;
 
-list_of_identifier = identifier { "," identifier } ;
+list_of_identifier = IDENTIFIER { "," IDENTIFIER } ;
 
 list_of_integer = signed_integer { "," signed_integer } ;
 
@@ -94,10 +85,10 @@ monad_set_element = unsigned_integer
 
 using_monad_feature = /* empty: Equivalent to
                          "USING" "MONAD" "FEATURE" "MONADS" */
-                    | "USING" "MONAD" "FEATURE" identifier
+                    | "USING" "MONAD" "FEATURE" IDENTIFIER
                     | "USING" "MONAD" "FEATURE" "MONADS"; 
 
-object_type_name = identifier;  
+object_type_name = IDENTIFIER ;  
 
 feature_constraints = /* empty */
                     | ffeatures;     
