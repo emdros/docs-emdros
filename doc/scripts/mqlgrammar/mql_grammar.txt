@@ -47,7 +47,7 @@ statement_by_itself = create_database_statement
                     | create_monad_set_statement
                     | update_monad_set_statement
                     | drop_monad_set_statement
-                    | create_objects_statement; 
+                    | create_objects_statement ; 
 
 
 
@@ -127,9 +127,9 @@ object_type_name = identifier;
 feature_declaration_list = feature_declaration { feature_declaration } ;
 
 feature_declaration = feature_name ":" feature_type 
-                      default_specification ["COMPUTED"] ";"; 
+                      default_specification ["COMPUTED"] ";"
                     | feature_name ":" "LIST" "OF" 
-                      list_feature_type ";"; 
+                      list_feature_type ";" ; 
    
 
 
@@ -175,7 +175,7 @@ feature_update_list = feature_update { feature_update } ;
 
 
 feature_update = ["ADD"] feature_declaration
-               | "REMOVE" feature_name ";" 
+               | "REMOVE" feature_name ";"  ;
     
 drop_object_type_statement =
              "DROP"  ["OBJECT"] "TYPE"
@@ -370,7 +370,7 @@ get_objects_having_monads_in_statement =
         in_specification
 	using_monad_feature
         "[" object_type_name
-	    ["GET ("ALL" | feature_list)]
+	    ["GET" ("ALL" | feature_list)]
 	"]" ;
     
 
