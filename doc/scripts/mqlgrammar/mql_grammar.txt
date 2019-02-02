@@ -57,7 +57,7 @@ create_database_statement =
     
 
 
-database_name = identifier
+database_name = IDENTIFIER
               | STRING; 
 
 initialize_database_statement = 
@@ -122,7 +122,7 @@ monad_uniqueness_type = "HAVING"  "UNIQUE"  "FIRST"  "MONADS"
     
 
 
-object_type_name = identifier;  
+object_type_name = IDENTIFIER ;  
 
 feature_declaration_list = feature_declaration { feature_declaration } ;
 
@@ -137,7 +137,7 @@ feature_type = "INTEGER" [with_index]
              | "STRING" [string_length] [from_set] [with_index]
              | "ASCII" [string_length] [from_set] [with_index]
              | "ID_D" [with_index]
-             | identifier [with_index] /* For enumerations */
+             | IDENTIFIER [with_index] /* For enumerations */
              | "SET" "OF" "MONADS" /* Same as MULTIPLE RANGE SET OF MONADS */
              | "SINGLE"   "MONAD"  "SET"  "OF"  "MONADS"
              | "SINGLE"   "RANGE"  "SET"  "OF"  "MONADS"
@@ -148,7 +148,7 @@ feature_type = "INTEGER" [with_index]
 
 list_feature_type = "INTEGER" 
                   | "ID_D" ;
-                  | identifier /* For enumerations */ ;
+                  | IDENTIFIER /* For enumerations */ ;
 
 
 with_index = "WITH"    "INDEX"
@@ -228,7 +228,7 @@ drop_monad_set_statement = "DROP"  "MONAD"  "SET"
                             monad_set_name;
     
 
-monad_set_name = identifier;  
+monad_set_name = IDENTIFIER ;  
 
 monad_set_name_list = monad_set_name { "," monad_set_name } ;
 
@@ -237,13 +237,13 @@ create_enumeration_statement = "CREATE" ("ENUM" | "ENUMERATION")
                                enumeration_name "=" 
                                "{" ec_declaration_list "}" ;
     
-enumeration_name = identifier; 
+enumeration_name = IDENTIFIER ; 
 
 ec_declaration_list = ec_declaration { "," ec_declaration } ;
 
 ec_declaration = ["DEFAULT"]  ec_name  [ec_initialization] ;
     
-ec_name = identifier; 
+ec_name = IDENTIFIER ; 
 
 update_enumeration_statement =
           "UPDATE" ("ENUM" | "ENUMERATION")
@@ -266,7 +266,7 @@ create_segment_statement =
    "CREATE" "SEGMENT"  segment_name
    "RANGE" "=" segment_range;
 
-segment_name = identifier;  
+segment_name = IDENTIFIER ;  
 
 segment_range = unsigned_integer "-" unsigned_integer;
 
@@ -376,7 +376,7 @@ get_objects_having_monads_in_statement =
 
 using_monad_feature = /* empty: Equivalent to
                          "USING" "MONAD" "FEATURE" "MONADS" */
-                    | "USING" "MONAD" "FEATURE" identifier
+                    | "USING" "MONAD" "FEATURE" IDENTIFIER
                     | "USING" "MONAD" "FEATURE" "MONADS"; 
 
 
@@ -441,11 +441,11 @@ feature_assignment = feature_name ":=" expression ";" ;
     
 
 
-feature_name = identifier | "MONADS" ;
+feature_name = IDENTIFIER | "MONADS" ;
 
 expression = signed_integer /* integer and id_d */
            | STRING
-           | identifier /* enumeration constant */
+           | IDENTIFIER /* enumeration constant */
            | monad_set  /* set of monads */
            | "(" ")"    /* empty list */
            | "(" list_of_integer ")" 
@@ -455,7 +455,7 @@ expression = signed_integer /* integer and id_d */
 
 list_of_integer = signed_integer { "," signed_integer } ;
 
-list_of_identifier = identifier { "," identifier } ;
+list_of_identifier = IDENTIFIER { "," IDENTIFIER } ;
 
 create_object_from_id_ds_statement =
      "CREATE" "OBJECT" "FROM" id_ds_specification
@@ -521,7 +521,7 @@ feature_list = feature_list_member { "," feature_list_member } ;
     
 
 feature_list_member = feature_name
-                    | feature_name "(" identifier ")" 
+                    | feature_name "(" IDENTIFIER ")" 
                     | feature_name "(" "MONADS" ")" ;
     
 quit_statement = "QUIT" ;
@@ -555,10 +555,10 @@ object_reference_declaration =
 
 marks_declaration = [marks] ;
 marks = mark { mark } ;
-mark = "`" identifier ;
+mark = "`" IDENTIFIER ;
 
 
-object_reference = identifier; 
+object_reference = IDENTIFIER ; 
 
 retrieval =  /* empty */    
           | "NORETRIEVE"
@@ -625,7 +625,7 @@ value = enum_const
     
 
 
-enum_const = identifier ; 
+enum_const = IDENTIFIER ; 
 
 object_reference_usage = object_reference "." feature_name
                        | object_reference "." computed_feature_name;
@@ -718,14 +718,6 @@ digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 signed_integer = unsigned_integer | "-" unsigned_integer | "NIL" ; 
 
      
-identifier = (alpha | "_") { (alpha | "_" | digit) } ;
-
-alpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i"
-       | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r"
-       | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" 
-       | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I"
-       | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R"
-       | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" ;
        
 
 

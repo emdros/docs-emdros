@@ -18,8 +18,9 @@ def get_nonterminals_in_rhs(lhs, rhs):
     rhs2 = comment_re.sub(r'', rhs2)
     rhs2 = terminal_re.sub(r'', rhs2)
 
-    # The only undefined non-terminal is STRING
+    # The only undefined non-terminals are STRING and IDENTIFIER
     rhs2 = rhs2.replace("STRING", "")
+    rhs2 = rhs2.replace("IDENTIFIER", "")
 
     rhs2 = operator_re.sub(r' ', rhs2)
 
