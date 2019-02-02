@@ -135,7 +135,7 @@ if __name__ == '__main__':
                  "select_object_types_statement",
                  "select_features_statement",
                 ]),
-                ("../../markdown/mqlref/docs/mql/", [
+                ("../../markdown/mqlref/docs/mql/data/objects/", [
                  "create_objects_statement",
                  "create_object_from_monads_statement",
                  "create_object_from_id_ds_statement",
@@ -156,8 +156,6 @@ if __name__ == '__main__':
                  "create_monad_set_statement",
                  "update_monad_set_statement",
                  "drop_monad_set_statement",
-                 "insert_monads_statement",
-                 "delete_monads_statement",
                  "monad_set_calculation_statement",
                  "select_monad_sets_statement",
                  "get_monad_sets_statement",
