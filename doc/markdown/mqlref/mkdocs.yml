@@ -85,7 +85,7 @@ pages:
          - Transactions:
                - BEGIN TRANSACTION: mql/meta/begintransaction.md
                - COMMIT TRANSACTION: mql/meta/committransaction.md
-               - ABOUT TRANSACTION: mql/meta/abouttransaction.md
+               - ABORT TRANSACTION: mql/meta/aborttransaction.md
          - Connection:
                - QUIT: mql/meta/quit.md
     - MQL Topographic Part:
