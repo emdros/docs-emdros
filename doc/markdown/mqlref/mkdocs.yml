@@ -50,8 +50,8 @@ pages:
                - CREATE OBJECT TYPE: mql/schema/objecttypes/createobjecttype.md
                - UPDATE OBJECT TYPE: mql/schema/objecttypes/updateobjecttype.md
                - DROP OBJECT TYPE: mql/schema/objecttypes/dropobjecttype.md
-               - SELECT OBJECT TYPES: mql/schema/objecttypes/selectobjecttypes.md
-               - SELECT FEATURES: mql/schema/objecttypes/selectfeatures.md
+               - SELECT OBJECT TYPES: mql/schema/introspection/selectobjecttypes.md
+               - SELECT FEATURES: mql/schema/introspection/selectfeatures.md
     - MQL Data:
          - Introduction: mql/data/index.md
          - Objects:
