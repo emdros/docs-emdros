@@ -2,7 +2,7 @@ statement = statement_by_itself "GO" ;
 
 statement_by_itself = create_database_statement
                     | initialize_database_statement
-                    | use_statement
+                    | use_database_statement
                     | drop_database_statement
                     | vacuum_database_statement
                     | create_object_type_statement
@@ -16,7 +16,7 @@ statement_by_itself = create_database_statement
                     | update_enumeration_statement
                     | drop_enumeration_statement
                     | create_segment_statement
-                    | select_statement
+                    | select_all_objects_statement
                     | select_objects_at_statement
                     | select_objects_having_monads_in_statement
                     | get_aggregate_features_statement
@@ -26,7 +26,7 @@ statement_by_itself = create_database_statement
                     | select_features_statement
                     | select_enumerations_statement
                     | select_enumeration_constants_statement
-                    | select_object_types_which_use_enum_statement
+                    | select_object_types_using_enum
                     | select_min_m_statement
                     | select_max_m_statement
                     | create_object_from_monads_statement
@@ -47,7 +47,7 @@ statement_by_itself = create_database_statement
                     | create_monad_set_statement
                     | update_monad_set_statement
                     | drop_monad_set_statement
-                    | create_objects_statement ; 
+                    | create_objects_with_object_type ; 
 
 
 
@@ -65,7 +65,7 @@ initialize_database_statement =
     
 
 
-use_statement = "USE" ["DATABASE"] database_name [with_key]; 
+use_database_statement = "USE" ["DATABASE"] database_name [with_key]; 
 
 with_key = "WITH" "KEY" STRING ;
 
@@ -270,7 +270,7 @@ segment_name = identifier;
 
 segment_range = unsigned_integer "-" unsigned_integer;
 
-select_statement = select_clause
+select_all_objects_statement = select_clause
                   ( [in_clause] | "IN" monad_set_name )
                   with_max_range_clause
                   returning_clause
@@ -404,7 +404,7 @@ select_enumeration_constants_statement =
            enumeration_name;
     
 
-select_object_types_which_use_enum_statement =
+select_object_types_using_enum =
            "SELECT"  ["OBJECT"] "TYPES"
            "USING"   ("ENUM" | "ENUMERATION")  enumeration_name;
     
@@ -467,7 +467,7 @@ id_ds_specification = ("ID_D" | "ID_DS") "=" id_d_list;
 id_d_list = id_d_const { "," id_d_const } ;
 
 
-create_objects_statement = 
+create_objects_with_object_type = 
      "CREATE" "OBJECTS" "WITH" "OBJECT" "TYPE"
      "[" object_type_name "]"
      object_creation_list;
