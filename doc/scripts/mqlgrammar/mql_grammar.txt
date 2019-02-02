@@ -26,7 +26,7 @@ statement_by_itself = create_database_statement
                     | select_features_statement
                     | select_enumerations_statement
                     | select_enumeration_constants_statement
-                    | select_object_types_using_enum
+                    | select_object_types_using_enum_statement
                     | select_min_m_statement
                     | select_max_m_statement
                     | create_object_from_monads_statement
@@ -47,7 +47,7 @@ statement_by_itself = create_database_statement
                     | create_monad_set_statement
                     | update_monad_set_statement
                     | drop_monad_set_statement
-                    | create_objects_with_object_type ; 
+                    | create_objects_with_object_type_statement ; 
 
 
 
@@ -404,7 +404,7 @@ select_enumeration_constants_statement =
            enumeration_name;
     
 
-select_object_types_using_enum =
+select_object_types_using_enum_statement =
            "SELECT"  ["OBJECT"] "TYPES"
            "USING"   ("ENUM" | "ENUMERATION")  enumeration_name;
     
@@ -467,7 +467,7 @@ id_ds_specification = ("ID_D" | "ID_DS") "=" id_d_list;
 id_d_list = id_d_const { "," id_d_const } ;
 
 
-create_objects_with_object_type = 
+create_objects_with_object_type_statement = 
      "CREATE" "OBJECTS" "WITH" "OBJECT" "TYPE"
      "[" object_type_name "]"
      object_creation_list;

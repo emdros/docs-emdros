@@ -108,7 +108,7 @@ if __name__ == '__main__':
                 ("../../markdown/mqlref/docs/mql/schema/databases/", [
                  "create_database_statement",
                  "initialize_database_statement",
-                 "use_statement",
+                    "use_database_statement",
                  "drop_database_statement",
                  "vacuum_database_statement",
                     ]),
@@ -124,7 +124,7 @@ if __name__ == '__main__':
                 ("../../markdown/mqlref/docs/mql/schema/introspection/", [
                  "select_enumerations_statement",
                  "select_enumeration_constants_statement",
-                 "select_object_types_which_use_enum_statement",
+                 "select_object_types_using_enum_statement",
                 ]), 
                 ("../../markdown/mqlref/docs/mql/schema/objecttypes/", [
                  "create_object_type_statement",
@@ -136,14 +136,14 @@ if __name__ == '__main__':
                  "select_features_statement",
                 ]),
                 ("../../markdown/mqlref/docs/mql/data/objects/", [
-                 "create_objects_statement",
+                 "create_objects_with_object_type_statement",
                  "create_object_from_monads_statement",
                  "create_object_from_id_ds_statement",
                  "update_objects_by_monads_statement",
                  "update_objects_by_id_ds_statement",
                  "delete_objects_by_monads_statement",
                  "delete_objects_by_id_ds_statement",
-                 "select_statement",
+                 "select_all_objects_statement",
                  "get_objects_having_monads_in_statement",
                  "select_objects_at_statement",
                  "select_objects_having_monads_in_statement",
@@ -173,7 +173,7 @@ if __name__ == '__main__':
                  "quit_statement",
                 ]),
                 ("../../markdown/mqlref/docs/mql/topographic/preliminaries/", [
-                 "select_statement",
+                 "select_all_objects_statement",
                 ]),
                 ]:
             doIt(grammar_infilename, prefix, non_terminal_list)
