@@ -1,0 +1,1157 @@
+statement ::= statement_by_itself(X) KEY_GO . 
+
+statement_by_itself ::= create_database_statement. 
+statement_by_itself ::= initialize_database_statement. 
+statement_by_itself ::= use_statement. 
+statement_by_itself ::= drop_database_statement. 
+statement_by_itself ::= vacuum_database_statement. 
+statement_by_itself ::= create_object_type_statement. 
+statement_by_itself ::= update_object_type_statement. 
+statement_by_itself ::= drop_object_type_statement. 
+statement_by_itself ::= insert_monads_statement. 
+statement_by_itself ::= delete_monads_statement. 
+statement_by_itself ::= get_monads_statement. 
+statement_by_itself ::= monad_set_calculation_statement. 
+statement_by_itself ::= create_enumeration_statement. 
+statement_by_itself ::= update_enumeration_statement. 
+statement_by_itself ::= drop_enumeration_statement. 
+statement_by_itself ::= create_segment_statement. 
+statement_by_itself ::= select_statement. 
+statement_by_itself ::= select_objects_at_statement. 
+statement_by_itself ::= select_objects_having_monads_in_statement. 
+statement_by_itself ::= get_aggregate_features_statement. 
+statement_by_itself ::= get_objects_having_monads_in_statement. 
+statement_by_itself ::= get_set_from_feature_statement. 
+statement_by_itself ::= select_object_types_statement. 
+statement_by_itself ::= select_features_statement. 
+statement_by_itself ::= select_enumerations_statement. 
+statement_by_itself ::= select_enumeration_constants_statement. 
+statement_by_itself ::= select_object_types_which_use_enum_statement. 
+statement_by_itself ::= select_min_m_statement. 
+statement_by_itself ::= select_max_m_statement. 
+statement_by_itself ::= create_object_from_monads_statement. 
+statement_by_itself ::= create_object_from_id_ds_statement. 
+statement_by_itself ::= update_objects_by_monads_statement. 
+statement_by_itself ::= update_objects_by_id_ds_statement. 
+statement_by_itself ::= delete_objects_by_monads_statement. 
+statement_by_itself ::= delete_objects_by_id_ds_statement. 
+statement_by_itself ::= get_features_statement. 
+statement_by_itself ::= quit_statement. 
+statement_by_itself ::= create_indexes_statement. 
+statement_by_itself ::= drop_indexes_statement. 
+statement_by_itself ::= begin_transaction_statement. 
+statement_by_itself ::= commit_transaction_statement. 
+statement_by_itself ::= abort_transaction_statement. 
+statement_by_itself ::= select_monad_sets_statement. 
+statement_by_itself ::= get_monad_sets_statement. 
+statement_by_itself ::= create_monad_set_statement. 
+statement_by_itself ::= update_monad_set_statement. 
+statement_by_itself ::= drop_monad_set_statement. 
+statement_by_itself ::= create_objects_statement. 
+
+
+
+create_database_statement ::= 
+    KEY_CREATE  KEY_DATABASE database_name opt_WITH_KEY 
+    opt_USING_ENCODING . 
+    
+
+
+database_name ::= IDENTIFIER. 
+database_name ::= STRING. 
+
+initialize_database_statement ::= 
+    KEY_INITIALIZE  KEY_DATABASE database_name opt_WITH_KEY . 
+    
+
+
+use_statement ::= KEY_USE opt_DATABASE database_name opt_WITH_KEY . 
+
+opt_WITH_KEY ::= KEY_WITH KEY_KEY STRING. 
+opt_WITH_KEY ::= . 
+
+
+opt_USING_ENCODING ::= KEY_USING KEY_ENCODING STRING. 
+opt_USING_ENCODING ::= . 
+
+
+opt_DATABASE ::= KEY_DATABASE.  
+opt_DATABASE ::= . /* empty : syntactic sugar */ 
+
+
+drop_database_statement ::= KEY_DROP  KEY_DATABASE database_name. 
+   
+
+
+vacuum_database_statement ::= KEY_VACUUM opt_DATABASE opt_ANALYZE. 
+   
+
+
+opt_ANALYZE ::= . /* empty */  
+opt_ANALYZE ::= KEY_ANALYZE . 
+
+
+create_indexes_statement ::= KEY_CREATE KEY_INDEXES on_object_type. 
+    
+
+
+drop_indexes_statement ::= KEY_DROP KEY_INDEXES on_object_type. 
+    
+
+
+on_object_type ::= KEY_ON KEY_OBJECT choice_type_types
+                      KEY_OPEN_SQUARE_BRACKET 
+                      choice_object_type_or_all
+                      KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+
+choice_type_types ::= KEY_TYPE.  
+choice_type_types ::= KEY_TYPES. 
+
+
+begin_transaction_statement ::= KEY_BEGIN KEY_TRANSACTION. 
+    
+
+
+commit_transaction_statement ::= KEY_COMMIT KEY_TRANSACTION. 
+    
+
+
+abort_transaction_statement ::= KEY_ABORT KEY_TRANSACTION. 
+    
+
+
+
+create_object_type_statement ::= KEY_CREATE opt_OBJECT KEY_TYPE
+  opt_if_not_exists
+  opt_range_type
+  opt_monad_uniqueness_type
+  KEY_OPEN_SQUARE_BRACKET object_type_name
+  opt_feature_declaration_list
+  KEY_CLOSE_SQUARE_BRACKET. 
+  
+
+
+opt_range_type ::=  /* empty */.
+    
+opt_range_type ::= KEY_WITH  KEY_MULTIPLE  KEY_RANGE  KEY_OBJECTS.
+    
+opt_range_type ::= KEY_WITH  KEY_SINGLE  KEY_RANGE  KEY_OBJECTS.
+    
+opt_range_type ::= KEY_WITH  KEY_SINGLE  KEY_MONAD  KEY_OBJECTS.
+    
+
+opt_monad_uniqueness_type ::=  /* empty */.
+    
+opt_monad_uniqueness_type ::= KEY_HAVING  KEY_UNIQUE  KEY_FIRST  KEY_MONADS.
+    
+opt_monad_uniqueness_type ::= KEY_HAVING  KEY_UNIQUE  KEY_FIRST  KEY_AND  KEY_LAST  KEY_MONADS.
+    
+opt_monad_uniqueness_type ::= KEY_WITHOUT  KEY_UNIQUE  KEY_MONADS .
+    
+
+
+opt_OBJECT ::= KEY_OBJECT. 
+opt_OBJECT ::= . /* empty : same thing; syntactic sugar */ 
+
+
+object_type_name ::= IDENTIFIER.  
+
+opt_feature_declaration_list ::= feature_declaration_list. 
+opt_feature_declaration_list ::= . /* empty */                
+
+
+feature_declaration_list ::= feature_declaration. 
+feature_declaration_list ::= feature_declaration_list 
+                                feature_declaration. 
+
+feature_declaration ::=  feature_name KEY_COLON feature_type 
+                      default_specification opt_computed KEY_SEMICOLON. 
+   
+feature_declaration ::=  feature_name KEY_COLON KEY_LIST KEY_OF 
+                      list_feature_type KEY_SEMICOLON. 
+   
+
+
+feature_type ::= KEY_INTEGER opt_with_index. 
+    
+feature_type ::= KEY_STRING opt_string_length opt_from_set opt_with_index.
+    
+feature_type ::= KEY_ASCII opt_string_length opt_from_set opt_with_index. 
+    
+feature_type ::= KEY_ID_D opt_with_index.
+    
+feature_type ::= IDENTIFIER opt_with_index. /* For enumerations */
+    
+feature_type ::= KEY_SET  KEY_OF  KEY_MONADS . /* Same as MULTIPLE RANGE SET OF MONADS */
+    
+feature_type ::= KEY_SINGLE  KEY_MONAD  KEY_SET  KEY_OF  KEY_MONADS . /* Same as MULTIPLE RANGE SET OF MONADS */
+    
+feature_type ::= KEY_SINGLE  KEY_RANGE  KEY_SET  KEY_OF  KEY_MONADS . /* Same as MULTIPLE RANGE SET OF MONADS */
+    
+feature_type ::= KEY_MULTIPLE  KEY_RANGE KEY_SET  KEY_OF  KEY_MONADS . /* Same as MULTIPLE RANGE SET OF MONADS */
+    
+
+
+
+list_feature_type ::= KEY_INTEGER.
+    
+list_feature_type ::= KEY_ID_D.
+    
+list_feature_type ::= IDENTIFIER. /* For enumerations */
+    
+
+
+opt_with_index ::= KEY_WITH  KEY_INDEX. 
+opt_with_index ::= KEY_WITHOUT  KEY_INDEX. 
+opt_with_index ::= . 
+
+opt_if_not_exists ::= KEY_IF  KEY_NOT  KEY_EXISTS. 
+opt_if_not_exists ::= . 
+
+opt_from_set ::= KEY_FROM  KEY_SET. 
+opt_from_set ::= . 
+
+
+opt_string_length ::= . /* empty */ 
+    
+opt_string_length ::= KEY_OPEN_BRACKET INTEGER KEY_CLOSE_BRACKET.
+    
+
+
+default_specification ::= KEY_DEFAULT expression.
+    
+default_specification ::= . /* empty ::= choose type-default */
+    
+
+
+opt_computed ::= KEY_COMPUTED.
+    
+opt_computed ::= . /* empty: feature is not computed. */
+    
+
+
+update_object_type_statement ::= KEY_UPDATE opt_OBJECT KEY_TYPE
+                                    KEY_OPEN_SQUARE_BRACKET object_type_name
+                                    feature_update_list
+                                    KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+feature_update_list ::= feature_update.
+    
+feature_update_list ::= feature_update_list feature_update.
+    
+
+
+feature_update ::= opt_ADD feature_declaration.
+    
+feature_update ::= KEY_REMOVE feature_name KEY_SEMICOLON.
+    
+
+
+opt_ADD ::= KEY_ADD. 
+opt_ADD ::= .          /* empty: same thing; syntactic sugar */
+
+drop_object_type_statement ::= KEY_DROP
+             opt_OBJECT KEY_TYPE
+             KEY_OPEN_SQUARE_BRACKET 
+             object_type_name 
+             KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+insert_monads_statement ::= KEY_INSERT monad_specification.
+    
+
+
+delete_monads_statement ::= KEY_DELETE monad_specification.
+    
+
+
+get_monads_statement ::= KEY_GET KEY_MONADS 
+    KEY_FROM choice_number_OBJECTS	
+    KEY_WITH id_ds_specification
+    KEY_OPEN_SQUARE_BRACKET 
+    object_type_name 
+    KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+monad_set_calculation_statement ::= KEY_MONAD  KEY_SET  KEY_CALCULATION
+   monad_set_chain.
+  
+
+
+monad_set_chain ::= monad_set.
+    
+monad_set_chain ::= monad_set_chain  monad_set_operator  monad_set.
+    
+
+
+monad_set_operator ::= KEY_UNION.      
+monad_set_operator ::= KEY_DIFFERENCE. 
+monad_set_operator ::= KEY_INTERSECT.  
+
+
+select_monad_sets_statement ::= KEY_SELECT  KEY_MONAD  KEY_SETS.
+    
+
+
+get_monad_sets_statement ::= KEY_GET  KEY_MONAD 
+      choice_number_SET monad_set_name_list.
+    
+get_monad_sets_statement ::= KEY_GET  KEY_MONAD 
+      choice_number_SET KEY_ALL.
+    
+
+
+choice_number_SET ::= KEY_SETS. 
+choice_number_SET ::= KEY_SET.  
+
+
+create_monad_set_statement ::= KEY_CREATE  KEY_MONAD  KEY_SET
+      monad_set_name  KEY_WITH  monad_specification.
+    
+
+
+update_monad_set_statement ::= 
+    KEY_UPDATE  KEY_MONAD  KEY_SET
+     monad_set_name  
+     monad_set_operator  
+     monad_set_name.
+    
+
+update_monad_set_statement ::= KEY_UPDATE  KEY_MONAD  KEY_SET
+    monad_set_name 
+    KEY_REPLACE 
+    monad_set_name.
+    
+
+update_monad_set_statement ::= KEY_UPDATE  KEY_MONAD  KEY_SET
+    monad_set_name 
+    monad_set_operator 
+    monad_set.
+    
+
+update_monad_set_statement ::= KEY_UPDATE  KEY_MONAD  KEY_SET
+    monad_set_name 
+    KEY_REPLACE 
+    monad_set.
+    
+
+
+drop_monad_set_statement ::= KEY_DROP  KEY_MONAD  KEY_SET
+    monad_set_name.
+    
+
+
+monad_set_name ::= IDENTIFIER.  
+
+
+monad_set_name_list ::= monad_set_name.
+  
+monad_set_name_list ::= 
+      monad_set_name_list KEY_COMMA monad_set_name.
+  
+
+
+
+create_enumeration_statement ::= KEY_CREATE choice_ENUM_ERATION
+            enumeration_name KEY_EQUALS 
+            KEY_OPEN_BRACE ec_declaration_list KEY_CLOSE_BRACE.
+    
+
+
+choice_ENUM_ERATION ::= KEY_ENUMERATION. 
+choice_ENUM_ERATION ::= KEY_ENUM.  /* same thing; syntactic sugar */
+
+
+enumeration_name ::= IDENTIFIER. 
+
+ec_declaration_list ::= ec_declaration.
+    
+ec_declaration_list ::= ec_declaration_list KEY_COMMA  ec_declaration.
+    
+
+ec_declaration ::= opt_DEFAULT ec_name opt_ec_initialization.
+    
+
+
+opt_DEFAULT ::= KEY_DEFAULT.
+    
+opt_DEFAULT ::= . /* empty: Ec is not explicitly default. */
+    
+
+
+ec_name ::= IDENTIFIER. 
+
+opt_ec_initialization ::= ec_initialization.
+    
+opt_ec_initialization ::= . /* empty : no initialization; ec gets its value from
+               the sequence of the ecs. */
+    
+
+
+update_enumeration_statement ::= KEY_UPDATE choice_ENUM_ERATION
+            enumeration_name KEY_EQUALS  
+            KEY_OPEN_BRACE ec_update_list KEY_CLOSE_BRACE.
+    
+
+
+ec_update_list ::= ec_update.
+    
+ec_update_list ::= ec_update_list KEY_COMMA ec_update.
+    
+
+
+ec_update ::= opt_ADD opt_DEFAULT ec_name ec_initialization.
+    
+ec_update ::= KEY_UPDATE opt_DEFAULT ec_name ec_initialization.
+    
+ec_update ::= KEY_REMOVE ec_name.
+    
+
+
+ec_initialization ::= KEY_EQUALS signed_integer. 
+
+signed_integer ::= INTEGER. 
+signed_integer ::= KEY_DASH INTEGER. 
+signed_integer ::= KEY_NIL. 
+
+unsigned_integer ::= INTEGER. 
+
+
+drop_enumeration_statement ::= 
+   KEY_DROP 
+   choice_ENUM_ERATION 
+   enumeration_name.
+    
+
+
+
+create_segment_statement ::= 
+   KEY_CREATE KEY_SEGMENT
+   segment_name
+   KEY_RANGE KEY_EQUALS segment_range.
+    
+
+
+segment_name ::= IDENTIFIER.  
+
+segment_range ::= INTEGER KEY_DASH INTEGER.
+    
+
+
+select_statement ::= select_clause 
+     in_clause
+     with_max_range_clause
+     returning_clause
+     where_clause.
+    
+select_statement ::= select_clause 
+     KEY_IN IDENTIFIER
+     with_max_range_clause
+     returning_clause
+     where_clause.
+    
+
+
+select_clause ::= KEY_SELECT focus_specification opt_OBJECTS.
+    
+
+
+focus_specification ::= KEY_FOCUS. 
+focus_specification ::= KEY_ALL. 
+
+
+opt_OBJECTS ::= KEY_OBJECTS. 
+opt_OBJECTS ::= . /* empty: syntactic sugar */
+
+
+in_clause ::= KEY_IN in_specification.
+    
+in_clause ::= . /* empty = all_m-1 */
+     
+
+
+in_specification ::= monad_set.
+    
+in_specification ::= KEY_ALL. /* = all_m-1 */
+    
+
+
+monad_set ::= KEY_OPEN_BRACE monad_set_element_list KEY_CLOSE_BRACE.
+    
+
+
+monad_set_element_list ::= monad_set_element.
+    
+monad_set_element_list ::= 
+    monad_set_element_list KEY_COMMA monad_set_element.
+    
+
+
+monad_set_element ::= INTEGER.
+    
+monad_set_element ::= INTEGER KEY_DASH INTEGER.
+    
+monad_set_element ::= INTEGER KEY_DASH .
+    
+
+
+with_max_range_clause ::= . /* empty : WITH MAX RANGE MAX_M MONADS */
+    
+with_max_range_clause ::= KEY_WITH KEY_MAX KEY_RANGE KEY_MAX_M KEY_MONADS .
+    
+with_max_range_clause ::= KEY_WITH KEY_MAX KEY_RANGE INTEGER KEY_MONADS .
+    
+with_max_range_clause ::= KEY_WITH KEY_MAX KEY_RANGE KEY_FEATURE feature_name KEY_FROM KEY_OPEN_SQUARE_BRACKET object_type_name KEY_CLOSE_SQUARE_BRACKET .
+    
+
+
+returning_clause ::= . /* empty : return full sheaf */
+    
+returning_clause ::= KEY_RETURNING  KEY_FULL  KEY_SHEAF.
+    
+returning_clause ::= KEY_RETURNING  KEY_FLAT  KEY_SHEAF.
+    
+returning_clause ::= KEY_RETURNING  KEY_FLAT  KEY_SHEAF
+     KEY_ON object_type_name_list.
+    
+
+using_range_clause ::= . /* empty : return all */
+    
+using_range_clause ::= KEY_RANGE  KEY_ALL.
+    
+using_range_clause ::= KEY_RANGE  
+    KEY_OPEN_BRACKET 
+    unsigned_integer KEY_COMMA unsigned_integer
+    KEY_CLOSE_BRACKET .
+    
+using_range_clause ::= KEY_RANGE  
+    KEY_OPEN_BRACKET 
+    unsigned_integer
+    KEY_CLOSE_BRACKET .
+    
+
+object_type_name_list ::= object_type_name.
+  
+object_type_name_list ::= 
+     object_type_name_list  KEY_COMMA object_type_name.
+  
+
+
+where_clause ::= KEY_WHERE mql_query. 
+
+select_objects_at_statement ::= 
+     KEY_SELECT opt_OBJECTS
+     KEY_AT single_monad_specification
+     KEY_OPEN_SQUARE_BRACKET
+     object_type_name
+     KEY_CLOSE_SQUARE_BRACKET.
+   
+
+
+single_monad_specification ::= KEY_MONAD KEY_EQUALS INTEGER.
+    
+
+
+select_objects_having_monads_in_statement ::= KEY_SELECT KEY_OBJECTS
+        KEY_HAVING KEY_MONADS KEY_IN
+        monad_set
+        KEY_OPEN_SQUARE_BRACKET
+        object_type_to_find
+        KEY_CLOSE_SQUARE_BRACKET.
+    
+
+object_type_to_find ::= choice_object_type_or_all.  
+
+
+choice_object_type_or_all ::= object_type_name. 
+    
+choice_object_type_or_all ::= KEY_ALL .
+    
+
+
+get_aggregate_features_statement ::= KEY_GET KEY_AGGREGATE KEY_FEATURES
+        aggregate_feature_list
+	KEY_FROM KEY_OBJECTS
+        in_clause
+	using_monad_feature
+        KEY_OPEN_SQUARE_BRACKET
+        object_type_name
+	feature_constraints
+        KEY_CLOSE_SQUARE_BRACKET.
+    
+
+aggregate_feature_list ::= aggregate_feature .
+    
+aggregate_feature_list ::= aggregate_feature_list
+                              KEY_COMMA
+                              aggregate_feature .
+    
+
+aggregate_feature ::= KEY_MIN  KEY_OPEN_BRACKET feature_name KEY_CLOSE_BRACKET .
+    
+aggregate_feature ::= KEY_MAX  KEY_OPEN_BRACKET feature_name KEY_CLOSE_BRACKET .
+    
+aggregate_feature ::= KEY_SUM  KEY_OPEN_BRACKET feature_name KEY_CLOSE_BRACKET .
+    
+aggregate_feature ::= KEY_COUNT  KEY_OPEN_BRACKET KEY_STAR KEY_CLOSE_BRACKET .
+    
+
+aggregate_feature ::= KEY_COUNT  KEY_OPEN_BRACKET aggregate_feature_comparison  KEY_CLOSE_BRACKET .
+    
+
+aggregate_feature_comparison ::= feature_name comparison_operator value.
+    
+aggregate_feature_comparison ::= feature_name comparison_operator KEY_OPEN_BRACKET list_of_identifier KEY_CLOSE_BRACKET.
+    
+aggregate_feature_comparison ::= feature_name comparison_operator  KEY_OPEN_BRACKET list_of_integer KEY_CLOSE_BRACKET.
+    
+
+
+
+
+
+
+get_objects_having_monads_in_statement ::= KEY_GET KEY_OBJECTS
+        KEY_HAVING KEY_MONADS KEY_IN
+        in_specification
+	using_monad_feature
+        KEY_OPEN_SQUARE_BRACKET
+        object_type_name 
+        KEY_CLOSE_SQUARE_BRACKET.
+    
+get_objects_having_monads_in_statement ::= KEY_GET KEY_OBJECTS
+        KEY_HAVING KEY_MONADS KEY_IN
+        in_specification
+	using_monad_feature
+        KEY_OPEN_SQUARE_BRACKET
+        object_type_name KEY_GET KEY_ALL
+        KEY_CLOSE_SQUARE_BRACKET.
+    
+get_objects_having_monads_in_statement ::= KEY_GET KEY_OBJECTS
+        KEY_HAVING KEY_MONADS KEY_IN
+        in_specification
+	using_monad_feature
+        KEY_OPEN_SQUARE_BRACKET
+        object_type_name KEY_GET feature_list
+        KEY_CLOSE_SQUARE_BRACKET.
+    
+
+using_monad_feature ::= KEY_USING KEY_MONAD KEY_FEATURE IDENTIFIER. 
+using_monad_feature ::= KEY_USING KEY_MONAD KEY_FEATURE KEY_MONADS. 
+using_monad_feature ::= . 
+
+
+select_object_types_statement ::= KEY_SELECT opt_OBJECT
+           KEY_TYPES.
+    
+
+
+select_features_statement ::= KEY_SELECT KEY_FEATURES 
+           KEY_FROM opt_OBJECTYPE
+           KEY_OPEN_SQUARE_BRACKET object_type_name KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+get_set_from_feature_statement ::= KEY_GET  KEY_SET  
+           KEY_FROM KEY_FEATURE feature_name
+           KEY_OPEN_SQUARE_BRACKET object_type_name KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+opt_OBJECTYPE ::= KEY_OBJECT KEY_TYPE. 
+opt_OBJECTYPE ::= KEY_TYPE. 
+opt_OBJECTYPE ::= . /* empty ::= all are the same. */
+
+
+select_enumerations_statement ::= KEY_SELECT KEY_ENUMERATIONS.
+    
+
+
+select_enumeration_constants_statement ::= KEY_SELECT 
+           choice_ENUM_ERATION KEY_CONSTANTS
+           KEY_FROM opt_ENUM_ERATION
+           enumeration_name.
+    
+
+
+opt_ENUM_ERATION ::= KEY_ENUM. 
+opt_ENUM_ERATION ::= KEY_ENUMERATION. 
+opt_ENUM_ERATION ::= . /* empty ::= all are the same. */
+
+
+select_object_types_which_use_enum_statement ::= KEY_SELECT 
+           opt_OBJECT KEY_TYPES
+           KEY_USING
+           choice_ENUM_ERATION enumeration_name.
+    
+
+
+select_min_m_statement ::= KEY_SELECT KEY_MIN_M.
+    
+
+
+select_max_m_statement ::= KEY_SELECT KEY_MAX_M.
+    
+
+
+create_object_from_monads_statement ::= KEY_CREATE KEY_OBJECT
+     KEY_FROM monad_specification
+     with_id_d_specification
+     object_creation_specification.
+    
+
+
+monad_specification ::= KEY_MONADS KEY_EQUALS monad_set. 
+
+with_id_d_specification ::= KEY_WITH KEY_ID_D  KEY_EQUALS  id_d_const.
+    
+with_id_d_specification ::= . /* empty: The id_d is autogenerated. */
+    
+
+
+id_d_const ::= INTEGER.
+    
+id_d_const ::=  KEY_NIL.
+    
+
+object_creation_specification ::= KEY_OPEN_SQUARE_BRACKET 
+     object_type_name
+     opt_list_of_feature_assignments
+     KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+opt_list_of_feature_assignments ::= list_of_feature_assignments.
+    
+opt_list_of_feature_assignments ::= . /* empty */
+    
+
+
+list_of_feature_assignments ::= feature_assignment.
+    
+list_of_feature_assignments ::= 
+    list_of_feature_assignments feature_assignment.
+    
+
+
+feature_assignment ::= feature_name KEY_ASSIGN expression KEY_SEMICOLON.
+    
+
+
+feature_name ::= IDENTIFIER. 
+feature_name ::= KEY_MONADS. 
+
+expression ::= signed_integer. /* integer and id_d */
+    
+expression ::= STRING.
+    
+expression ::= IDENTIFIER. /* enumeration constant */
+    
+expression ::= monad_set. /* set of monads */
+    
+expression ::= KEY_OPEN_BRACKET KEY_CLOSE_BRACKET.
+    
+expression ::= KEY_OPEN_BRACKET list_of_integer KEY_CLOSE_BRACKET.
+    
+expression ::= KEY_OPEN_BRACKET list_of_identifier KEY_CLOSE_BRACKET.
+    
+
+
+list_of_integer ::= signed_integer.
+  
+list_of_integer ::= 
+      list_of_integer KEY_COMMA signed_integer.
+  
+
+list_of_identifier ::= IDENTIFIER.
+  
+list_of_identifier ::= 
+      list_of_identifier KEY_COMMA IDENTIFIER.
+  
+
+
+
+create_object_from_id_ds_statement ::= KEY_CREATE KEY_OBJECT
+     KEY_FROM id_ds_specification
+     with_id_d_specification
+     object_creation_specification.
+    
+
+
+id_ds_specification ::= choice_number_ID_DS KEY_EQUALS id_d_list.
+    
+
+
+choice_number_ID_DS ::= KEY_ID_D. 
+choice_number_ID_DS ::= KEY_ID_DS.  /* No difference ::= syntactic sugar */
+
+
+id_d_list ::= id_d.
+    
+id_d_list ::= id_d_list KEY_COMMA id_d.
+     
+
+
+id_d ::= id_d_const.  
+
+
+create_objects_statement ::=
+     KEY_CREATE KEY_OBJECTS
+     KEY_WITH KEY_OBJECT KEY_TYPE
+     KEY_OPEN_SQUARE_BRACKET 
+     object_type_name
+     KEY_CLOSE_SQUARE_BRACKET
+     object_creation_list.
+  
+
+
+object_creation_list ::= 
+     object_creation_no_object_type.
+    
+object_creation_list ::= 
+    object_creation_list object_creation_no_object_type.
+    
+
+
+object_creation_no_object_type ::= 
+     KEY_CREATE KEY_OBJECT
+     KEY_FROM monad_specification
+     with_id_d_specification
+     KEY_OPEN_SQUARE_BRACKET 
+     opt_list_of_feature_assignments
+     KEY_CLOSE_SQUARE_BRACKET.
+  
+	
+
+update_objects_by_monads_statement ::= KEY_UPDATE 
+     choice_number_OBJECTS
+     KEY_BY monad_specification 
+     object_update_specification.
+    
+
+
+choice_number_OBJECTS ::= KEY_OBJECT. 
+choice_number_OBJECTS ::= KEY_OBJECTS.  /* no difference ::= syntactic sugar */
+
+
+object_update_specification ::= 
+     KEY_OPEN_SQUARE_BRACKET object_type_name 
+     list_of_feature_assignments
+     KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+
+update_objects_by_id_ds_statement ::= 
+     KEY_UPDATE 
+     choice_number_OBJECTS
+     KEY_BY id_ds_specification
+     object_update_specification.
+    
+
+
+
+delete_objects_by_monads_statement ::= KEY_DELETE
+     choice_number_OBJECTS
+     KEY_BY monad_specification
+     object_deletion_specification.
+    
+
+
+object_deletion_specification ::= 
+     KEY_OPEN_SQUARE_BRACKET 
+     object_type_name_to_delete
+     KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+object_type_name_to_delete ::= choice_object_type_or_all.
+    
+
+
+
+delete_objects_by_id_ds_statement ::= KEY_DELETE
+     choice_number_OBJECTS
+     KEY_BY id_ds_specification
+     object_deletion_specification.
+    
+
+
+
+get_features_statement ::= KEY_GET choice_number_FEATURES
+     feature_list
+     KEY_FROM choice_number_OBJECTS
+     KEY_WITH id_ds_specification
+     KEY_OPEN_SQUARE_BRACKET object_type_name
+     KEY_CLOSE_SQUARE_BRACKET.
+
+
+
+choice_number_FEATURES ::= KEY_FEATURE. 
+choice_number_FEATURES ::= KEY_FEATURES.  /* Same thing; syntactic sugar */
+
+feature_list ::= feature_list_member .
+    
+feature_list ::= feature_list KEY_COMMA feature_list_member.
+    
+
+feature_list_member ::= feature_name.
+    
+feature_list_member ::= feature_name KEY_OPEN_BRACKET IDENTIFIER KEY_CLOSE_BRACKET.
+    
+feature_list_member ::= feature_name KEY_OPEN_BRACKET KEY_MONADS KEY_CLOSE_BRACKET.
+    
+
+
+quit_statement ::= KEY_QUIT.
+
+
+
+mql_query ::= topograph.
+    
+ 
+
+topograph ::= blocks.
+    
+
+
+blocks ::= using_range_clause block_string.
+    
+blocks ::= using_range_clause unordered_group .
+    
+
+
+block_string0 ::= block  .
+    
+block_string0 ::= KEY_OPEN_SQUARE_BRACKET block_string KEY_CLOSE_SQUARE_BRACKET .
+    
+
+block_string1 ::= block_string0 .
+    
+block_string1 ::= block_string0 KEY_STAR star_monad_set.
+    
+
+block_string2 ::= block_string1 .
+    
+block_string2 ::= block_string1 block_string2 .
+    
+
+block_string2 ::= block_string1 KEY_EXCLAMATION block_string2 .
+    
+
+block_string ::= block_string2 .
+    
+block_string ::= block_string2 KEY_OR block_string .
+    
+
+
+notexist ::= KEY_NOTEXIST . 
+notexist ::= KEY_NOTEXISTS . 
+
+
+object_reference_declaration ::= . /* empty */ 
+object_reference_declaration ::= KEY_AS object_reference. 
+
+
+mark_declaration ::= . /* empty */ 
+mark_declaration ::= MARK . 
+
+
+object_reference ::= IDENTIFIER. 
+
+retrieval ::= . /* empty */    
+retrieval ::= KEY_NORETRIEVE. 
+retrieval ::= KEY_RETRIEVE.   
+retrieval ::= KEY_FOCUS.      
+
+firstlast ::= . /* empty */                  
+firstlast ::= KEY_FIRST.                     
+firstlast ::= KEY_LAST.                      
+firstlast ::= KEY_FIRST  KEY_AND  KEY_LAST.  
+
+monad_set_relation_clause ::= monad_set_relation_operation  KEY_OPEN_BRACKET monad_set_name KEY_COMMA universe_or_substrate KEY_CLOSE_BRACKET .  
+
+monad_set_relation_clause ::= monad_set_relation_operation  KEY_OPEN_BRACKET universe_or_substrate KEY_CLOSE_BRACKET .  
+
+monad_set_relation_clause ::= . /* empty */ 
+
+
+monad_set_relation_operation ::= KEY_PART_OF .
+
+monad_set_relation_operation ::= KEY_STARTS_IN .
+
+monad_set_relation_operation ::= KEY_OVERLAP .
+
+
+
+universe_or_substrate ::= KEY_UNIVERSE .
+
+universe_or_substrate ::= KEY_SUBSTRATE .
+
+
+
+feature_constraints ::= . /* empty */  
+feature_constraints ::= ffeatures.     
+
+
+ffeatures ::= fterm. 
+ffeatures ::= ffeatures KEY_OR fterm. 
+
+
+fterm ::= ffactor.                   
+fterm ::= fterm KEY_AND ffactor.  
+
+ffactor ::=  KEY_NOT  ffactor. 
+    
+ffactor ::= KEY_OPEN_BRACKET  ffeatures  KEY_CLOSE_BRACKET.
+    
+ffactor ::= feature_comparison.
+    
+
+
+feature_comparison ::= feature_name comparison_operator value.
+    
+feature_comparison ::= computed_feature_name comparison_operator value.
+    
+feature_comparison ::= feature_name KEY_EQUALS KEY_OPEN_BRACKET KEY_CLOSE_BRACKET.
+    
+feature_comparison ::= feature_name KEY_EQUALS KEY_OPEN_BRACKET list_of_identifier KEY_CLOSE_BRACKET.
+    
+feature_comparison ::= feature_name KEY_EQUALS KEY_OPEN_BRACKET list_of_integer KEY_CLOSE_BRACKET.
+    
+feature_comparison ::= feature_name KEY_IN KEY_OPEN_BRACKET list_of_identifier KEY_CLOSE_BRACKET.
+    
+feature_comparison ::= feature_name KEY_IN KEY_OPEN_BRACKET list_of_integer KEY_CLOSE_BRACKET.
+    
+feature_comparison ::= computed_feature_name KEY_IN KEY_OPEN_BRACKET list_of_integer KEY_CLOSE_BRACKET.
+    
+feature_comparison ::= feature_name KEY_IN object_reference_usage.
+    
+feature_comparison ::= computed_feature_name KEY_IN object_reference_usage.
+    
+
+computed_feature_name ::= feature_name KEY_OPEN_BRACKET feature_name KEY_CLOSE_BRACKET .
+
+
+
+comparison_operator ::= KEY_EQUALS. 
+comparison_operator ::= KEY_LESS_THAN. 
+comparison_operator ::= KEY_GREATER_THAN. 
+comparison_operator ::= KEY_NOT_EQUAL. 
+comparison_operator ::= KEY_LESS_THAN_OR_EQUAL. 
+comparison_operator ::= KEY_GREATER_THAN_OR_EQUAL.  
+comparison_operator ::= KEY_TILDE.  
+comparison_operator ::= KEY_NOT_TILDE. 
+comparison_operator ::= KEY_HAS. 
+
+ 
+
+value ::= enum_const.
+    
+value ::= signed_integer.
+    
+value ::= STRING.  
+    
+value ::= object_reference_usage.
+    
+
+
+enum_const ::=  IDENTIFIER. 
+
+object_reference_usage ::= object_reference KEY_DOT feature_name.
+    
+object_reference_usage ::= object_reference KEY_DOT computed_feature_name.
+    
+
+
+opt_blocks ::= . /* empty */ 
+opt_blocks ::= blocks. 
+
+
+block ::= object_block.    
+block ::= power.           
+block ::= opt_gap_block.   
+block ::= gap_block.       
+block ::= notexist_object_block. 
+
+
+unordered_group ::= KEY_OPEN_SQUARE_BRACKET
+                       KEY_UNORDERED_GROUP
+                       object_block_string
+                       KEY_CLOSE_SQUARE_BRACKET .
+
+
+object_block_string ::= object_block.    
+object_block_string ::= object_block_string object_block.    
+
+
+
+
+star_monad_set ::= . 
+star_monad_set ::= monad_set . 
+
+opt_gap_block ::= KEY_OPEN_SQUARE_BRACKET  KEY_OPT_GAP  mark_declaration gap_retrieval  opt_blocks KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+gap_retrieval ::= . /* empty */   
+gap_retrieval ::= KEY_NORETRIEVE. 
+gap_retrieval ::= KEY_RETRIEVE.   
+gap_retrieval ::= KEY_FOCUS.      
+
+
+gap_block ::= KEY_OPEN_SQUARE_BRACKET  KEY_GAP  mark_declaration  gap_retrieval  opt_blocks  KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+
+
+feature_retrieval ::= KEY_GET  feature_list. 
+feature_retrieval ::= . /* empty */ 
+
+
+object_block ::=  KEY_OPEN_SQUARE_BRACKET  object_type_name
+     mark_declaration
+     object_reference_declaration
+     retrieval  firstlast
+     monad_set_relation_clause
+     feature_constraints
+     feature_retrieval
+     opt_blocks  KEY_CLOSE_SQUARE_BRACKET.
+    
+
+notexist_object_block ::=  notexist KEY_OPEN_SQUARE_BRACKET  object_type_name
+     mark_declaration
+     object_reference_declaration
+     retrieval  firstlast
+     monad_set_relation_clause
+     feature_constraints
+     feature_retrieval
+     opt_blocks  KEY_CLOSE_SQUARE_BRACKET.
+    
+
+
+power ::=  KEY_POWER  restrictor.
+    
+power ::=  KEY_POWER KEY_BETWEEN limit KEY_AND limit.
+    
+
+restrictor ::= . /*  empty  */                     
+restrictor ::= KEY_LESS_THAN  limit.            
+restrictor ::= KEY_LESS_THAN_OR_EQUAL  limit.   
+
+
+limit  ::=  INTEGER.  /* non-negative integer, may be 0. */
+      
+
+
+
+
+
