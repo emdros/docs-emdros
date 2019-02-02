@@ -1,5 +1,7 @@
 # SELECT OBJECT TYPES
 
+## Purpose
+
 ## Grammar
 
 ```

@@ -1,5 +1,7 @@
 # COMMIT TRANSACTION
 
+## Purpose
+
 ## Grammar
 
 ```

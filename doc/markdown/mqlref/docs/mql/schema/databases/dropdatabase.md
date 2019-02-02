@@ -1,5 +1,7 @@
 # DROP DATABASE
 
+## Purpose
+
 ## Grammar
 
 ```

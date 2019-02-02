@@ -1,5 +1,7 @@
 # SELECT MIN M
 
+## Purpose
+
 ## Grammar
 
 ```

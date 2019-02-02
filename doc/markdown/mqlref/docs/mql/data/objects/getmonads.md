@@ -1,5 +1,7 @@
 # GET MONADS
 
+## Purpose
+
 ## Grammar
 
 ```

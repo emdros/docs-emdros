@@ -1,5 +1,7 @@
 # ABORT TRANSACTION
 
+## Purpose
+
 ## Grammar
 
 ```

@@ -1,5 +1,7 @@
 # CREATE INDEXES
 
+## Purpose
+
 ## Grammar
 
 ```

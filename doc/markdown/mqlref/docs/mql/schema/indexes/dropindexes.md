@@ -1,5 +1,7 @@
 # DROP INDEXES
 
+## Purpose
+
 ## Grammar
 
 ```

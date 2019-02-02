@@ -1,5 +1,7 @@
 # DELETE OBJECTS BY MONADS
 
+## Purpose
+
 ## Grammar
 
 ```

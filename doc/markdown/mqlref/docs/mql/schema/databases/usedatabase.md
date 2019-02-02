@@ -1,5 +1,7 @@
 # USE DATABASE
 
+## Purpose
+
 ## Grammar
 
 ```

@@ -1,5 +1,7 @@
 # UPDATE OBJECT TYPE
 
+## Purpose
+
 ## Grammar
 
 ```

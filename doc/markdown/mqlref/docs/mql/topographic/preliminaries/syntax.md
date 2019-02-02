@@ -1,5 +1,7 @@
 # SELECT ALL OBJECTS
 
+## Purpose
+
 ## Grammar
 
 ```

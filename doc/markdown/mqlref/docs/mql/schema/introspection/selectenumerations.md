@@ -1,5 +1,7 @@
 # SELECT ENUMERATIONS
 
+## Purpose
+
 ## Grammar
 
 ```

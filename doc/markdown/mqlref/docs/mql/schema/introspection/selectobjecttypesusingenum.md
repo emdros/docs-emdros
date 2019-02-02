@@ -1,5 +1,7 @@
 # SELECT OBJECT TYPES USING ENUM
 
+## Purpose
+
 ## Grammar
 
 ```

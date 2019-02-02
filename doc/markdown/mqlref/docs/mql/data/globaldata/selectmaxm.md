@@ -1,5 +1,7 @@
 # SELECT MAX M
 
+## Purpose
+
 ## Grammar
 
 ```

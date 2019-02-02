@@ -1,5 +1,7 @@
 # DROP OBJECT TYPE
 
+## Purpose
+
 ## Grammar
 
 ```

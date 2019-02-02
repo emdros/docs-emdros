@@ -1,5 +1,7 @@
 # SELECT FEATURES
 
+## Purpose
+
 ## Grammar
 
 ```

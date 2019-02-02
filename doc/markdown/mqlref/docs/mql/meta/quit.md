@@ -1,5 +1,7 @@
 # QUIT
 
+## Purpose
+
 ## Grammar
 
 ```

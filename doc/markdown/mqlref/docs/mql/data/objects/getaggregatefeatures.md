@@ -1,5 +1,7 @@
 # GET AGGREGATE FEATURES
 
+## Purpose
+
 ## Grammar
 
 ```

@@ -1,5 +1,7 @@
 # INITIALIZE DATABASE
 
+## Purpose
+
 ## Grammar
 
 ```

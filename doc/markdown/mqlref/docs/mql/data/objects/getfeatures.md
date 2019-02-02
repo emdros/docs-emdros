@@ -1,5 +1,7 @@
 # GET FEATURES
 
+## Purpose
+
 ## Grammar
 
 ```

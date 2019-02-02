@@ -1,5 +1,7 @@
 # BEGIN TRANSACTION
 
+## Purpose
+
 ## Grammar
 
 ```

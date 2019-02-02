@@ -1,5 +1,7 @@
 # CREATE ENUMERATION
 
+## Purpose
+
 ## Grammar
 
 ```

@@ -1,5 +1,7 @@
 # DROP ENUMERATION
 
+## Purpose
+
 ## Grammar
 
 ```

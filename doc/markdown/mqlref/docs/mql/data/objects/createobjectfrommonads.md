@@ -1,5 +1,7 @@
 # CREATE OBJECT FROM MONADS
 
+## Purpose
+
 ## Grammar
 
 ```

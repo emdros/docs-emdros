@@ -1,5 +1,7 @@
 # GET SET FROM FEATURE
 
+## Purpose
+
 ## Grammar
 
 ```

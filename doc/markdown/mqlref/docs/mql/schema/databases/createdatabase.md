@@ -1,5 +1,7 @@
 # CREATE DATABASE
 
+## Purpose
+
 ## Grammar
 
 ```

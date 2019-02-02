@@ -1,5 +1,7 @@
 # VACUUM DATABASE
 
+## Purpose
+
 ## Grammar
 
 ```

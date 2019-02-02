@@ -1,5 +1,7 @@
 # DELETE OBJECTS BY ID DS
 
+## Purpose
+
 ## Grammar
 
 ```

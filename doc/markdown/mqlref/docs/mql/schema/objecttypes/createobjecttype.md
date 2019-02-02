@@ -1,5 +1,7 @@
 # CREATE OBJECT TYPE
 
+## Purpose
+
 ## Grammar
 
 ```

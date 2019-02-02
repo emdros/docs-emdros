@@ -1,5 +1,7 @@
 # UPDATE ENUMERATION
 
+## Purpose
+
 ## Grammar
 
 ```

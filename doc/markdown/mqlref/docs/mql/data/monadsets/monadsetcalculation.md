@@ -1,5 +1,7 @@
 # MONAD SET CALCULATION
 
+## Purpose
+
 ## Grammar
 
 ```

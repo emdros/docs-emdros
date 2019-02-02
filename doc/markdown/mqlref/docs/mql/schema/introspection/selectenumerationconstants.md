@@ -1,5 +1,7 @@
 # SELECT ENUMERATION CONSTANTS
 
+## Purpose
+
 ## Grammar
 
 ```
