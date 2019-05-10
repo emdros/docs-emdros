@@ -2,6 +2,24 @@
 
 ## Purpose
 
+This statement is the main entry point into the "query" part of MQL.
+It is the main statement which allows "topographic" queries.
+
+The SELECT ALL OBJECTS statement supports declarative querying of objects in the database, based on:
+
+- The relationships that inhere between "SET OF MONADS" features on
+  the objects, such as "before", "after", "inside", and others.
+
+- The values of the other features of an object, using boolean logic
+  combinations of comparisons of feature-values with given values.
+
+- Relationships between objects across the query which are based on
+  naming other object parts of the query, and referring back to the
+  features on those objects.
+
+This section explains the basics.  See the [chapter on topographic
+queries](/mql/topographic/) for more information.
+
 ## Grammar
 
 ```
@@ -255,8 +273,9 @@ GO
 
 ## Explanation
 
-This statement is a front-end to the MQL Query-subset (see chapter 4
-starting on page ).
+This statement is a main front-end to the MQL Query-subset.  Here we
+explain only some of the capabilities. See the [chapter on topographic
+queries](/mql/topographic/) for more information.
 
 The parameters to an MQL query are:
 
