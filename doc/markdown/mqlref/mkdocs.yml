@@ -28,6 +28,7 @@ nav:
          - Computed Features: emdf/computedfeatures.md
          - Databases: emdf/databases.md
          - Other Concepts: emdf/otherconcepts.md
+         - Encryption: emdf/encryption.md
     - MQL schema:
          - Introduction: mql/schema/index.md
          - Databases:
