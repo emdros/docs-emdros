@@ -6,7 +6,7 @@ site_author: Ulrik Sandborg-Petersen
    
 theme: readthedocs
 
-pages:
+nav:
     - Home: index.md
     - Preliminaries:
          - Introduction: preliminaries/index.md
