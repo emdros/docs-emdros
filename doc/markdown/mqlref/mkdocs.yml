@@ -114,6 +114,7 @@ nav:
     - About:
          - About MQL Reference Guide: about/index.md
          - Contributing: about/contributing.md
+         - Acknowledgements: about/acknowledgements.md
          - License: about/license.md
          - Other Licenses: about/otherlicenses.md
 
