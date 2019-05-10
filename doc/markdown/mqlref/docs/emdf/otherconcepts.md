@@ -4,17 +4,18 @@ Having learned the basic concepts of the EMdF model, we now turn to the
 additional concepts which we use to talk about EMdF databases. These
 concepts are:
 
-1. The special object types:
+1. The special, abstract object types:
+
     1. pow\_m,
     2. any\_m, and
     3. all\_m
+
 2. object ids (id\_d, id\_m)
 3. self
 4. part\_of
 5. gaps
 6. borders, first, and last
 7. min\_m and max\_m
-8. arbitrary monad sets
 
 
 ## pow\_m
@@ -146,36 +147,4 @@ worry too much about them.
 
 The associated statements are SELECT MIN\_M (section [\[SELECT MIN\_M\]](/mql/data/globaldata/selectminm/)) and SELECT MAX\_M (section
 [\[SELECT MAX\_M\]](/mql/data/globaldata/selectmaxm/)).
-
-## Arbitrary monad sets
-
-Each database has a central repository of monad sets which are not
-associated with any objects. That is, they are not objects, have no
-object type, and no features. They are just plain monad sets.
-
-These monad sets can be used as the basis for searches. That is, when
-doing a SELECT ALL OBJECTS query (or SELECT FOCUS OBJECTS), one can
-specify within which arbitrary monad set the search should be conducted.
-
-The associated statements are:
-
-- CREATE MONAD SET (section [\[CREATE MONAD
-  SET\]](/mql/data/monadsets/createmonadset/)),
-
-- UPDATE MONAD SET (section [\[UPDATE MONAD
-  SET\]](mql/data/monadsets/updatemonadset/)),
-
-- DROP MONAD SET (section [\[DROP MONAD
-  SET\]](/mql/data/monadsets/dropmonadset/)), 
-
-- MONAD SET CALCULATION (section [\[MONAD SET CALCULATION\]](/mql/data/monadsets/monadsetcalculation/),
-
-- SELECT MONAD SETS (section [\[SELECT MONAD
-  SETS\]](/mql/data/monadsets/selectmonadsets/)), and
-
-- GET MONAD SETS (section [\[GET MONAD
-  SETS\]](/mql/data/monadsets/getmonadsets/)).
-
-
-
 
