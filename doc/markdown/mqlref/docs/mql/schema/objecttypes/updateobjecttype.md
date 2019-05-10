@@ -2,6 +2,9 @@
 
 ## Purpose
 
+To alter the schema of a given object type, either by adding or
+removing features.
+
 ## Grammar
 
 ```
@@ -77,13 +80,32 @@ list_feature_type = "INTEGER"
 ## Examples
 
 ```
+UPDATE OBJECT TYPE
+[Word
+    ADD no_of_morphemes : integer;
+    REMOVE surface_without_accents;
+]
+GO
 ```
-
 ## Explanation
 
+This statement *updates an object type*. It can either add a feature or
+remove an already-existing feature. When adding a new feature, the ADD
+keyword is optional. Other than that, it has exactly the same notation
+as for feature declarations under the CREATE OBJECT TYPE statement.
+
+Removing a feature requires the REMOVE keyword, the feature name, and a
+semicolon.
+
+Both additions and removals must be terminated with semicolon, even if
+the `feature_update` is the only `feature_update` in the list of
+`feature_update`s.
+
+Note that the statement does not allow for *changing* the type of an
+already existing feature, only for adding or removing features.
 
 
 ## Return type
 
-
+There is no return value.
 
