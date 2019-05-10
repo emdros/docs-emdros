@@ -209,4 +209,89 @@ ec_initialization : “=” T_INTEGER
 ```
 
 
-### 
+#### Elements of “MQL BNF”
+
+All of the elements of “MQL BNF” can be listed as follows:
+
+1.  Rule
+    
+    This is just the same as in the context-free grammars above, except
+    that the “-\>” production arrow is replaced by a “:“ colon. Also, a
+    rule ends with a “;” semicolon.
+
+2.  Non-terminal
+    
+    Non-terminals always start with a lower-case letter, e.g.,
+    “ec\_declaration.”
+
+3.  Terminal
+    
+    Terminals are either strings in “double quotes” or strings that
+    start with “T\_”, e.g., “T\_IDENTIFIER”.
+
+4.  Choice
+    
+    This is the same as in the context-free grammars. The symbol “|” is
+    used.
+
+5.  Concatenation
+    
+    This is the same as in the context-free grammars. A space between
+    two symbols is used.
+
+6.  Start-symbol
+    
+    This is the same as in the context-free grammars. The left-hand side
+    non-terminal of the first rule is the start-symbol.
+
+7.  Comment
+    
+    A comment is enclosed in /\* slashes and stars \*/. The comments are
+    not part of the grammar, but serve to explain a part of the grammar
+    to the human reader.
+
+8.  Optional specification
+    
+    A symbol or sequence of symbols enclosed in <span>\[</span>square
+    brackets<span>\]</span> is considered optional. For example, the
+    `ec_initialization` non-terminal is optional in the `ec_declaration`
+    rule. Both terminals and non-terminals can be optional. Here, the
+    choice is between “ENUM” and “ENUMERATION”, rather than, say,
+    “CREATE ENUMERATION” and the rest of the rule.
+
+9.  Bracketing
+    
+    Sometimes, we do not go to the trouble of spelling out a choice with
+    a rule by itself. Instead, (brackets) are used. For example, in the
+    above grammar, there is a choice between “ENUMERATION” and “ENUM”.
+    Only one must be chosen when writing the CREATE ENUMERATION
+    statement. The brackets serve to let you know the scope of the
+    choice, i.e., between exactly which elements the choice stands.
+
+10. Bracing (repetition)
+    
+    The \<lcurlybrace/\> braces \<rcurlybrace/\> are used to indicate
+    that the enclosed part can be repeated zero or more times. For
+    example, in the rule for `ec_declaration_list`, the first
+    `ec_declaration` can be followed by zero or more occurrences of
+    first a “,” comma and then an `ec_declaration`. This effectively
+    means that the `ec_declaration_list` is a comma-separated list of
+    `ec_declaration`s, with one or more `ec_declaration`s.
+    
+    There is no comma after the last `ec_declaration`. To see why,
+    notice that the part that is repeated starts with a comma and ends
+    with an `ec_declaration`. Thus, no matter how many times you repeat
+    this sequence, the `ec_declaration` will always be last, and the
+    comma will never be last.
+    
+    That it can be repeated *zero* or more times simply means that it is
+    optional. In the rule for `ec_declaration_list`, the first
+    `ec_declaration` can stand alone.
+    
+    Notice also that, in the rule for `create_enumeration_statement`,
+    there are braces as well. These braces, however, are enclosed in
+    “double quotes” and are therefore terminals. Thus they do not have
+    the meaning of repetition, but are to be written in the statement
+    when writing a CREATE ENUMERATION statement. The braces without
+    double quotes are repetition-braces and must not be written.
+
