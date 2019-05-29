@@ -38,6 +38,10 @@ of EMdF:
 \item \textbf{Better typing of feature values:} Certain types of
   feature values should be better handled.  See below for concrete
   suggestions.
+
+\item \textbf{Better handling of UPDATE OBJECT:} It should be possible
+  to update the monad set of an object.
+  
 \end{enumerate}
 
 \noindent In order to implement these high-level abstractions, the
@@ -155,6 +159,34 @@ EMdF:
 
 \subsubsection{Implementing monad streams}
 
+\paragraph{Metadata}
+
+A new metadata table should be created:
+
+\bigskip
+
+\noindent\begin{tabular}{|l|l|}
+\hline
+\textbf{type\_id : id\_d\_t} & \textbf{MonadStreamName : STRING}\\
+\hline
+\end{tabular}
+
+\bigskip
+
+\noindent This should be created at database creation time.  At the
+same time, an entry designating the ``main'' monad stream should be
+created.  The strings should be restricted to being C identifiers by
+the MQL layer.  The strings should be case-IN-sensitive.
+
+\paragraph{MQL enhancements}
+
+New MQL statements should be made for CREATE and DROP operations on
+monad streams.  See Section \ref{sec:MonadStreams} below.
+
+Also, it should be possible to declare that a given monad set feature
+is in a particular monad stream.
+
+
 \subsubsection{Implementing Virtual objects}
 
 \subsubsection{Virtual object adjacency rules}
@@ -162,5 +194,120 @@ EMdF:
 \subsubsection{Implementing feature enhancements}
 
 \section{New MQL}
+
+\subsection{Introduction}
+
+These items are discussed below:
+
+\begin{enumerate}
+\item Monad streams
+\item Monad set range type
+\item Strings as enumeration constants
+\item LIST OF STRING
+\item UPDATE OBJECT
+\end{enumerate}
+
+\subsection{Monad streams}\label{sec:MonadStreams}
+
+\subsubsection{Introduction}
+
+\subsubsection{CREATE MONAD STREAM}
+
+Suggested syntax example:
+
+\begin{verbatim}
+CREATE MONAD STREAM Footnotes
+GO
+\end{verbatim}
+
+\noindent so, basically, the three tokens ``CREATE'', ``MONAD'', and
+``STREAM'', followed by an IDENTIFIER.
+
+Note that \texttt{STREAM} is not currently a keyword, so the list of
+keywords will have to be expanded.
+
+\subsubsection{DROP MONAD STREAM}
+
+It should be possible to drop a monad stream, provided no feature
+currently uses this monad stream.  If a feature on some object type is
+found to use the current monad stream, then an error should be thrown,
+and the DROP MONAD STREAM statement should not succeed.
+
+Suggested syntax example:
+
+\begin{verbatim}
+DROP MONAD STREAM Footnotes
+GO
+\end{verbatim}
+
+\subsubsection{Enhancements to CREATE OBJECT TYPE}
+
+Both set ``monads'' feature and all other ``set of monads'' features should be able to be declared to be in a specific monad stream.
+
+Suggested syntax example:
+
+\begin{verbatim}
+CREATE OBJECT TYPE
+WITH monads IN MONAD STREAM Main
+[Footnote
+   // This anticipates the HAVING <range-type> SETS syntax
+   footnote_text_som : SET OF MONADS 
+                       HAVING SINGLE RANGE SETS 
+                       IN MONAD STREAM Footnotes
+]
+GO
+\end{verbatim}
+
+\subsection{Monad set range type}
+
+\subsubsection{Introduction}
+
+\subsection{Enhancements to CREATE OBJECT TYPE}
+
+\subsection{Strings as enumeration constants}
+
+\subsubsection{CREATE ENUMERATION}
+\subsubsection{UPDATE ENUMERATION}
+\subsubsection{Enumeration usages}
+
+\subsection{New feature type LIST OF STRING}
+
+\subsubsection{CREATE OBJECT TYPE}
+
+A new type should be created, both in the MQL grammar and everywhere
+else it is necessary, e.g., in emdf.h, infos.{cpp,h},
+emdf\_value.{cpp,h}, and elsewhere.
+
+This new type should be added to the CREATE OBJECT TYPE grammar and
+Statement implementation, as well as to the EMdF layer.
+
+\subsubsection{UPDATE OBJECT TYPE}
+
+It should be possible to ADD a feature with type type LIST OF STRING
+to an existing object type.
+
+\subsubsection{CREATE OBJECT}
+
+When creating a normal or virtual object, it should be possible to set
+a given feature to be a list of string.  The curren syntax for lists
+should be re-used, i.e., parenthesis-surrounded, commma-separated
+list.
+
+\subsubsection{Feature usages}
+
+In the topographic part of MQL, it should be possible to search
+features of type \texttt{LIST OF STRING} with ``\texttt{IN}
+\textit{list-of-string}'' and ``\texttt{HAS} \textit{string}''.
+
+This insolves both feature comparisons and object reference usages, as
+well as EMdFValue.
+
+\subsection{Updating the ``monads'' feature with UPDATE OBJECT}
+
+The UPDATE OBJECT statement should be changed so that it is also able
+to update the ``monads'' feature, i.e., the privileged monad set.
+
+The details of the syntax should be described in the MQL documentation
+before implementation.
 
 \end{document}
