@@ -1,0 +1,166 @@
+\documentclass[a4paper,12pt]{article}
+
+\begin{document}
+
+\title{Desiderata for a new EMdF and a new MQL}
+\author{Ulrik Sandborg-Petersen}
+\date{2019/05/29}
+
+\section{Introduction}
+
+This paper describes, motives, explains, and exemplifies some
+desiderata for a new MQL and EMdF model.
+
+\section{New EMdF}
+
+\subsection{Introduction}
+
+The following are proposed as additions to the high-level abstraction
+of EMdF:
+
+\begin{enumerate}
+\item \textbf{Virtual objects:} That is, objects which have a place in
+  the monad stream, because they are anchored in the text, but which
+  are not part of the main text at that point in the monad stream.
+  
+\item \textbf{Extra-textual objects:} That is, objects which are not
+  part of the main text, but which also do not have a natural
+  anchoring at a specific location in the text.  Rather, they are
+  outside the text, and are referred to by objects in the text, and
+  perhaps also the other way around.
+
+\item \textbf{Better declaration of properties of and relationships
+  between monad set features:} It should be possible to declare
+  explicitly certain properties of monad set features, as well as
+  declaring that certain monad set features are to be interpreted in
+  the same context.
+
+\item \textbf{Better typing of feature values:} Certain types of
+  feature values should be better handled.  See below for concrete
+  suggestions.
+\end{enumerate}
+
+\noindent In order to implement these high-level abstractions, the
+following are proposed as additions to the concrete implementation of
+EMdF:
+
+\begin{enumerate}
+\item \textbf{Named monad streams:} Right now, there is only one monad
+  stream.  It is currently unnamed, but I propose calling it ``main''
+  in the future.  This should always be declared implicitly at
+  database creation time.
+
+  We should add the ability to declare separate monad streams and call
+  them something else.
+
+  It should also be possible to declare at object type creation time
+  that a given set-of-monads feature belongs to a given, previously
+  explicitly or implicitly declared, monad stream.
+
+  All monad set features should default to being in the ``main'' monad
+  stream when the feature is being created, unless Emdros is directed
+  otherwise by the user.  This is true of both the ``monads'' feature,
+  which is always created, and all other monad set features.
+  
+  This will gain us these advantages:
+  \begin{enumerate}
+  \item Monad set can be declared to belong to a certain monad stream.
+    This will make the relationships explicit.  This explicitation is
+    useful in two ways:
+    \begin{enumerate}
+      \item It helps the database designer think about his textual
+        domain.
+      \item It helps the EMdF and MQL layers detect errors in usage.
+    \end{enumerate}
+
+  \item Separation of different textual streams:
+
+    \begin{enumerate}
+    \item Sometimes, different kinds of text in a document all belong
+      to the document, but are of entirely different natures, and
+      actually are separate parts of the same document.  Examples
+      include: Footnotes, Apparatuses, Inserts, and other parts of the
+      document which have an anchoring in the main text, but which are
+      not part of the main text.
+    \item Sometimes, a database needs to contain extra-textual data
+      which is not part of the main text, nor has a natural placement
+      in the document reading order, but which is nevertheless
+      important information for the reading / interpretation of the
+      document.  Having the ability to declare separate monad streams
+      for these kinds of objects is a real advantage.
+    \end{enumerate}
+  \end{enumerate}
+
+\item \textbf{Declarared monad set range types:} It should be
+  possible, at object type creation time, to declare that a given
+  monad set feature (not just ``monads'', but all features of type SET
+  OF MONADS) is of a given range type: SINGLE MONAD, SINGLE RANGE, or
+  MULTIPLE RANGE set of monads.
+  
+\item \textbf{Observed monad set range types:} The EMdF engine should
+  keep track of the range types of all monad sets of all objects in
+  all object types, both the ``monads'' feature and all other monad
+  set features.  That is, when an object is created, the EMdF engine
+  should store the largest range type that is used by the actual
+  objects for this feature.  This should be according to this cline:
+
+  \begin{center}
+    \texttt{MULTIPLE RANGE} $>$ \texttt{SINGLE RANGE} $>$ \texttt{SINGLE MONAD}
+  \end{center}
+  
+  \noindent This will help the MQL engine decide optimizations better.
+  
+\item \textbf{Virtual object metadata:} At object creation time (not
+  object type creation time), it should be possible to declare that a
+  given object of the given object type is ``virtual'', in the sense
+  that, while it has a placement in the monad stream, it is not
+  necessarily a part of the main text of that monad stream.  Instead,
+  it sits ``between'' two monads.  This, if the two monads between
+  which it sits are adjacent, the virtual object has zero extent.  If
+  the two monads between which it sits are not adjacent, then the
+  virtual object \textit{is} part\_of the monad stream by at least one
+  monad.
+ 
+  A possible way to implement this is outlined below.
+ 
+\item \textbf{Virtual object adjacency rules:} Given that a virtual
+  object has a placement in the monad stream, but may have zero
+  extent, it becomes necessary to define adjacency rules between
+  ``normal'' objects and virtual objects.
+
+  A possible way to implement this is also outlined below.
+
+\item \textbf{Better handling of feature types:} Certain
+  possibilities have suggested themselves over the course of using
+  the current typing schema.  These include:
+  
+  \begin{enumerate}
+    
+  \item \textbf{Arbitrary strings as enumeration constants:} It
+    should be possible to define enumeration constants by means of
+    arbitrary strings, not just C identifiers.
+    
+  \item \textbf{Arbitrary strings in lists of enumeration constants:}
+    Of course, when a feature type is ``LIST OF
+    \textit{enumeration}'', then it should also be possible to use
+    strings in those lists.
+      
+  \item \textbf{LIST OF STRING:} It should be possible to declare that
+    a given feature is of type LIST OF STRING, meaning a list of
+    arbitrary strings.
+      
+  \end{enumerate}
+  
+\end{enumerate}
+
+\subsubsection{Implementing monad streams}
+
+\subsubsection{Implementing Virtual objects}
+
+\subsubsection{Virtual object adjacency rules}
+
+\subsubsection{Implementing feature enhancements}
+
+\section{New MQL}
+
+\end{document}
