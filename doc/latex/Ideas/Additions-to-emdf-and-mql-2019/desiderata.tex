@@ -61,20 +61,22 @@ EMdF:
   that a given set-of-monads feature belongs to a given, previously
   explicitly or implicitly declared, monad stream.
 
-  All monad set features should default to being in the ``main'' monad
-  stream when the feature is being created, unless Emdros is directed
-  otherwise by the user.  This is true of both the ``monads'' feature,
-  which is always created, and all other monad set features.
-  
+  It should also be possible to declare that a monad set feature
+  belongs to ``\texttt{ANY}'' monad stream.  That is, it should be
+  possible not to assign a specific monad stream to a given monad set
+  feature.  This should be the default.
+
   This will gain us these advantages:
   \begin{enumerate}
-  \item Monad set can be declared to belong to a certain monad stream.
-    This will make the relationships explicit.  This explicitation is
-    useful in two ways:
+  \item A monad set feature can be declared to belong to a certain
+    monad stream.  This will make the relationships explicit.  This
+    explicitation is useful in two ways:
     \begin{enumerate}
       \item It helps the database designer think about his textual
         domain.
       \item It helps the EMdF and MQL layers detect errors in usage.
+      \item It helps the MQL layer, and possibly also the EMdF layer,
+        to use objects correctly and more efficiently.
     \end{enumerate}
 
   \item Separation of different textual streams:
@@ -115,15 +117,19 @@ EMdF:
   \noindent This will help the MQL engine decide optimizations better.
   
 \item \textbf{Virtual object metadata:} At object creation time (not
-  object type creation time), it should be possible to declare that a
-  given object of the given object type is ``virtual'', in the sense
-  that, while it has a placement in the monad stream, it is not
-  necessarily a part of the main text of that monad stream.  Instead,
-  it sits ``between'' two monads.  This, if the two monads between
-  which it sits are adjacent, the virtual object has zero extent.  If
-  the two monads between which it sits are not adjacent, then the
-  virtual object \textit{is} part\_of the monad stream by at least one
-  monad.
+  object \textit{type} creation time), it should be possible to
+  declare that a given object of the given object type is ``virtual'',
+  in the sense that, while it has a placement in the monad stream, it
+  is not necessarily a part of the main text of that monad stream.
+  Instead, it sits ``between'' two monads.  Thus, if the two monads
+  between which it sits are adjacent, the virtual object has zero
+  extent.  If the two monads between which it sits are not adjacent,
+  then the virtual object \textit{is} part\_of the monad stream by at
+  least one monad.
+
+  It should also be possible to have more than one virtual object
+  sitting in between two monads, yet still have an ordering on those
+  objects.
  
   A possible way to implement this is outlined below.
  
@@ -165,31 +171,206 @@ A new metadata table should be created:
 
 \bigskip
 
+  \begin{center}
 \noindent\begin{tabular}{|l|l|}
 \hline
 \textbf{type\_id : id\_d\_t} & \textbf{MonadStreamName : STRING}\\
 \hline
 \end{tabular}
+  \end{center}
 
 \bigskip
 
 \noindent This should be created at database creation time.  At the
-same time, an entry designating the ``main'' monad stream should be
-created.  The strings should be restricted to being C identifiers by
-the MQL layer.  The strings should be case-IN-sensitive.
+same time, entries designating the ``main'' and ``any'' monad streams
+should be created.  The ``any'' monad stream should have the special
+type id\_d\_t ``\texttt{NIL}'' assigned.
+
+\begin{table}[h]
+  \begin{center}
+  \caption{Initial data for the ``monad\_streams'' table.}
+\medskip  
+\noindent\begin{tabular}{|l|l|}
+\hline
+\textbf{type\_id : id\_d\_t} & \textbf{MonadStreamName : STRING}\\
+\hline
+0  & any \\
+\hline
+10001 & main \\
+\hline
+\end{tabular}
+  \end{center}
+\end{table}
+
+
+The strings should be restricted to being C identifiers by the MQL
+layer.  The strings should be case-IN-sensitive.
 
 \paragraph{MQL enhancements}
 
 New MQL statements should be made for CREATE and DROP operations on
-monad streams.  See Section \ref{sec:MonadStreams} below.
-
-Also, it should be possible to declare that a given monad set feature
-is in a particular monad stream.
-
+monad streams.  Also, it should be possible to declare that a given
+monad set feature is in a particular monad stream.  See Section
+\ref{sec:MonadStreams} below.
 
 \subsubsection{Implementing Virtual objects}
 
-\subsubsection{Virtual object adjacency rules}
+Virtual objects are always of a particular object type, which may also
+contain non-virtual or ``normal'' objects.
+
+When creating the virtual object, its ``monads'' feature should be
+given a monad set.  Because the object is marked as ``virtual'', this
+monad set will be interpreted specially by the MQL engine.
+
+In effect, the monad set should be interpreted such that:
+
+\begin{enumerate}
+  \item \textbf{Monad set width:} The interpreted width of the monad
+    should be one less than the actual width.  That is, the width of a
+    monad set $m$ is given by the formula:
+
+    \[m.\mathrm{last} - m.\mathrm{first}\]
+    
+    In the usual case, the width is, of course, given by the formula:
+    
+    \[m.\mathrm{last} - m.\mathrm{first} + 1\]
+
+    \item \textbf{Monad placement:} The monad set should be
+      interpreted such that it's real \textit{first} monad should be
+      interpreted to be placed just \textit{after} the real first
+      monad.  One can think of it in terms of the interpreted first
+      monad being on (virtual) monad $m.\mathrm{first} + 0.5$, which
+      is between $m.\mathrm{first}$ and $m.\mathrm{first} + 1$
+      
+      Similarly, the real \textit{last} monad should be interpreted as
+      being just \textit{before} the last monad + 1, but still after
+      the first monad.  One can think of it as being at (virtual)
+      monad $m.\mathrm{last} + 0.5$
+
+      Thus if $m.\mathrm{first} = m.\mathrm{last}$, the monad set will
+      have zero width, and will fall between the (real) monads
+      $m.\mathrm{first}$ and $m.\mathrm{last} + 1$.
+
+      If, on the other hand, $m.\mathrm{first} < m.\mathrm{last}$,
+      then the monad set will start after $m.\mathrm{first}$ (namely
+      at ``virtual monad'' $m.\mathrm{first} + 0.5$, and will also end
+      before $m.\mathrm{last} + 1$, namely on $m.\mathrm{last} + 0.5$
+      In this casem since $m.\mathrm{first} < m.\mathrm{last}$, it
+      will be the case that the monad set has at least one monad which
+      sits in the real monad stream.
+
+      In either case, MQL should be made smart enough to know that the
+      virtual monad set is part\_of the surrounding Substrate, and
+      also that its adjacency is \textit{after} $m.\mathrm{first}$ and
+      \textit{before} $m.\mathrm{last} + 1$.
+
+      \item \textbf{Ordering of more than one virtual object starting
+        on the samme virtual monad:} It should be possible to declare
+        in both EMdF and MQL how multiple virtual objects starting on
+        the same virtual monad should be ordered, both as regards
+        adjacency and as regards containment.
+
+        This is necessary because the same virtual monad ``slot'' may
+        need to contain more than one virtual object, and we want to
+        be able to declare that such and such a virtual object is
+        before, after, or contained inside another virtual object
+        sitting on the same virtual monad.
+
+        This can be done in a number of ways.  Here it is suggested to
+        use another monad set feature, and declare it to be the
+        arbitrating monad set in terms of ordering, or its ``secondary
+        monad set''.
+
+        That is, it should be possible at object type creation time to
+        add another monad set feature $M$, other than ``monads''
+        (this part is already possible), and then declare that this
+        monad set feature $M$ is a ``secondary'' monad set,
+        arbitrating order and containment in the case of more than one
+        virtual object sitting on the same monad (this is the novel
+        part).
+
+        In fact, this is useful not just for virtual objects, but also
+        for extra-textual objects.
+
+        The rules of adjacency and containment are outlined below.
+      
+\end{enumerate}
+
+\subsubsection{Virtual object rules for adjacency and containment}
+
+As noted above, it should be possible, at object type creation time,
+to declare any monad set feature other than ``monads'' to be the
+``secondary'' monad set of the object.  This should make it possible
+for MQL to arbitrate between objects (virtual or normal) that start on
+the same monad (virtual or real) as to adjacency in case there is a
+tie on the primary monad set.
+
+When running an MQL query, it is already possible to declare that a
+given object\_block should use such and such a monad set feature for
+checking part\_of, starts\_in, and overlap with the substrate.  This
+monad set also currently becomes the new monad set used for checking
+the adjacency relations.
+
+The syntax should be extended such that a given monad set feature should
+be able to be declared to be used for:
+
+\begin{enumerate}
+\item \textbf{Adjacency:} Be used for adjacency (before and after).
+\item \textbf{Containment:} Be used for containment (inside, namely
+  part\_of, starts\_in, and overlap of the inner \texttt{blocks}).
+\end{enumerate}
+
+\noindent Moreover, for adjacency, a secondary monad set feature
+should be able to be picked, in case the primrary monad set feature
+makes a tie.
+
+Notice that the primary and secondary monad sets should be able to be
+picked in the topographic query, hence it is not strictly necessary to
+declare a certain monad set feature to be the secondary feature at
+object type creation time.  However, the significance of actually
+declaring a certain monad set feature to be the secondary monad set
+feature is that it makes it possible for MQL to automatically pick the
+right one in case it needs it.
+
+MQL aside, the rules should be as follows:
+
+An object (virtual or not) should always be compared on its primary
+monad set first.  Then, if this gives a tie, we should check if there
+is a secondary monad set.  If not, then the objects are neither before
+nor after each other.  If, on the other hand, there is a secondary
+monad set, then this secondary monad set should be tried.
+
+Notice that the before/after relations have three possible outcomes:
+before, after, and neither.  Notice also that for the containment
+relations (part\_of, starts\_in, and overlaps), there is no middle
+ground: It is always a ``yes/no'' or ``true/false'' answer.
+
+Therefore, the rule of using the secondary monad set in case of a tie
+only applies to the before/after relation, not to the containment
+relations.
+
+\subsubsection{Notes on implementing virtual objects and extra-textual objects}
+
+\begin{itemize}
+\item When comparing two ``normal'' objects, the rules of adjacency
+  and containment above should be used.
+
+\item When comparing two ``virtual'' objects, the rules of adjacency
+  and containment above should also be used directly on the monad sets
+  involved.
+
+\item when comparing a ``normal'' object $N$ with a ``virtual'' object
+  $V$, the following rules apply:
+
+  \begin{enumerate}
+    \item If $V.\mathrm{first} \geq N.\mathrm{last}$, then $V$ is after $N$.
+    \item If $V.\mathrm{last} < N.\mathrm{first}$, then $V$ is before $N$.
+    \item If $V.\mathrm{first} \leq N.\mathrm{first} \wedge V.\mathrm{last} \geq N.\mathrm{last}$, then $V$ is after $N$.
+    \item If $V.\mathrm{first} \leq N.\mathrm{first} \wedge V.\mathrm{last} \leq N.\mathrm{last}$, then $V$ is before $N$.
+    \item \ldots{} @@@ TO BE COMPLETED....
+  \end{enumerate}
+
+\end{itemize}
 
 \subsubsection{Implementing feature enhancements}
 
@@ -203,8 +384,9 @@ These items are discussed below:
 \item Monad streams
 \item Monad set range type
 \item Strings as enumeration constants
-\item LIST OF STRING
-\item UPDATE OBJECT
+\item New feature type: LIST OF STRING
+\item New statement: HARVEST
+\item Enhancements to UPDATE OBJECT
 \end{enumerate}
 
 \subsection{Monad streams}\label{sec:MonadStreams}
@@ -302,12 +484,18 @@ features of type \texttt{LIST OF STRING} with ``\texttt{IN}
 This insolves both feature comparisons and object reference usages, as
 well as EMdFValue.
 
-\subsection{Updating the ``monads'' feature with UPDATE OBJECT}
+\subsection{New HARVEST statement}
+
+\subsection{Enhancements to UPDATE OBJECT}
+
+\subsubsection{Updating the ``monads'' feature with UPDATE OBJECT}
 
 The UPDATE OBJECT statement should be changed so that it is also able
 to update the ``monads'' feature, i.e., the privileged monad set.
 
 The details of the syntax should be described in the MQL documentation
 before implementation.
+
+\subsubsection{Combining HARVEST and UPDATE OBJECTS}
 
 \end{document}
